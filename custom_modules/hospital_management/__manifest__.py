@@ -12,7 +12,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        # "views/todo_views.xml",
+        "views/patient_data.xml",
     ],
     "installable": True,
     "application": True,
