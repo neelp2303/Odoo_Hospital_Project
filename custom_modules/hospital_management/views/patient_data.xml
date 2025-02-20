@@ -49,8 +49,48 @@
             </form>
         </field>
     </record>
+    
+    <!-- Kanban View -->
+    <record id="hospital_patient_kanban_view" model="ir.ui.view">
+    <field name="name">hospital.patient.kanban.view</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_view">
+            
+            <field name="name"/>
+            <field name="age"/>
+            <field name="gender"/>
+            <field name="doctor_name"/>
+            <field name="admission_date"/>
 
-    <!-- Action -->
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_details">
+                        <strong>
+                            
+                            <field name="name"/>
+                        </strong>
+                        <div>
+                            Age: <field name="age"/>
+                        </div>
+                        <div>
+                            Gender: <field name="gender"/>
+                        </div>
+                        <div>
+                            Doctor: <field name="doctor_name"/>
+                        </div>
+                        <div>
+                            Admission: <field name="admission_date"/>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+    
     
 
      <record id="hospital_patient_search_view" model="ir.ui.view">
@@ -80,7 +120,7 @@
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="res_model">hospital.patient</field>
-        <field name="view_mode">list,form,calendar,search</field>
+        <field name="view_mode">list,form,calendar,search,kanban</field>
     </record>
     <!-- Menu -->
     <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10" action="action_hospital_patient" />
