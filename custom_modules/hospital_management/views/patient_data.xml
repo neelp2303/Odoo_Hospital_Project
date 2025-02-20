@@ -63,31 +63,31 @@
             <field name="doctor_name"/>
             <field name="admission_date"/>
 
-            <templates>
-                <t t-name="kanban-box">
-                    <div class="oe_kanban_details">
-                        <strong>
-                            
-                            <field name="name"/>
-                        </strong>
-                        <div>
-                            Age: <field name="age"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_details">
+                            <strong>
+                                
+                                <field name="name"/>
+                            </strong>
+                            <div>
+                                Age: <field name="age"/>
+                            </div>
+                            <div>
+                                Gender: <field name="gender"/>
+                            </div>
+                            <div>
+                                Doctor: <field name="doctor_name"/>
+                            </div>
+                            <div>
+                                Admission: <field name="admission_date"/>
+                            </div>
                         </div>
-                        <div>
-                            Gender: <field name="gender"/>
-                        </div>
-                        <div>
-                            Doctor: <field name="doctor_name"/>
-                        </div>
-                        <div>
-                            Admission: <field name="admission_date"/>
-                        </div>
-                    </div>
-                </t>
-            </templates>
-        </kanban>
-    </field>
-</record>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
 
     
