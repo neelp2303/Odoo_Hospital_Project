@@ -25,7 +25,7 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Patient Details">
-                
+                <group>
                         <group>
                             <field name="name"/>
                             <field name="age"/>
@@ -33,24 +33,55 @@
                             <field name="dob"/>
                             <field name="contact_number"/>
                             <field name="address"/>
-                        
+                        </group>
+                        <group>
                             <field name="doctor_name"/>
                             
                             <field name="admission_date"/>
                             <field name="discharge_date"/>
                         </group>
+                        <notebook>
+                <page string="Description">
                     
+                </page>
+            </notebook>
+                    </group>
             </form>
         </field>
     </record>
 
     <!-- Action -->
+    
+
+     <record id="hospital_patient_search_view" model="ir.ui.view">
+        <field name="name">hospital.patient.search.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Search Patients">
+                <field name="age"/>
+                <field name="name"/>
+                <field name="doctor_name"/>
+                <!-- <filter string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" domain="[('gender', '=', 'female')]"/> -->
+            </search>
+        </field>
+    </record>
+    <!-- create a calendar view using the admission date -->
+    <record id="hospital_management_calendar_view" model="ir.ui.view">
+        <field name="name">hospital.patient.calendar.view</field>
+        <field name="model">hospital.patient</field>
+        
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <calendar string="Patients" create="0" mode="month" date_start="admission_date" date_stop="discharge_date" color="name"/>
+        </field>
+    </record>
+
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="res_model">hospital.patient</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,calendar,search</field>
     </record>
-
     <!-- Menu -->
     <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10" action="action_hospital_patient" />
 
