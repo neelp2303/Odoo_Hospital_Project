@@ -13,7 +13,7 @@ class patients_data(models.Model):
     dob = fields.Date("Dob")
     contact_number = fields.Char("Contact Number")
     address = fields.Text("Address")
-    admission_date = fields.Date("Admission Date")
+    admission_date = fields.Date(default=fields.Datetime.now)
     discharge_date = fields.Date("Discharge Date")
     doctor_name = fields.Char("Doctor Name")
 
