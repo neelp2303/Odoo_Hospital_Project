@@ -52,9 +52,9 @@
     
     <!-- Kanban View -->
     <record id="hospital_patient_kanban_view" model="ir.ui.view">
-    <field name="name">hospital.patient.kanban.view</field>
-    <field name="model">hospital.patient</field>
-    <field name="arch" type="xml">
+        <field name="name">hospital.patient.kanban.view</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
         <kanban class="o_kanban_view">
             
             <field name="name"/>
