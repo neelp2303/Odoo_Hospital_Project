@@ -64,7 +64,7 @@
             <field name="admission_date"/>
 
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="oe_kanban_details">
                             <strong>
                                 
@@ -93,19 +93,35 @@
     
     
 
-     <record id="hospital_patient_search_view" model="ir.ui.view">
+    <record id="hospital_patient_search_view" model="ir.ui.view">
         <field name="name">hospital.patient.search.view</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <search string="Search Patients">
-                <field name="age"/>
                 <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
                 <field name="doctor_name"/>
-                <!-- <filter string="Male" domain="[('gender', '=', 'male')]"/>
-                <filter string="Female" domain="[('gender', '=', 'female')]"/> -->
+                <field name="admission_date"/>
+                <field name="discharge_date"/>
+                
+                <!-- Filters -->
+                <filter name="filter_male" string="Male Patients" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_female" string="Female Patients" domain="[('gender', '=', 'female')]" />
+                <filter name="filter_admit" string="Admitted Patients" domain="[('admission_date', '!=', False)]" />
+                <filter name="filter_discharge" string="Discharged Patients" domain="[('discharge_date', '!=', False)]" />
+
+                <!-- Group By Options -->
+                <group expand="0" string="Group By">
+                    <filter name="filter_doctor" string="Doctor" context="{'group_by': 'doctor_name'}"/>
+                    <filter name="filter_gender" string="Gender" context="{'group_by': 'gender'}"/>
+                    <filter name="filter_admission_date" string="Admission Date" context="{'group_by': 'admission_date'}"/>
+                </group>
             </search>
         </field>
     </record>
+
+
     <!-- create a calendar view using the admission date -->
     <record id="hospital_management_calendar_view" model="ir.ui.view">
         <field name="name">hospital.patient.calendar.view</field>
