@@ -12,7 +12,7 @@
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="contact_number"/>
-                <field name="specialization"/>  <!-- Fixed Closing Tag -->
+                <field name="specialization"/> 
             </list>
         </field>
     </record>
@@ -31,7 +31,7 @@
                         <field name="dob"/>
                         <field name="contact_number"/>
                         <field name="address"/>
-                        <field name="specialization"/> <!-- Fixed Closing Tag -->
+                        <field name="specialization"/> 
                     </group>
                     
                     <notebook>
@@ -111,7 +111,7 @@
         <field name="name">Doctors</field>
         <field name="res_model">hospital.doctor</field>
         <field name="view_mode">list,form,search,kanban</field>
-        <field name="view_id" ref="hospital_doctor_list_view"/>  <!-- Ensures List View Opens -->
+        <field name="view_id" ref="hospital_doctor_list_view"/>  
     </record>
 
     <!-- Menu Structure -->
