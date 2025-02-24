@@ -13,6 +13,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/patient_data.xml",
+        "views/doctor_data.xml",
     ],
     "installable": True,
     "application": True,

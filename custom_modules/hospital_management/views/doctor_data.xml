@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- List View -->
+    <record id="hospital_doctor_list_view" model="ir.ui.view">
+        <field name="name">hospital.doctor.list.view</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <list string="Doctors">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="contact_number"/>
+                <field name="specialization"/>  <!-- Fixed Closing Tag -->
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="hospital_doctor_form_view" model="ir.ui.view">
+        <field name="name">hospital.doctor.form.view</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor Details">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="dob"/>
+                        <field name="contact_number"/>
+                        <field name="address"/>
+                        <field name="specialization"/> <!-- Fixed Closing Tag -->
+                    </group>
+                    
+                    <notebook>
+                        <page string="Description">
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Kanban View -->
+    <record id="hospital_doctor_kanban_view" model="ir.ui.view">
+        <field name="name">hospital.doctor.kanban.view</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_view">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                
+                
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global">
+                            <div class="o_kanban_content" style="margin-left:25px">
+                                <strong style="font-size: 14px;">
+                                    Name: <field name="name"/>
+                                </strong>
+                            
+                                <div style="font-size: 13px;">Age: <field name="age"/></div>
+                                <div style="font-size: 13px;">Gender: <field name="gender"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="hospital_doctor_search_view" model="ir.ui.view">
+        <field name="name">hospital.doctor.search.view</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Search Doctors">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+               
+
+                <!-- Filters -->
+                <filter name="filter_male" string="Male Doctors" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_female" string="Female Doctors" domain="[('gender', '=', 'female')]" />
+
+                <!-- Group By Options -->
+                <group expand="0" string="Group By">
+                  
+                    <filter name="filter_gender" string="Gender" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <!-- <record id="hospital_doctor_calendar_view" model="ir.ui.view">
+        <field name="name">hospital.doctor.calendar.view</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <calendar string="Doctors" create="0" mode="month" date_start="admission_date" date_stop="discharge_date" color="name"/>
+        </field>
+    </record> -->
+
+    <!-- Window Action for Doctors -->
+    <record id="action_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">list,form,search,kanban</field>
+        <field name="view_id" ref="hospital_doctor_list_view"/>  <!-- Ensures List View Opens -->
+    </record>
+
+    <!-- Menu Structure -->
+    <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10"/>
+    <menuitem id="hospital_doctor_menu" name="Doctors" parent="hospital_menu_root" action="action_hospital_doctor"/>
+
+</odoo>

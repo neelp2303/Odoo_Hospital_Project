@@ -1,9 +1,9 @@
 from odoo import models, fields
 
 
-class patients_data(models.Model):
-    _name = "hospital.patient"
-    _description = "Patients Data"
+class doctors_data(models.Model):
+    _name = "hospital.doctor"
+    _description = "doctors Data"
 
     name = fields.Char("Name", required=True)
     age = fields.Integer("Age")
@@ -13,8 +13,4 @@ class patients_data(models.Model):
     dob = fields.Date("Dob")
     contact_number = fields.Char("Contact Number")
     address = fields.Text("Address")
-    admission_date = fields.Date(default=fields.Datetime.now)
-    discharge_date = fields.Date("Discharge Date")
-    doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-    pat_image = fields.Image("Patient Image") 
-
+    specialization = fields.Char("Specialization")
