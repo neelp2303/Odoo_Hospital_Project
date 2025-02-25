@@ -23,22 +23,24 @@
         <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
             <form string="Doctor Details">
-                <group>
+                <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="age"/>
-                        <field name="gender"/>
-                        <field name="dob"/>
-                        <field name="contact_number"/>
-                        <field name="address"/>
-                        <field name="specialization"/>
-                    </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="dob"/>
+                            <field name="contact_number"/>
+                            <field name="address"/>
+                            <field name="specialization"/>
+                        </group>
 
-                    <notebook>
-                        <page string="Description">
-                        </page>
-                    </notebook>
-                </group>
+                        <notebook>
+                            <page string="Description">
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
