@@ -12,7 +12,7 @@
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="contact_number"/>
-                <field name="specialization"/> 
+                <field name="specialization"/>
             </list>
         </field>
     </record>
@@ -31,9 +31,9 @@
                         <field name="dob"/>
                         <field name="contact_number"/>
                         <field name="address"/>
-                        <field name="specialization"/> 
+                        <field name="specialization"/>
                     </group>
-                    
+
                     <notebook>
                         <page string="Description">
                         </page>
@@ -42,7 +42,7 @@
             </form>
         </field>
     </record>
-    
+
     <!-- Kanban View -->
     <record id="hospital_doctor_kanban_view" model="ir.ui.view">
         <field name="name">hospital.doctor.kanban.view</field>
@@ -52,8 +52,8 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
-                
-                
+
+
 
                 <templates>
                     <t t-name="kanban-box">
@@ -62,9 +62,11 @@
                                 <strong style="font-size: 14px;">
                                     Name: <field name="name"/>
                                 </strong>
-                            
-                                <div style="font-size: 13px;">Age: <field name="age"/></div>
-                                <div style="font-size: 13px;">Gender: <field name="gender"/></div>
+
+                                <div style="font-size: 13px;">Age: <field name="age"/>
+                                </div>
+                                <div style="font-size: 13px;">Gender: <field name="gender"/>
+                                </div>
                             </div>
                         </div>
                     </t>
@@ -82,7 +84,7 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
-               
+
 
                 <!-- Filters -->
                 <filter name="filter_male" string="Male Doctors" domain="[('gender', '=', 'male')]" />
@@ -90,7 +92,7 @@
 
                 <!-- Group By Options -->
                 <group expand="0" string="Group By">
-                  
+
                     <filter name="filter_gender" string="Gender" context="{'group_by': 'gender'}"/>
                 </group>
             </search>
@@ -111,7 +113,7 @@
         <field name="name">Doctors</field>
         <field name="res_model">hospital.doctor</field>
         <field name="view_mode">list,form,search,kanban</field>
-        <field name="view_id" ref="hospital_doctor_list_view"/>  
+        <field name="view_id" ref="hospital_doctor_list_view"/>
     </record>
 
     <!-- Menu Structure -->
