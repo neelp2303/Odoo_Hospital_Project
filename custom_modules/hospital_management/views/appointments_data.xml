@@ -21,11 +21,12 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form string="Appointment Details">
-                <sheet>
-                    <header>
-                        <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,canceled" options="{'clickable':True}"/>
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,canceled" options="{'clickable':True}"/>
 
-                    </header>
+                </header>
+                <sheet>
+
                     <group>
                         <group>
                             <field name="patient_id"/>
