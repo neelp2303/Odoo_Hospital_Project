@@ -36,7 +36,18 @@
                         </group>
 
                         <notebook>
+
                             <page string="Description">
+                            </page>
+
+                            <page string="Appointments">
+                                <field name="appointment_ids">
+                                    <list >
+                                        <field name="patient_id"/>
+                                        <field name="appointment_date"/>
+                                        <field name="status"/>
+                                    </list>
+                                </field>
                             </page>
                         </notebook>
                     </group>
