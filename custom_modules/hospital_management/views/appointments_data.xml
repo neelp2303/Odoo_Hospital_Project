@@ -7,10 +7,10 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <list string="Appointments">
-                <field name="patient_id"/>
+                <field name="patient_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="doctor_id"/>
                 <field name="appointment_date"/>
-                <field name="status"/>
+                <field name="status" widget="badge" decoration-info="status=='confirmed'" decoration-success="status=='done'" decoration-warning="status=='draft'"/>
             </list>
         </field>
     </record>
@@ -30,7 +30,7 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
-                            <field name="doctor_id"/>
+                            <field name="doctor_id" />
                             <field name="appointment_date"/>
                         </group>
                     </group>

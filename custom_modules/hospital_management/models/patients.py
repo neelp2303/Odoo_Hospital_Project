@@ -14,4 +14,4 @@ class patients_data(models.Model):
     admission_date = fields.Date(default=fields.Datetime.now)
     discharge_date = fields.Date("Discharge Date")
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-    pat_image = fields.Image("Patient Image")
+    image = fields.Image("Patient Image")
