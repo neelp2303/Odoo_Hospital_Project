@@ -15,6 +15,7 @@ class doctors_data(models.Model):
     address = fields.Text("Address")
     specialization = fields.Char("Specialization")
     image = fields.Image("Doctor Image")
+    conference_ids = fields.Many2many("hospital.conference", string="Conferences")
     appointment_ids = fields.One2many(
         "hospital.appointment", "doctor_id", string="Appointments"
     )
