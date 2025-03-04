@@ -16,6 +16,7 @@
         "views/doctor_data.xml",
         "views/appointments_data.xml",
         "views/conference_data.xml",
+        "views/beds_data.xml",
     ],
     "installable": True,
     "application": True,

@@ -1,0 +1,53 @@
+<odoo>
+
+    <!-- List View for Bed Types -->
+    <record id="hospital_bed_type_list_view" model="ir.ui.view">
+        <field name="name">hospital.bed.type.list.view</field>
+        <field name="model">hospital.bed.type</field>
+        <field name="arch" type="xml">
+            <list string="Bed Types">
+                <field name="name"/>
+                <field name="total_beds"/>
+
+            </list>
+        </field>
+    </record>
+
+
+
+    <!-- Form View for Bed Types -->
+    <record id="hospital_bed_type_form_view" model="ir.ui.view">
+        <field name="name">hospital.bed.type.form.view</field>
+        <field name="model">hospital.bed.type</field>
+        <field name="arch" type="xml">
+            <form string="Bed Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="total_beds"/>
+
+                        <field name="price_per_day"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+    <record id="action_hospital_bed_type" model="ir.actions.act_window">
+        <field name="name">Hospital Beds</field>
+        <field name="res_model">hospital.bed.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="hospital_bed_menu_root" name="Bed Management" parent="hospital_menu_root"/>
+    <menuitem id="hospital_bed_type_menu" name="Bed Types" parent="hospital_bed_menu_root" action="action_hospital_bed_type"/>
+
+
+</odoo>
