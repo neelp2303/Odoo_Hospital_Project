@@ -29,8 +29,8 @@ class HospitalBedType(models.Model):
         """Calculate available beds"""
         for record in self:
             record.available_beds = record.total_beds - record.occupied_beds
-
-
+    
+    
 class HospitalBed(models.Model):
     _name = "hospital.bed"
     _description = "Hospital Bed Management"
@@ -56,16 +56,4 @@ class HospitalBed(models.Model):
         "hospital.patient", string="Assigned Patient", domain=[("bed_id", "=", False)]
     )
 
-    @api.onchange("patient_id")
-    def _onchange_patient_id(self):
-        """Mark bed as occupied & update available count"""
-        for bed in self:
-            if bed.patient_id:
-                bed.status = "occupied"
-            else:
-                bed.status = "available"
 
-        # Update bed type counts
-        if self.bed_type_id:
-            self.bed_type_id._compute_occupied_beds()
-            self.bed_type_id._compute_available_beds()
