@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <list string="Bed Types">
                 <field name="name"/>
-                <field name="total_beds"/>
-                <field name="occupied_beds"/>
-                <field name="available_beds"/>
+                <field name="total_beds" sum="Total"/>
+                <field name="occupied_beds" sum="Total"/>
+                <field name="available_beds" sum="Total"/>
             </list>
         </field>
     </record>
@@ -22,14 +22,12 @@
         <field name="model">hospital.bed.type</field>
         <field name="arch" type="xml">
             <form string="Bed Type">
+                <header>
+                    <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button">
+                        <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
+                    </button>
+                </header>
                 <sheet>
-                    <!-- Smart Button -->
-                    <header>
-                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button">
-                            <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
-                        </button>
-                    </header>
-
                     <group>
                         <field name="name"/>
                         <field name="total_beds"/>
