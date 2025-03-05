@@ -15,6 +15,15 @@ class HospitalBedType(models.Model):
     )
 
     bed_ids = fields.One2many("hospital.bed", "bed_type_id", string="Beds")
+    patient_ids = fields.One2many(
+        "hospital.patient", compute="_compute_patient_ids", string="Admitted Patients"
+    )
+
+    @api.depends("bed_ids.patient_id")
+    def _compute_patient_ids(self):
+        """Find all patients who have booked a bed of this type"""
+        for record in self:
+            record.patient_ids = record.bed_ids.mapped("patient_id")
 
     @api.depends("bed_ids.status")
     def _compute_occupied_beds(self):
@@ -29,8 +38,18 @@ class HospitalBedType(models.Model):
         """Calculate available beds"""
         for record in self:
             record.available_beds = record.total_beds - record.occupied_beds
-    
-    
+
+    def action_view_admitted_patients(self):
+        """Opens the admitted patients list"""
+        return {
+            "name": "Admitted Patients",
+            "type": "ir.actions.act_window",
+            "res_model": "hospital.patient",
+            "view_mode": "list,form",
+            "domain": [("id", "in", self.patient_ids.ids)],
+        }
+
+
 class HospitalBed(models.Model):
     _name = "hospital.bed"
     _description = "Hospital Bed Management"
@@ -55,5 +74,3 @@ class HospitalBed(models.Model):
     patient_id = fields.Many2one(
         "hospital.patient", string="Assigned Patient", domain=[("bed_id", "=", False)]
     )
-
-
