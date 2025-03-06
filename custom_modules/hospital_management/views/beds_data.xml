@@ -23,14 +23,14 @@
         <field name="arch" type="xml">
             <form string="Bed Type">
                 <header>
-                    
+
                 </header>
                 <sheet>
-                <div class="oe_button_box" name="button_box">
-                    <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button">
-                        <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
-                    </button>
-                </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button">
+                            <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
+                        </button>
+                    </div>
                     <group>
                         <field name="name"/>
                         <field name="total_beds"/>
