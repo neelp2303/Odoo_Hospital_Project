@@ -18,7 +18,7 @@
 
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_attending_doctors" type="object" string="Attending Doctors" class="oe_stat_button">
+                        <button name="action_attending_doctors" type="object" string="Attending Doctors" class="oe_stat_button" icon="fa-users">
                             <field name="doctor_count" widget="statinfo" string="Doctors" />
                         </button>
                     </div>

@@ -27,7 +27,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button">
+                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button" icon="fa-users">
                             <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
                         </button>
                     </div>
