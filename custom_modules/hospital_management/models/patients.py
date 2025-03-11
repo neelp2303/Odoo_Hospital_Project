@@ -16,6 +16,16 @@ class patients_data(models.Model):
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
     image = fields.Image("Patient Image")
 
+    def action_open_appointment_wizard(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Create Appointment",
+            "res_model": "hospital.appointment.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {"default_patient_id": self.id},
+        }
+
 
 class HospitalPatient(models.Model):
     _inherit = "hospital.patient"

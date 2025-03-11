@@ -25,27 +25,30 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Patient Details">
-                <group>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_appointment_wizard" string="Create Appointment" type="object" class="btn-primary"/>
+                    </div>
                     <group>
-                        <field name="name"/>
-                        <field name="age"/>
-                        <field name="gender"/>
-                        <field name="dob"/>
-                        <field name="contact_number"/>
-                        <field name="address"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="dob"/>
+                            <field name="contact_number"/>
+                            <field name="address"/>
+                        </group>
+                        <group>
+                            <field name="doctor_id" widget="many2one"/>
+                            <field name="image" class="oe_avatar" widget="image"/>
+                            <field name="admission_date"/>
+                            <field name="discharge_date"/>
+                        </group>
+                        <notebook>
+                            <page string="Description"/>
+                        </notebook>
                     </group>
-                    <group>
-                        <field name="doctor_id" widget="many2one"/>
-                        <field name="image" class="oe_avatar" widget="image"/>
-                        <field name="admission_date"/>
-                        <field name="discharge_date"/>
-                    </group>
-                    <notebook>
-                        <page string="Description">
-
-                        </page>
-                    </notebook>
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -98,10 +101,6 @@
         </kanban>
     </field>
 </record>
-
-
-
-
 
 
 <record id="hospital_patient_search_view" model="ir.ui.view">
