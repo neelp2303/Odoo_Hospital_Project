@@ -13,8 +13,11 @@ class patients_data(models.Model):
     address = fields.Text("Address")
     admission_date = fields.Date(default=fields.Datetime.now)
     discharge_date = fields.Date("Discharge Date")
-    doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
+    doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
     image = fields.Image("Patient Image")
+    doctor_reference = fields.Reference(
+        [("hospital.doctor", "Doctor")], string="Doctor by reference"
+    )
 
     def action_open_appointment_wizard(self):
         return {

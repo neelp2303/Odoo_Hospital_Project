@@ -12,6 +12,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/hospital_patient_data.xml",
         "wizard/hospital_appointment_wizard_view.xml",
         "views/patient_data.xml",
         "views/doctor_data.xml",
