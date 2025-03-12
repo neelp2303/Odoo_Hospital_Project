@@ -34,7 +34,7 @@
                             <field name="address"/>
                             <field name="specialization"/>
                             <field name="image" class="oe_avatar" widget="image"/>
-                            <field name="conference_ids" widget="many2many_tags"/>
+                            <field name="conference_ids" widget="many2many_tags" invisible="not conference_ids"/>
 
 
                         </group>
