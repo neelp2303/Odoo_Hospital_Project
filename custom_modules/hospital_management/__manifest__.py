@@ -19,6 +19,7 @@
         "views/appointments_data.xml",
         "views/conference_data.xml",
         "views/beds_data.xml",
+        "views/res_config_settings_view.xml",
     ],
     "installable": True,
     "application": True,

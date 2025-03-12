@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.hospital</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="hospital_management" id="hospital_management" string="Hospital" name="hospital_management" data-key="hospital_management">
+                        <block title="Hospital Management" id="hospital_setting">
+                            <setting string="Cancel Appointment Before">
+                                <div class="text-muted content-group mt16">
+                                    <span>Cancel Appointment </span>
+                                    <field name="cancel_days" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                    <span> days before</span>
+                                </div>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hospital_config_settings_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'hospital_management', 'bin_size': False}</field>
+        </record>
+
+        <menuitem id="hospital_config_settings_menu" name="Settings" parent="hospital_management.hospital_configurations_menu" sequence="0" action="hospital_config_settings_action" groups="base.group_system"/>
+    </data>
+</odoo>
