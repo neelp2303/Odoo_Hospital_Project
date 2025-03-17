@@ -14,7 +14,6 @@
                                 <div class="text-muted content-group mt16">
                                     <span>Cancel Appointment </span>
                                     <field name="cancel_days" class="text-center" style="width: 10%; min-width: 4rem;" />
-                                    <span> days before</span>
                                 </div>
                             </setting>
                         </block>

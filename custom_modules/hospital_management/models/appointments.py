@@ -1,9 +1,10 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
-class appointment_data(models.Model):
+class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
-    _description = "appointment_data"
+    _description = "Hospital Appointment"
+
     patient_id = fields.Many2one("hospital.patient", string="Patient", required=True)
     patient_image = fields.Image(
         related="patient_id.image", string="Patient Image", store=True
@@ -12,14 +13,28 @@ class appointment_data(models.Model):
     appointment_date = fields.Datetime(
         "Appointment Date", required=True, default=fields.Datetime.now
     )
+
     status = fields.Selection(
-        [
-            ("draft", "Draft"),
-            ("confirmed", "Confirmed"),
-            ("done", "Done"),
-            ("canceled", "Canceled"),
-        ],
+        selection=lambda self: self._get_status_selection(),
         string="Status",
         default="draft",
         required=True,
     )
+
+    @api.model
+    def _get_status_selection(self):
+        """Dynamically get status selection based on cancel_days setting"""
+        selection = [
+            ("draft", "Draft"),
+            ("confirmed", "Confirmed"),
+            ("done", "Done"),
+        ]
+        cancel_enabled = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("hospital_management.cancel_days")
+            == "True"
+        )
+        if cancel_enabled:
+            selection.append(("canceled", "Canceled"))
+        return selection
