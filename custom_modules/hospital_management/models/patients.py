@@ -45,6 +45,7 @@ class patients_data(models.Model):
         store=True,
         readonly=True,
     )
+    room_number = fields.Char(string="Room Number", readonly=True)
 
     @api.depends("bed_id")
     def _compute_has_bed(self):
@@ -52,3 +53,4 @@ class patients_data(models.Model):
         for record in self:
             record.has_bed = bool(record.bed_id)
             record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
+            record.room_number = record.bed_id.room_number if record.bed_id else False

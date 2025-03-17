@@ -66,6 +66,7 @@
                         <field name="patient_id"/>
                         <field name="bed_type_id"/>
                         <field name="status"/>
+                        <field name="room_number"/>
                         <field name="price_per_day" widget="monetary" readonly="1"/>
                     </group>
                 </sheet>

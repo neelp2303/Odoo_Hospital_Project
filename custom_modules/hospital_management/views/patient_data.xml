@@ -12,8 +12,9 @@
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="contact_number"/>
-                <field name="doctor_id" widget="many2one_avatar_user"/>
+                <field name="doctor_id"/>
                 <field name="bed_name"/>
+                <field name="room_number"/>
                 <field name="admission_date"/>
                 <field name="discharge_date"/>
             </list>
