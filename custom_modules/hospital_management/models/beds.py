@@ -75,10 +75,18 @@ class HospitalBed(models.Model):
         "hospital.patient", string="Assigned Patient", domain=[("has_bed", "=", False)]
     )
 
-    @api.onchange("patient_id")
+    @api.onchange("patient_id", "bed_type_id")
     def _onchange_patient_id(self):
         """Automatically update the patient's booked bed when assigned"""
         for bed in self:
             if bed.patient_id:
                 # Update patient's bed_id
                 bed.patient_id.has_bed = True  # Set has_bed = True
+                bed.patient_id.bed_name = bed.bed_type_id.name
+
+    def unlink(self):
+        """Ensure that deleting a bed updates the patient's has_bed field"""
+        for bed in self:
+            if bed.patient_id:
+                bed.patient_id.bed_id = False  # Set the patient's bed_id to NULL
+        return super(HospitalBed, self).unlink()

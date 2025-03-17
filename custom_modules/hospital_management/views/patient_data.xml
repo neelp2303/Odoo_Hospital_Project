@@ -13,7 +13,7 @@
                 <field name="gender"/>
                 <field name="contact_number"/>
                 <field name="doctor_id" widget="many2one_avatar_user"/>
-                <!-- <field name="bed_name"/> -->
+                <field name="bed_name"/>
                 <field name="admission_date"/>
                 <field name="discharge_date"/>
             </list>
@@ -42,7 +42,7 @@
                         <group>
                             <field name="doctor_id" widget="many2one"/>
                             <field name="doctor_reference"/>
-                            <!-- <field name="has_bed"/> -->
+                            <field name="has_bed"/>
                             <field name="image" class="oe_avatar" widget="image"/>
                             <field name="admission_date"/>
                             <field name="discharge_date"/>

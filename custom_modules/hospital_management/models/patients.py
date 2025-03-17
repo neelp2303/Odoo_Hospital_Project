@@ -34,11 +34,21 @@ class patients_data(models.Model):
         "hospital.bed",
         string="Bed Booked",
         domain="[('bed_type_id', '=', bed_type_id), ('status', '=', 'available')]",
+        ondelete="set null",  # When the related bed is deleted, this field becomes NULL
     )
-    has_bed = fields.Boolean("Has Bed", compute="_compute_has_bed", store=True)
+    has_bed = fields.Boolean(
+        "Has Bed", compute="_compute_has_bed", store=True, readonly=False
+    )
+    bed_name = fields.Char(
+        "Bed Type",
+        # Fetches bed type automatically
+        store=True,
+        readonly=True,
+    )
 
     @api.depends("bed_id")
     def _compute_has_bed(self):
         """Compute if the patient has a booked bed"""
         for record in self:
             record.has_bed = bool(record.bed_id)
+            record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
