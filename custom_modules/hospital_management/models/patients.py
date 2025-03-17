@@ -37,7 +37,7 @@ class patients_data(models.Model):
         ondelete="set null",  # When the related bed is deleted, this field becomes NULL
     )
     has_bed = fields.Boolean(
-        "Has Bed", compute="_compute_has_bed", store=True, readonly=False
+        "Has Bed", compute="_compute_has_bed", store=True, readonly=True
     )
     bed_name = fields.Char(
         "Bed Type",
