@@ -72,5 +72,13 @@ class HospitalBed(models.Model):
     )
 
     patient_id = fields.Many2one(
-        "hospital.patient", string="Assigned Patient", domain=[("bed_id", "=", False)]
+        "hospital.patient", string="Assigned Patient", domain=[("has_bed", "=", False)]
     )
+
+    @api.onchange("patient_id")
+    def _onchange_patient_id(self):
+        """Automatically update the patient's booked bed when assigned"""
+        for bed in self:
+            if bed.patient_id:
+                # Update patient's bed_id
+                bed.patient_id.has_bed = True  # Set has_bed = True

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class patients_data(models.Model):
@@ -29,13 +29,16 @@ class patients_data(models.Model):
             "context": {"default_patient_id": self.id},
         }
 
-
-class HospitalPatient(models.Model):
-    _inherit = "hospital.patient"
-
     bed_type_id = fields.Many2one("hospital.bed.type", string="Preferred Bed Type")
     bed_id = fields.Many2one(
         "hospital.bed",
         string="Bed Booked",
         domain="[('bed_type_id', '=', bed_type_id), ('status', '=', 'available')]",
     )
+    has_bed = fields.Boolean("Has Bed", compute="_compute_has_bed", store=True)
+
+    @api.depends("bed_id")
+    def _compute_has_bed(self):
+        """Compute if the patient has a booked bed"""
+        for record in self:
+            record.has_bed = bool(record.bed_id)
