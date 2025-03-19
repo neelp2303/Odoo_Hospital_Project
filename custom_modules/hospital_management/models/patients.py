@@ -7,6 +7,7 @@ class patients_data(models.Model):
 
     name = fields.Char("Name", required=True)
     age = fields.Integer("Age")
+    ref = fields.Char("Ref", default="NEW")
     gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
     dob = fields.Date("Dob")
     contact_number = fields.Char("Contact Number")
@@ -55,6 +56,11 @@ class patients_data(models.Model):
             record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
             record.room_number = record.bed_id.room_number if record.bed_id else False
 
-    def write(self,vals):
+    def write(self, vals):
         print("Create New Patient")
-        return super(patients_data,self).write(vals)
+        return super(patients_data, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
+        return super(patients_data, self).create(vals)
