@@ -90,12 +90,15 @@ class HospitalBed(models.Model):
                 bed.patient_id.patient_stat = bed.status
                 bed.patient_id.admission_date = bed.admission_date
             if bed.status == "discharged":
-                bed.patient_id.discharge_date = fields.Datetime.today()
-                bed.discharge_date = bed.patient_id.discharge_date
+                current_date = fields.Datetime.now()
+                bed.patient_id.discharge_date = current_date
+                bed.discharge_date = current_date
+                bed.patient_id.has_bed = False
 
     def unlink(self):
         """Ensure that deleting a bed updates the patient's has_bed field"""
         for bed in self:
             if bed.patient_id:
-                bed.patient_id.bed_id = False  # Set the patient's bed_id to NULL
+                bed.patient_id.bed_id = False
+                bed.patient_id.has_bed = False  # Set the patient's bed_id to NULL
         return super(HospitalBed, self).unlink()
