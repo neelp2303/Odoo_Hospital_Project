@@ -132,7 +132,6 @@ class HospitalBed(models.Model):
 
             total_price = num_days * bed.price_per_day
 
-
             invoice_vals = {
                 "move_type": "out_invoice",
                 "partner_id": partner.id,

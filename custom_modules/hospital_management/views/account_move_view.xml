@@ -4,12 +4,12 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <!-- Make partner_id readonly instead of hiding it -->
+
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="readonly">True</attribute>
             </xpath>
 
-            <!-- Add the Patient field after partner_id -->
+
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="patient_id"/>
             </xpath>
