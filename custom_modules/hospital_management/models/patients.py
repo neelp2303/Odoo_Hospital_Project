@@ -19,9 +19,7 @@ class patients_data(models.Model):
     doctor_reference = fields.Reference(
         [("hospital.doctor", "Doctor")], string="Doctor by reference"
     )
-    partner_id = fields.Many2one(
-        "res.partner", string="Related Partner", required=True
-    )
+    partner_id = fields.Many2one("res.partner", string="Related Partner", required=True)
 
     # Ensure that the patient has a related partner record
     @api.model
