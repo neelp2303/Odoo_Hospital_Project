@@ -22,7 +22,7 @@ class patients_data(models.Model):
     partner_id = fields.Many2one("res.partner", string="Related Partner", required=True)
 
     # Ensure that the patient has a related partner record
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         # Create a related partner automatically
         partner = self.env["res.partner"].create(
