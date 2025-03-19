@@ -19,6 +19,19 @@ class patients_data(models.Model):
     doctor_reference = fields.Reference(
         [("hospital.doctor", "Doctor")], string="Doctor by reference"
     )
+    partner_id = fields.Many2one(
+        "res.partner", string="Related Partner", required=True
+    )  # 🔹 Add this field
+
+    # Ensure that the patient has a related partner record
+    @api.model
+    def create(self, vals):
+        # Create a related partner automatically
+        partner = self.env["res.partner"].create(
+            {"name": vals.get("name", "New Patient")}
+        )
+        vals["partner_id"] = partner.id  # Link patient to partner
+        return super(patients_data, self).create(vals)
 
     def action_open_appointment_wizard(self):
         return {
@@ -69,3 +82,9 @@ class patients_data(models.Model):
                 vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
 
         return super(patients_data, self).create(vals_list)
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    patient_id = fields.Many2one("hospital.patient", string="Patient")

@@ -64,6 +64,7 @@ class HospitalBed(models.Model):
     room_number = fields.Char(
         string="Room Number", compute="_compute_room_number", readonly=True
     )
+
     status = fields.Selection(
         [
             ("admitted", "Admitted"),
@@ -78,27 +79,94 @@ class HospitalBed(models.Model):
     )
     admission_date = fields.Datetime(default=fields.Datetime.now)
     discharge_date = fields.Datetime()
+    invoice_id = fields.Many2one("account.move", string="Invoice", readonly=True)
 
     @api.onchange("patient_id", "bed_type_id", "status", "admission_date")
     def _onchange_patient_id(self):
         """Automatically update the patient's booked bed when assigned"""
         for bed in self:
             if bed.patient_id:
-                # Update patient's bed_id
-                bed.patient_id.has_bed = True  # Set has_bed = True
+                bed.patient_id.has_bed = True
                 bed.patient_id.bed_name = bed.bed_type_id.name
                 bed.patient_id.patient_stat = bed.status
                 bed.patient_id.admission_date = bed.admission_date
+
             if bed.status == "discharged":
                 current_date = fields.Datetime.now()
                 bed.patient_id.discharge_date = current_date
                 bed.discharge_date = current_date
                 bed.patient_id.has_bed = False
 
+                # Generate an invoice
+                bed._create_invoice()
+
+    def _create_invoice(self):
+        for bed in self:
+            if not bed.patient_id.partner_id:
+                # Automatically create a linked customer
+                partner = self.env["res.partner"].create(
+                    {
+                        "name": bed.patient_id.name,
+                        "customer_rank": 1,  # Mark as customer
+                    }
+                )
+                bed.patient_id.partner_id = partner
+        """Creates an invoice for the patient based on bed stay duration"""
+        for bed in self:
+            if not bed.patient_id or not bed.bed_type_id:
+                return
+
+            if not bed.admission_date or not bed.discharge_date:
+                raise ValueError("Missing admission or discharge date!")
+
+            # ✅ Ensure the patient has a linked customer (partner)
+            partner = bed.patient_id.partner_id
+            if not partner:
+                raise ValueError(
+                    f"Patient {bed.patient_id.name} does not have a linked customer!"
+                )
+
+            admission_dt = fields.Datetime.from_string(bed.admission_date)
+            discharge_dt = fields.Datetime.from_string(bed.discharge_date)
+            num_days = (discharge_dt - admission_dt).days or 1  # Minimum 1 day charge
+
+            total_price = num_days * bed.price_per_day
+
+            # ✅ Explicitly set partner_id (Odoo requires this)
+            invoice_vals = {
+                "move_type": "out_invoice",
+                "partner_id": partner.id,  # ✅ Required by Odoo
+                "patient_id": bed.patient_id.id,  # ✅ Custom field
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": f"Bed Stay: {bed.bed_type_id.name} ({num_days} days)",
+                            "quantity": num_days,
+                            "price_unit": bed.price_per_day,
+                            "price_subtotal": total_price,
+                        },
+                    )
+                ],
+                # "amount_total": total_price,
+            }
+
+            invoice = self.env["account.move"].create(invoice_vals)
+            bed.invoice_id = invoice.id
+
+            return {
+                "name": "Invoice",
+                "type": "ir.actions.act_window",
+                "res_model": "account.move",
+                "view_mode": "form",
+                "res_id": invoice.id,
+            }
+
     def unlink(self):
         """Ensure that deleting a bed updates the patient's has_bed field"""
         for bed in self:
             if bed.patient_id:
                 bed.patient_id.bed_id = False
-                bed.patient_id.has_bed = False  # Set the patient's bed_id to NULL
+                bed.patient_id.has_bed = False
         return super(HospitalBed, self).unlink()
