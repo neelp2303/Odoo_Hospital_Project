@@ -21,7 +21,7 @@ class patients_data(models.Model):
     )
     partner_id = fields.Many2one(
         "res.partner", string="Related Partner", required=True
-    )  # 🔹 Add this field
+    )
 
     # Ensure that the patient has a related partner record
     @api.model

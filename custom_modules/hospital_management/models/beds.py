@@ -140,7 +140,7 @@ class HospitalBed(models.Model):
                         0,
                         0,
                         {
-                            "name": f"Bed Stay: {bed.bed_type_id.name} ({num_days} days)",
+                            "name": f"Admitted in {bed.bed_type_id.name} room for ({num_days} days)",
                             "quantity": num_days,
                             "price_unit": bed.price_per_day,
                             "price_subtotal": total_price,
