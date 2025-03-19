@@ -60,7 +60,13 @@ class patients_data(models.Model):
         print("Create New Patient")
         return super(patients_data, self).write(vals)
 
-    @api.model
-    def create(self, vals):
-        vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
-        return super(patients_data, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Override create to support batch processing."""
+        for vals in vals_list:
+            if vals.get("ref") == "NEW":
+                vals["ref"] = (
+                    self.env["ir.sequence"].next_by_code("hospital.patient") or "NEW"
+                )
+        records = super().create(vals_list)
+        return records
