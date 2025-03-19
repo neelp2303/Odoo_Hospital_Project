@@ -15,7 +15,7 @@
                 <field name="contact_number"/>
                 <field name="doctor_id"/>
                 <field name="bed_name"/>
-                <field name="room_number"/>
+                <field name="patient_stat"/>
                 <field name="admission_date"/>
                 <field name="discharge_date"/>
             </list>

@@ -61,12 +61,14 @@
         <field name="model">hospital.bed</field>
         <field name="arch" type="xml">
             <form string="Bed Details">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="admitted,discharged" options="{'clickable':True}"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="patient_id"/>
                         <field name="bed_type_id"/>
                         <field name="status"/>
-                        <field name="room_number"/>
                         <field name="price_per_day" widget="monetary" readonly="1"/>
                     </group>
                 </sheet>

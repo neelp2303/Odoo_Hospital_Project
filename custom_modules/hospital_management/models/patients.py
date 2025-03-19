@@ -34,7 +34,7 @@ class patients_data(models.Model):
     bed_id = fields.Many2one(
         "hospital.bed",
         string="Bed Booked",
-        domain="[('bed_type_id', '=', bed_type_id), ('status', '=', 'available')]",
+        domain="[('bed_type_id', '=', bed_type_id), ('status', '=', 'discharged')]",
         ondelete="set null",  # When the related bed is deleted, this field becomes NULL
     )
     has_bed = fields.Boolean(
@@ -46,7 +46,7 @@ class patients_data(models.Model):
         store=True,
         readonly=True,
     )
-    room_number = fields.Char(string="Room Number", readonly=True)
+    patient_stat = fields.Char("Patient Stat")
 
     @api.depends("bed_id")
     def _compute_has_bed(self):
@@ -54,7 +54,7 @@ class patients_data(models.Model):
         for record in self:
             record.has_bed = bool(record.bed_id)
             record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
-            record.room_number = record.bed_id.room_number if record.bed_id else False
+            record.patient_stat = record.bed_id.status
 
     def write(self, vals):
         print("Create New Patient")
@@ -62,11 +62,8 @@ class patients_data(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """Override create to support batch processing."""
         for vals in vals_list:
-            if vals.get("ref") == "NEW":
-                vals["ref"] = (
-                    self.env["ir.sequence"].next_by_code("hospital.patient") or "NEW"
-                )
-        records = super().create(vals_list)
-        return records
+            if "ref" not in vals or vals["ref"] == "NEW":
+                vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
+
+        return super(patients_data, self).create(vals_list)

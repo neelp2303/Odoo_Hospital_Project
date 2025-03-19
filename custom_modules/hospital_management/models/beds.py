@@ -30,7 +30,7 @@ class HospitalBedType(models.Model):
         """Calculate occupied beds based on assigned patients"""
         for record in self:
             record.occupied_beds = len(
-                record.bed_ids.filtered(lambda b: b.status == "occupied")
+                record.bed_ids.filtered(lambda b: b.status == "admitted")
             )
 
     @api.depends("total_beds", "occupied_beds")
@@ -66,42 +66,18 @@ class HospitalBed(models.Model):
     )
     status = fields.Selection(
         [
-            ("available", "Available"),
-            ("occupied", "Occupied"),
+            ("admitted", "Admitted"),
+            ("discharged", "Discharged"),
         ],
         string="Status",
-        default="occupied",
+        default="admitted",
     )
 
     patient_id = fields.Many2one(
         "hospital.patient", string="Assigned Patient", domain=[("has_bed", "=", False)]
     )
 
-    @api.depends("patient_id", "bed_type_id")
-    def _compute_room_number(self):
-        """Compute the room number for each bed"""
-        for bed in self:
-            if not bed.bed_type_id:
-                bed.room_number = ""  # No bed type assigned
-            else:
-                prefix = (
-                    bed.bed_type_id.name[:1].upper() if bed.bed_type_id.name else "R"
-                )
-                assigned_numbers = bed.bed_type_id.bed_ids.mapped("room_number")
-
-                existing_numbers = [
-                    int(num.split("-")[1])
-                    for num in assigned_numbers
-                    if num and "-" in num
-                ]
-                next_number = max(existing_numbers, default=0) + 1
-
-                if next_number > bed.bed_type_id.total_beds:
-                    raise ValueError("No more available rooms for this bed type.")
-
-                bed.room_number = f"{prefix}-{next_number}"
-
-    @api.onchange("patient_id", "bed_type_id", "room_number")
+    @api.onchange("patient_id", "bed_type_id", "status")
     def _onchange_patient_id(self):
         """Automatically update the patient's booked bed when assigned"""
         for bed in self:
@@ -109,30 +85,7 @@ class HospitalBed(models.Model):
                 # Update patient's bed_id
                 bed.patient_id.has_bed = True  # Set has_bed = True
                 bed.patient_id.bed_name = bed.bed_type_id.name
-                bed.patient_id.room_number = bed.room_number
-        # """Assign room number automatically when a patient books a bed."""
-        # for bed in self:
-        #     if not bed.patient_id:
-        #         return  # No patient assigned, exit
-
-        #     if not bed.bed_type_id:
-        #         print(">>> No bed type assigned!")  # Debugging
-        #         return  # No bed type, exit
-
-        #     # Room number calculation
-        #     prefix = bed.bed_type_id.name[:1].upper() if bed.bed_type_id.name else "R"
-        #     assigned_numbers = bed.bed_type_id.bed_ids.mapped("room_number")
-
-        #     existing_numbers = [
-        #         int(num.split("-")[1]) for num in assigned_numbers if num and "-" in num
-        #     ]
-        #     next_number = max(existing_numbers, default=0) + 1
-
-        #     if next_number > bed.bed_type_id.total_beds:
-        #         raise ValueError("No more available rooms for this bed type.")
-
-        #     bed.room_number = f"{prefix}-{next_number}"
-        #     bed.patient_id.has_bed = True
+                bed.patient_id.patient_stat = bed.status
 
     def unlink(self):
         """Ensure that deleting a bed updates the patient's has_bed field"""
