@@ -54,3 +54,7 @@ class patients_data(models.Model):
             record.has_bed = bool(record.bed_id)
             record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
             record.room_number = record.bed_id.room_number if record.bed_id else False
+
+    def write(self,vals):
+        print("Create New Patient")
+        return super(patients_data,self).write(vals)
