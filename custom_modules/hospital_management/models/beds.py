@@ -119,7 +119,6 @@ class HospitalBed(models.Model):
             if not bed.admission_date or not bed.discharge_date:
                 raise ValueError("Missing admission or discharge date!")
 
-
             partner = bed.patient_id.partner_id
             if not partner:
                 raise ValueError(
