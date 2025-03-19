@@ -19,6 +19,7 @@ class doctors_data(models.Model):
     appointment_ids = fields.One2many(
         "hospital.appointment", "doctor_id", string="Appointments"
     )
-    def write(self,vals):
-        print("Create New Doctor")
-        return super(doctors_data,self).write(vals)
+
+    def write(self, vals):
+        print("Updated Doctor")
+        return super(doctors_data, self).write(vals)

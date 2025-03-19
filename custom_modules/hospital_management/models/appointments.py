@@ -38,3 +38,10 @@ class HospitalAppointment(models.Model):
         if cancel_enabled:
             selection.append(("canceled", "Canceled"))
         return selection
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Override create method to auto-confirm new appointments"""
+        for vals in vals_list:
+            vals["status"] = "confirmed"  # Change status to confirmed on creation
+        return super(HospitalAppointment, self).create(vals_list)

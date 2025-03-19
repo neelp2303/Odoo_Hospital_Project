@@ -76,8 +76,10 @@ class HospitalBed(models.Model):
     patient_id = fields.Many2one(
         "hospital.patient", string="Assigned Patient", domain=[("has_bed", "=", False)]
     )
+    admission_date = fields.Datetime(default=fields.Datetime.now)
+    discharge_date = fields.Datetime()
 
-    @api.onchange("patient_id", "bed_type_id", "status")
+    @api.onchange("patient_id", "bed_type_id", "status", "admission_date")
     def _onchange_patient_id(self):
         """Automatically update the patient's booked bed when assigned"""
         for bed in self:
@@ -86,6 +88,10 @@ class HospitalBed(models.Model):
                 bed.patient_id.has_bed = True  # Set has_bed = True
                 bed.patient_id.bed_name = bed.bed_type_id.name
                 bed.patient_id.patient_stat = bed.status
+                bed.patient_id.admission_date = bed.admission_date
+            if bed.status == "discharged":
+                bed.patient_id.discharge_date = fields.Datetime.today()
+                bed.discharge_date = bed.patient_id.discharge_date
 
     def unlink(self):
         """Ensure that deleting a bed updates the patient's has_bed field"""

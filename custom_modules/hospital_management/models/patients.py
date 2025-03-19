@@ -12,8 +12,8 @@ class patients_data(models.Model):
     dob = fields.Date("Dob")
     contact_number = fields.Char("Contact Number")
     address = fields.Text("Address")
-    admission_date = fields.Date(default=fields.Datetime.now)
-    discharge_date = fields.Date("Discharge Date")
+    admission_date = fields.Datetime("Admission Date")
+    discharge_date = fields.Datetime("Discharge Date")
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
     image = fields.Image("Patient Image")
     doctor_reference = fields.Reference(
@@ -55,10 +55,12 @@ class patients_data(models.Model):
             record.has_bed = bool(record.bed_id)
             record.bed_name = record.bed_id.bed_type_id.name if record.bed_id else False
             record.patient_stat = record.bed_id.status
+            record.discharge_date = record.bed_id.discharge_date
+            record.admission_date = record.bed_id.admission_date
 
-    def write(self, vals):
-        print("Create New Patient")
-        return super(patients_data, self).write(vals)
+    # def write(self, vals):
+    #     print("Update Patient")
+    #     return super(patients_data, self).write(vals)
 
     @api.model_create_multi
     def create(self, vals_list):
