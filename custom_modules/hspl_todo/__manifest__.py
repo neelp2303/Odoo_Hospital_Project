@@ -8,13 +8,14 @@
     "website": "https://www.heliconia.io",
     "author": "Atul Makwana (Heliconia Solutions Pvt. Ltd.), ",
     "depends": [
-        'base',
+        "base",
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/todo_views.xml",
+        "views/res_config_settings_view.xml",
     ],
-    'installable': True,
-    'application': True,
-    'license': 'LGPL-3',
+    "installable": True,
+    "application": True,
+    "license": "LGPL-3",
 }
