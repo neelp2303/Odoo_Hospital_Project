@@ -1,0 +1,20 @@
+<odoo>
+    <!--    <menuitem id="hospital_menu_root" name="Pharmacy" sequence="10"/>-->
+
+    <menuitem id="pharmacy_inventory_menu" name="Inventory" parent="hospital_menu_root"/>
+    <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_root"/>
+
+    <record id="medicine_action" model="ir.actions.act_window">
+        <field name="name">Medicines</field>
+        <field name="res_model">pharmacy.medicine</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="medicine_menu" name="Medicines" parent="pharmacy_inventory_menu" action="medicine_action"/>
+
+    <record id="sale_action" model="ir.actions.act_window">
+        <field name="name">Sales</field>
+        <field name="res_model">pharmacy.sale</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_sales_menu" action="sale_action"/>
+</odoo>

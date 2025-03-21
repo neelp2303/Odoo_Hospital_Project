@@ -10,7 +10,8 @@
                 <field name="patient_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="doctor_id"/>
                 <field name="appointment_date"/>
-                <field name="status" widget="badge" decoration-info="status=='confirmed'" decoration-success="status=='done'" decoration-warning="status=='draft'"/>
+                <field name="status" widget="badge" decoration-info="status=='confirmed'"
+                       decoration-success="status=='done'" decoration-warning="status=='draft'"/>
             </list>
         </field>
     </record>
@@ -22,18 +23,34 @@
         <field name="arch" type="xml">
             <form string="Appointment Details">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,canceled" options="{'clickable':True}"/>
-
+                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,ongoing,done,canceled"
+                           options="{'clickable':True}"/>
+                    <button name="action_start_treatment" type="object" string="Start Treatment"
+                            invisible="status != 'confirmed'"/>
+                    <button name="action_confirm_prescription" type="object" string="Confirm Prescription"
+                            invisible="status != 'ongoing'"/>
                 </header>
                 <sheet>
 
                     <group>
                         <group>
                             <field name="patient_id"/>
-                            <field name="doctor_id" />
+                            <field name="doctor_id"/>
                             <field name="appointment_date"/>
                         </group>
                     </group>
+                    <notebook invisible="status != 'ongoing'">
+                        <page string="Prescriptions">
+                            <field name="prescription_ids">
+                                <list editable="bottom">
+                                    <field name="medicine_id"/>
+                                    <field name="quantity"/>
+
+
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -58,7 +75,8 @@
     <!-- Menu -->
     <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10"/>
 
-    <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_menu_root" action="action_hospital_appointment"/>
+    <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_menu_root"
+              action="action_hospital_appointment"/>
     <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_root" sequence="60"/>
 
 

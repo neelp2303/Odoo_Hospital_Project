@@ -27,6 +27,7 @@ class HospitalAppointment(models.Model):
         selection = [
             ("draft", "Draft"),
             ("confirmed", "Confirmed"),
+            ("ongoing", "Ongoing"),
             ("done", "Done"),
         ]
         cancel_enabled = (
@@ -45,3 +46,17 @@ class HospitalAppointment(models.Model):
         for vals in vals_list:
             vals["status"] = "confirmed"  # Change status to confirmed on creation
         return super(HospitalAppointment, self).create(vals_list)
+
+    prescription_ids = fields.One2many(
+        "hospital.prescription", "appointment_id", string="Prescribed Medicines"
+    )
+
+    def action_start_treatment(self):
+        """Move appointment to 'Ongoing' and allow doctors to add medicines."""
+        self.status = "ongoing"
+
+    def action_confirm_prescription(self):
+        """Confirm the prescribed medicines and update the pharmacy module."""
+        for prescription in self.prescription_ids:
+            prescription.confirm_prescription()
+        self.status = "done"

@@ -70,16 +70,22 @@ class patients_data(models.Model):
             record.admission_date = record.bed_id.admission_date
 
     # def write(self, vals):
-    #     print("Update Patient")
+    #     print("This is from Write")
+    #     print(vals)
+    #     print("This is from Write")
     #     return super(patients_data, self).write(vals)
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if "ref" not in vals or vals["ref"] == "NEW":
-                vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
+    # @api.model
+    def create(self, vals):
+        # for vals in vals_list:
+        print(vals)
+        # if vals["age"] == 0:
+        #     raise ValidationError("Age cannot be 0")
 
-        return super(patients_data, self).create(vals_list)
+        # if "ref" not in vals or vals["ref"] == "NEW":
+        vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
+
+        return super(patients_data, self).create(vals)
 
 
 class AccountMove(models.Model):

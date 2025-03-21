@@ -4,3 +4,6 @@ from . import appointments
 from . import conference
 from . import beds
 from . import res_config_settings
+from . import prescription
+from . import medicine
+from . import sale

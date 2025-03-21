@@ -15,7 +15,6 @@
     </record>
 
 
-
     <!-- Form View for Bed Types -->
     <record id="hospital_bed_type_form_view" model="ir.ui.view">
         <field name="name">hospital.bed.type.form.view</field>
@@ -27,7 +26,8 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients" class="oe_stat_button" icon="fa-users">
+                        <button name="action_view_admitted_patients" type="object" string="Admitted Patients"
+                                class="oe_stat_button" icon="fa-users">
                             <field name="occupied_beds" widget="statinfo" string=" Occupied Beds"/>
                         </button>
                     </div>
@@ -52,7 +52,7 @@
                 <field name="patient_id"/>
                 <field name="bed_type_id"/>
                 <field name="status"/>
-                <field name="price_per_day" readonly="1" />
+                <field name="price_per_day" readonly="1"/>
             </list>
         </field>
     </record>
@@ -62,7 +62,8 @@
         <field name="arch" type="xml">
             <form string="Bed Details">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="admitted,discharged" options="{'clickable':True}"/>
+                    <field name="status" widget="statusbar" statusbar_visible="admitted,discharged"
+                           options="{'clickable':True}"/>
                 </header>
                 <sheet>
                     <group>
@@ -97,15 +98,12 @@
     </record>
 
 
-
-
-
-
     <!-- Menu Items -->
     <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10"/>
 
-    <menuitem id="hospital_bed_type_menu" name="Bed Management" parent="hospital_menu_root" action="action_hospital_bed_type"/>
+    <menuitem id="hospital_bed_type_menu" name="Bed Management" parent="hospital_menu_root"
+              action="action_hospital_bed_type"/>
 
-    <menuitem id="hospital_bed_menu" name="Book a Bed" parent="hospital_menu_root" action="action_hospital_bed"/>
+    <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_root" action="action_hospital_bed"/>
 
 </odoo>

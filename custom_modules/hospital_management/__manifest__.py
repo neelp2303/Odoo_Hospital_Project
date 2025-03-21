@@ -7,7 +7,7 @@
     "sequence": 0,
     "website": "https://www.heliconia.io",
     "author": "Neel Patel (Heliconia Solutions Pvt. Ltd.), ",
-    "depends": ["base", "account"],
+    "depends": ["base", "account", "stock", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
         "data/sequence_data.xml",
@@ -20,6 +20,9 @@
         "views/conference_data.xml",
         "views/beds_data.xml",
         "views/res_config_settings_view.xml",
+        "views/medicine_view.xml",
+        "views/sale_view.xml",
+        "views/menu.xml",
     ],
     "installable": True,
     "application": True,
