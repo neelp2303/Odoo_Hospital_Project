@@ -50,13 +50,20 @@ class HospitalAppointment(models.Model):
     prescription_ids = fields.One2many(
         "hospital.prescription", "appointment_id", string="Prescribed Medicines"
     )
+    medicine_ids = fields.Many2one(
+        string="Medicines",
+        related="prescription_ids.medicine_id",
+    )
+    quantity = fields.Integer("Quantity", related="prescription_ids.quantity")
 
     def action_start_treatment(self):
         """Move appointment to 'Ongoing' and allow doctors to add medicines."""
         self.status = "ongoing"
 
     def action_confirm_prescription(self):
-        """Confirm the prescribed medicines and update the pharmacy module."""
+        print("Confirming prescription for appointment:")
+        print(self.prescription_ids.medicine_id.quantity)
+        print(self.quantity)
         for prescription in self.prescription_ids:
             prescription.confirm_prescription()
         self.status = "done"

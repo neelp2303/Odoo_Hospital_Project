@@ -20,6 +20,17 @@ class patients_data(models.Model):
         [("hospital.doctor", "Doctor")], string="Doctor by reference"
     )
     partner_id = fields.Many2one("res.partner", string="Related Partner")
+    prescription_id = fields.One2many(
+        "hospital.prescription", "patient_id", string="Prescriptions"
+    )
+    appointment_id = fields.Many2one(
+        related="prescription_id.appointment_id", string="Appointment"
+    )
+    medicine_ids = fields.Many2one(
+        related="prescription_id.medicine_id",
+        string="Medicine",
+    )
+    quantity = fields.Integer(related="prescription_id.quantity", string="Quantity")
 
     # Ensure that the patient has a related partner record
     @api.model_create_multi

@@ -19,10 +19,6 @@ class Medicine(models.Model):
     quantity = fields.Integer(string="Stock Quantity", default=0)
     price = fields.Float(string="Price", required=True)
 
-
-class PharmacyMedicine(models.Model):
-    _inherit = "pharmacy.medicine"
-
     prescription_ids = fields.One2many(
         "hospital.prescription", "medicine_id", string="Prescriptions"
     )
