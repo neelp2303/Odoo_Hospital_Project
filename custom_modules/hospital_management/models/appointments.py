@@ -62,8 +62,8 @@ class HospitalAppointment(models.Model):
 
     def action_confirm_prescription(self):
         print("Confirming prescription for appointment:")
-        print(self.prescription_ids.medicine_id.quantity)
-        print(self.quantity)
+        # print(self.prescription_ids.medicine_id.quantity)
+        # print(self.quantity)
         for prescription in self.prescription_ids:
             prescription.confirm_prescription()
         self.status = "done"

@@ -28,4 +28,8 @@ class HospitalPrescription(models.Model):
     quantity = fields.Integer("Quantity", required=True, default=1)
 
     def confirm_prescription(self):
-        self.medicine_id.quantity -= self.quantity
+        print(self)
+        for record in self:
+            if record.quantity > record.medicine_id.quantity:
+                raise UserError("Not enough stock!")
+            record.medicine_id.quantity -= record.quantity
