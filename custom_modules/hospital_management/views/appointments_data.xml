@@ -39,7 +39,7 @@
                             <field name="appointment_date"/>
                         </group>
                     </group>
-                    <notebook>
+                    <notebook invisible="status not in ('ongoing','done')">
                         <page string="Prescriptions">
                             <field name="prescription_ids">
                                 <list editable="bottom">
