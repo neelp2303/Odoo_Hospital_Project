@@ -51,6 +51,6 @@ class Medicine(models.Model):
             product_template = self.env["product.template"].create(
                 product_template_vals
             )
-            product = product_template.product_variant_id
+
 
         return medicine
