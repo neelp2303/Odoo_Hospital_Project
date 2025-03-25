@@ -21,6 +21,15 @@ class HospitalAppointment(models.Model):
         required=True,
     )
 
+    prescription_ids = fields.One2many(
+        "hospital.prescription", "appointment_id", string="Prescribed Medicines"
+    )
+    medicine_ids = fields.Many2one(
+        string="Medicines",
+        related="prescription_ids.medicine_id",
+    )
+    quantity = fields.Integer("Quantity", related="prescription_ids.quantity")
+
     @api.model
     def _get_status_selection(self):
         """Dynamically get status selection based on cancel_days setting"""
@@ -46,15 +55,6 @@ class HospitalAppointment(models.Model):
         for vals in vals_list:
             vals["status"] = "confirmed"  # Change status to confirmed on creation
         return super(HospitalAppointment, self).create(vals_list)
-
-    prescription_ids = fields.One2many(
-        "hospital.prescription", "appointment_id", string="Prescribed Medicines"
-    )
-    medicine_ids = fields.Many2one(
-        string="Medicines",
-        related="prescription_ids.medicine_id",
-    )
-    quantity = fields.Integer("Quantity", related="prescription_ids.quantity")
 
     def action_start_treatment(self):
         """Move appointment to 'Ongoing' and allow doctors to add medicines."""
