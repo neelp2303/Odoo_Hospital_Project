@@ -13,14 +13,19 @@ class HospitalAppointment(models.Model):
     appointment_date = fields.Datetime(
         "Appointment Date", required=True, default=fields.Datetime.now
     )
-
+    appointment_slot_id = fields.Many2one(
+        "hospital.appointment.slot",
+        string="Time Slot",
+        required=True,
+        domain="[('doctor_id', '=', doctor_id), ('is_booked', '=', False)]",
+    )
+    time = fields.Char("Time Slot", related="appointment_slot_id.time")
     status = fields.Selection(
         selection=lambda self: self._get_status_selection(),
         string="Status",
         default="draft",
         required=True,
     )
-
     prescription_ids = fields.One2many(
         "hospital.prescription", "appointment_id", string="Prescribed Medicines"
     )
@@ -54,6 +59,8 @@ class HospitalAppointment(models.Model):
         """Override create method to auto-confirm new appointments"""
         for vals in vals_list:
             vals["status"] = "confirmed"  # Change status to confirmed on creation
+        if self.appointment_slot_id:
+            self.appointment_slot_id.is_booked = True
         return super(HospitalAppointment, self).create(vals_list)
 
     def action_start_treatment(self):

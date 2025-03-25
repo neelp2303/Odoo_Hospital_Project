@@ -29,7 +29,7 @@
                             <field name="name"/>
                             <field name="age"/>
                             <field name="gender"/>
-                            <field name="dob"/>
+                            <!--                            <field name="dob"/>-->
                             <field name="contact_number"/>
                             <field name="address"/>
                             <field name="specialization"/>
@@ -46,10 +46,18 @@
 
                             <page string="Appointments">
                                 <field name="appointment_ids">
-                                    <list >
+                                    <list>
                                         <field name="patient_id"/>
                                         <field name="appointment_date"/>
                                         <field name="status"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Available Slots">
+                                <field name="appointment_slot_ids">
+                                    <list>
+                                        <field name="time"/>
+                                        <field name="is_booked"/>
                                     </list>
                                 </field>
                             </page>
@@ -71,18 +79,20 @@
                 <field name="gender"/>
 
 
-
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global">
                             <div class="o_kanban_content" style="margin-left:25px">
                                 <strong style="font-size: 14px;">
-                                    Name: <field name="name"/>
+                                    Name:
+                                    <field name="name"/>
                                 </strong>
 
-                                <div style="font-size: 13px;">Age: <field name="age"/>
+                                <div style="font-size: 13px;">Age:
+                                    <field name="age"/>
                                 </div>
-                                <div style="font-size: 13px;">Gender: <field name="gender"/>
+                                <div style="font-size: 13px;">Gender:
+                                    <field name="gender"/>
                                 </div>
                             </div>
                         </div>
@@ -104,8 +114,8 @@
 
 
                 <!-- Filters -->
-                <filter name="filter_male" string="Male Doctors" domain="[('gender', '=', 'male')]" />
-                <filter name="filter_female" string="Female Doctors" domain="[('gender', '=', 'female')]" />
+                <filter name="filter_male" string="Male Doctors" domain="[('gender', '=', 'male')]"/>
+                <filter name="filter_female" string="Female Doctors" domain="[('gender', '=', 'female')]"/>
 
                 <!-- Group By Options -->
                 <group expand="0" string="Group By">
