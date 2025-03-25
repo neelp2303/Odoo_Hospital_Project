@@ -31,19 +31,6 @@ class patients_data(models.Model):
         string="Medicine",
     )
     quantity = fields.Integer(related="prescription_id.quantity", string="Quantity")
-
-    # Ensure that the patient has a related partner record
-
-    def action_open_appointment_wizard(self):
-        return {
-            "type": "ir.actions.act_window",
-            "name": "Create Appointment",
-            "res_model": "hospital.appointment.wizard",
-            "view_mode": "form",
-            "target": "new",
-            "context": {"default_patient_id": self.id},
-        }
-
     bed_type_id = fields.Many2one("hospital.bed.type", string="Preferred Bed Type")
     bed_id = fields.Many2one(
         "hospital.bed",
@@ -61,6 +48,17 @@ class patients_data(models.Model):
         readonly=True,
     )
     patient_stat = fields.Char("Patient Stat")
+    # Ensure that the patient has a related partner record
+
+    def action_open_appointment_wizard(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Create Appointment",
+            "res_model": "hospital.appointment.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {"default_patient_id": self.id},
+        }
 
     @api.depends("bed_id")
     def _compute_has_bed(self):
