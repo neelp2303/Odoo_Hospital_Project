@@ -25,3 +25,17 @@ class doctors_data(models.Model):
         return super(doctors_data, self).write(vals)
 
     # @api.model
+    def generate_appointment_slots(self, date=None):
+        """
+        Generate appointment slots for the doctor
+        If no date provided, generate for today
+        """
+        slot_env = self.env["hospital.appointment.slot"]
+
+        if not date:
+            date = fields.Date.today()
+
+        for doctor in self:
+            slot_env.generate_slots_for_doctor(doctor.id, date)
+
+        return True

@@ -37,7 +37,14 @@
                             <field name="patient_id"/>
                             <field name="doctor_id"/>
                             <field name="appointment_date"/>
-                            <field name="time_slot" string="Available Time Slots"/>
+                            <field name="slot_id"
+                                   domain="[
+                                    ('doctor_id', '=', doctor_id),
+                                    ('date', '=', appointment_date),
+                                    ('is_booked', '=', False)
+                                ]"
+                                   options="{'no_create': True}"
+                            />
                         </group>
                     </group>
                     <notebook invisible="status not in ('ongoing','done')">
