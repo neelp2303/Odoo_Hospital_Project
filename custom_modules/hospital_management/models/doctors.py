@@ -76,5 +76,5 @@ class HospitalAppointmentSlot(models.Model):
     _rec_name = "time"
 
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-    time = fields.Char("Time Slot", required=True)
+    time = fields.Char("Time Slot")
     is_booked = fields.Boolean("Booked", default=False)

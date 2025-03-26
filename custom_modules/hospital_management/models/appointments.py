@@ -15,8 +15,7 @@ class HospitalAppointment(models.Model):
     )
     appointment_slot_id = fields.Many2one(
         "hospital.appointment.slot",
-        string="Time Slot",
-        required=True,
+        string="Appointment Slot",
         domain="[('doctor_id', '=', doctor_id), ('is_booked', '=', False)]",
     )
     time = fields.Char("Time Slot", related="appointment_slot_id.time")
@@ -59,9 +58,12 @@ class HospitalAppointment(models.Model):
         """Override create method to auto-confirm new appointments"""
         for vals in vals_list:
             vals["status"] = "confirmed"  # Change status to confirmed on creation
-        if self.appointment_slot_id:
-            self.appointment_slot_id.is_booked = True
         return super(HospitalAppointment, self).create(vals_list)
+
+    @api.onchange("appointment_slot_id")
+    def _onchange_appointment_slot_id(self):
+        # print("Selected slot:", self.appointment_slot_id._name)
+        self.appointment_slot_id.is_booked = True  # Book the selected slot
 
     def action_start_treatment(self):
         """Move appointment to 'Ongoing' and allow doctors to add medicines."""
@@ -74,3 +76,4 @@ class HospitalAppointment(models.Model):
         for prescription in self.prescription_ids:
             prescription.confirm_prescription()
         self.status = "done"
+        self.appointment_slot_id.is_booked = False
