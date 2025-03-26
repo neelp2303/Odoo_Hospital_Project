@@ -10,15 +10,10 @@ class HospitalAppointment(models.Model):
         related="patient_id.image", string="Patient Image", store=True
     )
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-    appointment_date = fields.Datetime(
-        "Appointment Date", required=True, default=fields.Datetime.now
+    appointment_date = fields.Date(
+        "Appointment Date", required=True, default=fields.Date.today
     )
-    appointment_slot_id = fields.Many2one(
-        "hospital.appointment.slot",
-        string="Appointment Slot",
-        domain="[('doctor_id', '=', doctor_id), ('is_booked', '=', False)]",
-    )
-    time = fields.Char("Time Slot", related="appointment_slot_id.time")
+    time_slot = fields.Datetime("Time Slot")
     status = fields.Selection(
         selection=lambda self: self._get_status_selection(),
         string="Status",
@@ -60,11 +55,6 @@ class HospitalAppointment(models.Model):
             vals["status"] = "confirmed"  # Change status to confirmed on creation
         return super(HospitalAppointment, self).create(vals_list)
 
-    @api.onchange("appointment_slot_id")
-    def _onchange_appointment_slot_id(self):
-        # print("Selected slot:", self.appointment_slot_id._name)
-        self.appointment_slot_id.is_booked = True  # Book the selected slot
-
     def action_start_treatment(self):
         """Move appointment to 'Ongoing' and allow doctors to add medicines."""
         self.status = "ongoing"
@@ -76,4 +66,3 @@ class HospitalAppointment(models.Model):
         for prescription in self.prescription_ids:
             prescription.confirm_prescription()
         self.status = "done"
-        self.appointment_slot_id.is_booked = False

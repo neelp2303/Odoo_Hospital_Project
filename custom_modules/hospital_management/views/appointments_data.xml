@@ -36,7 +36,8 @@
                         <group>
                             <field name="patient_id"/>
                             <field name="doctor_id"/>
-                            <field name="appointment_slot_id" string="Available Time Slots"/>
+                            <field name="appointment_date"/>
+                            <field name="time_slot" string="Available Time Slots"/>
                         </group>
                     </group>
                     <notebook invisible="status not in ('ongoing','done')">

@@ -53,14 +53,14 @@
                                     </list>
                                 </field>
                             </page>
-                            <page string="Available Slots">
-                                <field name="appointment_slot_ids">
-                                    <list>
-                                        <field name="time"/>
-                                        <field name="is_booked"/>
-                                    </list>
-                                </field>
-                            </page>
+                            <!--                            <page string="Available Slots">-->
+                            <!--                                <field name="appointment_slot_ids">-->
+                            <!--                                    <list>-->
+                            <!--                                        <field name="time"/>-->
+                            <!--                                        <field name="is_booked"/>-->
+                            <!--                                    </list>-->
+                            <!--                                </field>-->
+                            <!--                            </page>-->
                         </notebook>
                     </group>
                 </sheet>
