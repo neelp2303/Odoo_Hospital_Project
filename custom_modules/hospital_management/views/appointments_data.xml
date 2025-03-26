@@ -9,7 +9,8 @@
             <list string="Appointments">
                 <field name="patient_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="doctor_id"/>
-                <field name="appointment_date"/>
+                <field name="appointment_date" string="Date"/>
+                <field name="slot_id"/>
                 <field name="status" widget="badge" decoration-info="status=='confirmed'"
                        decoration-success="status=='done'" decoration-warning="status=='draft'"/>
             </list>

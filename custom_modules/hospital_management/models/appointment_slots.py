@@ -5,10 +5,10 @@ class AppointmentSlot(models.Model):
     _name = "hospital.appointment.slot"
     _description = "Doctor Appointment Slots"
     _rec_name = "display_name"
-    doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-    date = fields.Date(string="Date", required=True)
-    start_time = fields.Float(string="Start Time", required=True)
-    end_time = fields.Float(string="End Time", required=True)
+    doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
+    date = fields.Date(string="Date")
+    start_time = fields.Float(string="Start Time")
+    end_time = fields.Float(string="End Time")
     is_booked = fields.Boolean(string="Booked", default=False)
     appointment_id = fields.Many2one("hospital.appointment", string="Appointment")
     display_name = fields.Char(

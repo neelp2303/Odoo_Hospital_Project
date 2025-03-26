@@ -49,6 +49,7 @@
                                     <list>
                                         <field name="patient_id"/>
                                         <field name="appointment_date"/>
+                                        <field name="slot_id"/>
                                         <field name="status"/>
                                     </list>
                                 </field>
