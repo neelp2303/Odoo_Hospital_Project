@@ -10,12 +10,8 @@ class HospitalAppointment(models.Model):
         related="patient_id.image", string="Patient Image", store=True
     )
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
-
-    appoint_date = fields.Many2one(
-        "hospital.appointment.date", string="Appointment Date", required=True
-    )
-    slot_id = fields.Many2one(
-        "hospital.appointment.slot", string="Appointment Slot", required=True
+    appointment_date = fields.Date(
+        "Appointment Date", required=True, default=fields.Date.today
     )
     time_slot = fields.Datetime("Time Slot")
     status = fields.Selection(
@@ -32,13 +28,6 @@ class HospitalAppointment(models.Model):
         related="prescription_ids.medicine_id",
     )
     quantity = fields.Integer("Quantity", related="prescription_ids.quantity")
-
-    @api.constrains("slot_id")
-    def _check_slot_availability(self):
-        for record in self:
-            if record.slot_id.is_booked:
-                print("Already Booked")
-            record.slot_id.is_booked = True
 
     @api.model
     def _get_status_selection(self):

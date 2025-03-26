@@ -9,7 +9,7 @@
             <list string="Appointments">
                 <field name="patient_id" widget="many2one_avatar_user" optional="show"/>
                 <field name="doctor_id"/>
-                <field name="appoint_date"/>
+                <field name="appointment_date"/>
                 <field name="status" widget="badge" decoration-info="status=='confirmed'"
                        decoration-success="status=='done'" decoration-warning="status=='draft'"/>
             </list>
@@ -36,8 +36,8 @@
                         <group>
                             <field name="patient_id"/>
                             <field name="doctor_id"/>
-                            <field name="appoint_date"/>
-                            <field name="slot_id" string="Available Time Slots"/>
+                            <field name="appointment_date"/>
+                            <field name="time_slot" string="Available Time Slots"/>
                         </group>
                     </group>
                     <notebook invisible="status not in ('ongoing','done')">
@@ -60,7 +60,7 @@
         <field name="name">hospital.appointment.calendar.view</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <calendar string="Appointments" date_start="appoint_date" color="status"/>
+            <calendar string="Appointments" date_start="appointment_date" color="status"/>
         </field>
     </record>
 
