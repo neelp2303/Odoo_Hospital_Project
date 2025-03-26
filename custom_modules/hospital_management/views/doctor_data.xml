@@ -48,7 +48,7 @@
                                 <field name="appointment_ids">
                                     <list>
                                         <field name="patient_id"/>
-                                        <field name="appointment_date"/>
+                                        <field name="appoint_date"/>
                                         <field name="status"/>
                                     </list>
                                 </field>
