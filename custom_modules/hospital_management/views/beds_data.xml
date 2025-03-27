@@ -53,7 +53,7 @@
                 <field name="patient_id"/>
                 <field name="bed_type_id"/>
                 <field name="status"/>
-                <field name="currency_id" invisible="True" optional="hide"/>
+                <field name="currency_id" invisible="True" column_invisible="True"/>
                 <field name="price_per_dayss" readonly="1" sum="Total"/>
             </list>
         </field>
