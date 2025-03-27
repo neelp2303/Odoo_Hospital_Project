@@ -6,7 +6,7 @@
             <field name="name">John Doe</field>
             <field name="age">35</field>
             <field name="gender">male</field>
-            <field name="dob">1989-05-10</field>
+<!--            <field name="dob">1989-05-10</field>-->
             <field name="contact_number">+123456789</field>
             <field name="address">123 Elm Street, Springfield</field>
             <field name="admission_date">2025-03-01</field>
@@ -17,7 +17,7 @@
             <field name="name">Jane Smith</field>
             <field name="age">29</field>
             <field name="gender">female</field>
-            <field name="dob">1995-08-20</field>
+<!--            <field name="dob">1995-08-20</field>-->
             <field name="contact_number">+987654321</field>
             <field name="address">456 Maple Avenue, Shelbyville</field>
             <field name="admission_date">2025-03-02</field>
@@ -28,7 +28,7 @@
             <field name="name">Alex Wilson</field>
             <field name="age">42</field>
             <field name="gender">male</field>
-            <field name="dob">1982-11-15</field>
+<!--            <field name="dob">1982-11-15</field>-->
             <field name="contact_number">+1122334455</field>
             <field name="address">789 Oak Lane, Capital City</field>
             <field name="admission_date">2025-03-03</field>
