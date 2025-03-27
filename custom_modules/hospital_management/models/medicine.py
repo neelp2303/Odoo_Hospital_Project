@@ -18,7 +18,11 @@ class Medicine(models.Model):
     )
     quantity = fields.Integer(string="Stock Quantity", default=0)
     price = fields.Float(string="Price", required=True)
-
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        default=lambda self: self.env.company.currency_id,
+    )
     prescription_ids = fields.One2many(
         "hospital.prescription", "medicine_id", string="Prescriptions"
     )

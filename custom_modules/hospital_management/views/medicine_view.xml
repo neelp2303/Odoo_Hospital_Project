@@ -9,7 +9,8 @@
                         <field name="name"/>
                         <field name="category"/>
                         <field name="quantity"/>
-                        <field name="price"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="price" widget="monetary"/>
                     </group>
                 </sheet>
             </form>
@@ -24,7 +25,8 @@
                 <field name="name"/>
                 <field name="category"/>
                 <field name="quantity"/>
-                <field name="price"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price" widget="monetary"/>
             </list>
         </field>
     </record>
