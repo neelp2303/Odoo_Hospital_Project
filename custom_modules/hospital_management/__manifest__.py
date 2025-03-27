@@ -12,6 +12,8 @@
         "security/ir.model.access.csv",
         "data/sequence_data.xml",
         "data/hospital_patient_data.xml",
+        "reports/hospital_report_templates.xml",
+        "reports/hospital_report_actions.xml",
         # "views/account_move_view.xml",
         "wizard/hospital_appointment_wizard_view.xml",
         "views/patient_data.xml",

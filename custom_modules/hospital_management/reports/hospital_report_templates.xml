@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Appointment Report -->
+    <template id="report_appointment_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="appointment">
+                <h2>Appointment Report</h2>
+                <p>
+                    <strong>Patient:</strong>
+                    <t t-esc="appointment.patient_id.name"/>
+                </p>
+                <p>
+                    <strong>Doctor:</strong>
+                    <t t-esc="appointment.doctor_id.name"/>
+                </p>
+                <p>
+                    <strong>Date:</strong>
+                    <t t-esc="appointment.appointment_date"/>
+                </p>
+                <p>
+                    <strong>Time Slot:</strong>
+                    <t t-esc="appointment.slot_id"/>
+                </p>
+                <p>
+                    <strong>Status:</strong>
+                    <t t-esc="appointment.status"/>
+                </p>
+                <br/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Prescription Report -->
+    <template id="report_prescription_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="prescription">
+                <h2>Prescription Report</h2>
+                <p>
+                    <strong>Patient:</strong>
+                    <t t-esc="prescription.patient_id"/>
+                </p>
+                <p>
+                    <strong>Medicine:</strong>
+                    <t t-esc="prescription.medicine_id.name"/>
+                </p>
+                <p>
+                    <strong>Quantity:</strong>
+                    <t t-esc="prescription.quantity"/>
+                </p>
+
+                <br/>
+            </t>
+        </t>
+    </template>
+</odoo>
