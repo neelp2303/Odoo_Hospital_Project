@@ -19,7 +19,7 @@
                 </p>
                 <p>
                     <strong>Time Slot:</strong>
-                    <t t-esc="appointment.slot_id"/>
+                    <t t-esc="appointment.slot_id.display_name"/>
                 </p>
                 <p>
                     <strong>Status:</strong>
