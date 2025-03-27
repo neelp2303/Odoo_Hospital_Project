@@ -26,6 +26,21 @@ class HospitalAppointment(models.Model):
         related="prescription_ids.medicine_id",
     )
     quantity = fields.Integer("Quantity", related="prescription_ids.quantity")
+    progress = fields.Integer("Progress", compute="_compute_progress")
+
+    @api.depends("status")
+    def _compute_progress(self):
+        for record in self:
+            if record.status == "draft":
+                record.progress = 25
+            elif record.status == "confirmed":
+                record.progress = 50
+            elif record.status == "ongoing":
+                record.progress = 75
+            elif record.status == "done":
+                record.progress = 100
+            else:
+                record.progress = 0
 
     @api.model
     def _get_status_selection(self):

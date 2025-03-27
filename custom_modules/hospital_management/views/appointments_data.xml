@@ -11,6 +11,7 @@
                 <field name="doctor_id"/>
                 <field name="appointment_date" string="Date"/>
                 <field name="slot_id"/>
+                <field name="progress" widget="progressbar"/>
                 <field name="status" widget="badge" decoration-info="status=='confirmed'"
                        decoration-success="status=='done'" decoration-warning="status=='draft'"/>
             </list>
@@ -50,8 +51,13 @@
                             />
                         </group>
                     </group>
-                    <notebook invisible="status not in ('ongoing','done')">
-                        <page string="Prescriptions">
+                    <notebook >
+                        <page name="progress" string="Progress">
+                            <group>
+                                <field name="progress" widget="gauge" options="{ 'style': 'width:160px; height: 120px;'}"/>
+                            </group>
+                        </page>
+                        <page string="Prescriptions" invisible="status not in ('ongoing','done')">
                             <button name="%(hospital_management.action_report_prescription)d"
                                     string="Print Report" type="action" class="btn-primary"/>
                             <field name="prescription_ids">
