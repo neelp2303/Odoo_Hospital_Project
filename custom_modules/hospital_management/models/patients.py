@@ -16,6 +16,7 @@ class patients_data(models.Model):
     discharge_date = fields.Datetime("Discharge Date")
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
     image = fields.Image("Patient Image")
+    email = fields.Char("Email")
     doctor_reference = fields.Reference(
         [("hospital.doctor", "Doctor")], string="Doctor by reference"
     )
