@@ -1,34 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Appointment Report -->
+    <!-- Enhanced Appointment Report Template -->
     <template id="report_appointment_document">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="appointment">
-                <h2>Appointment Report</h2>
-                <div>
-                            <img t-att-src="'/hospital_management/static/src/img/symbol.png'"/>
+            <t t-call="web.internal_layout">
+                <t t-foreach="docs" t-as="appointment">
+                    <div class="page">
+                        <!-- Header Section -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h1 class="text-primary">Appointment Report</h1>
+                                <div class="text-muted">
+                                    Report Generated: <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <img t-att-src="'/hospital_management/static/src/img/symbol.png'"
+                                     class="img-fluid" style="max-height: 100px;"/>
+                            </div>
                         </div>
-                <p>
-                    <strong>Patient:</strong>
-                    <t t-esc="appointment.patient_id.name"/>
-                </p>
-                <p>
-                    <strong>Doctor:</strong>
-                    <t t-esc="appointment.doctor_id.name"/>
-                </p>
-                <p>
-                    <strong>Date:</strong>
-                    <t t-esc="appointment.appointment_date"/>
-                </p>
-                <p>
-                    <strong>Time Slot:</strong>
-                    <t t-esc="appointment.slot_id.display_name"/>
-                </p>
-                <p>
-                    <strong>Status:</strong>
-                    <t t-esc="appointment.status"/>
-                </p>
-                <br/>
+
+                        <!-- Patient and Doctor Information -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h3 class="text-primary" style="color: black;">Patient Information</h3>
+                                <div>
+                                    <strong>Name:</strong>
+                                    <t t-esc="appointment.patient_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="text-primary" style="color: black;">Doctor Information</h3>
+                                <div>
+                                    <strong>Name:</strong>
+                                    <t t-esc="appointment.doctor_id.name"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Details -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h3 class="text-primary" style="color: black;">Appointment Details</h3>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time Slot</th>
+                                        <th>Status</th>
+                                        <th>Progress</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <t t-esc="appointment.appointment_date"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="appointment.slot_id.display_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-if="appointment.status == 'draft'" class="badge badge-secondary"/>
+<span t-elif="appointment.status == 'confirmed'" class="badge badge-info"/>
+<span t-elif="appointment.status == 'ongoing'" class="badge badge-warning"/>
+<span t-elif="appointment.status == 'done'" class="badge badge-success"/>
+<span t-elif="appointment.status == 'canceled'" class="badge badge-danger"/>
+
+
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div t-attf-class="progress-bar bg-#{
+                                                    appointment.progress == 25 and 'secondary' or
+                                                    appointment.progress == 50 and 'info' or
+                                                    appointment.progress == 75 and 'warning' or
+                                                    appointment.progress == 100 and 'success' or
+                                                    'danger'
+                                                }"
+                                                     t-att-style="'width: ' + str(appointment.progress) + '%'"
+                                                     role="progressbar">
+                                                    <t t-esc="appointment.progress"/>%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Prescription Details -->
+                        <div class="row mb-4" t-if="appointment.prescription_ids">
+                            <div class="col-12">
+                                <h3 class="text-primary" style="color: black;">Prescription Details</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Medicine</th>
+                                            <th>Quantity Prescribed</th>
+                                            <th>Current Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="appointment.prescription_ids" t-as="prescription">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="prescription.medicine_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="prescription.quantity"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="prescription.medicine_id.quantity"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes Section -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="text-primary">Prescription Notes</h3>
+                                <p t-if="appointment.prescription_ids">
+                                    <strong>Prescription Issued:</strong>
+                                    Medicines have been prescribed and stock has been updated accordingly.
+                                </p>
+                                <p t-else="">
+                                    No prescription was issued for this appointment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
             </t>
         </t>
     </template>
