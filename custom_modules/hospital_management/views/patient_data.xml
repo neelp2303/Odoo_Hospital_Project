@@ -12,7 +12,7 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
-                <field name="contact_number" widget="phone"/>
+                <field name="contact_number" widget="phone" options="{'enable_sms': true}"/>
                 <field name="doctor_id"/>
                 <field name="email" widget="email"/>
                 <field name="bed_name"/>
@@ -45,7 +45,7 @@
                             <field name="age"/>
                             <field name="gender"/>
                             <field name="dob"/>
-                            <field name="contact_number" widget="phone"/>
+                            <field name="contact_number" widget="phone" options="{'enable_sms': true}"/>
                             <field name="address"/>
                             <field name="email" widget="email"/>
                         </group>
