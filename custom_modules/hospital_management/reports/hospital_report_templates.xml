@@ -58,11 +58,9 @@
                                             <t t-esc="appointment.slot_id.display_name"/>
                                         </td>
                                         <td>
-                                            <span t-if="appointment.status == 'draft'" class="badge badge-secondary"/>
-                                            <span t-elif="appointment.status == 'confirmed'" class="badge badge-info"/>
-                                            <span t-elif="appointment.status == 'ongoing'" class="badge badge-warning"/>
-                                            <span t-elif="appointment.status == 'done'" class="badge badge-success"/>
-                                            <span t-elif="appointment.status == 'canceled'" class="badge badge-danger"/>
+                                            <span t-attf-style="color: #{appointment.status == 'confirmed' and '#27ae60' or appointment.status == 'cancelled' and '#e74c3c' or '#008000'}">
+                                                <t t-esc="appointment.status or 'N/A'"/>
+                                            </span>
 
 
                                         </td>

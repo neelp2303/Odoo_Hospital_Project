@@ -90,7 +90,7 @@
                                                 <t t-esc="appointment.doctor_id.name or 'N/A'"/>
                                             </td>
                                             <td style="padding: 10px;">
-                                                <span t-attf-style="color: #{appointment.status == 'confirmed' and '#27ae60' or appointment.status == 'cancelled' and '#e74c3c' or '#f39c12'}">
+                                                <span t-attf-style="color: #{appointment.status == 'confirmed' and '#27ae60' or appointment.status == 'cancelled' and '#e74c3c' or '#008000'}">
                                                     <t t-esc="appointment.status or 'N/A'"/>
                                                 </span>
                                             </td>
