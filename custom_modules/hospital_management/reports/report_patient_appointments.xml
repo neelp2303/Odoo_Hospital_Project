@@ -2,6 +2,7 @@
 <odoo>
     <template id="report_patient_appointments">
         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
             <t t-foreach="docs" t-as="patient">
                 <div class="page" style="font-family: 'Arial', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
                     <!-- Header with Hospital Logo and Title -->
@@ -76,6 +77,7 @@
                         <p>Generated on <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/> | Hospital Management System</p>
                     </div>
                 </div>
+            </t>
             </t>
         </t>
     </template>
