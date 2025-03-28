@@ -11,7 +11,8 @@
                             <div class="col-6">
                                 <h1 class="text-primary">Appointment Report</h1>
                                 <div class="text-muted">
-                                    Report Generated: <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/>
+                                    Report Generated:
+                                    <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/>
                                 </div>
                             </div>
                             <div class="col-6 text-right">
@@ -58,10 +59,10 @@
                                         </td>
                                         <td>
                                             <span t-if="appointment.status == 'draft'" class="badge badge-secondary"/>
-<span t-elif="appointment.status == 'confirmed'" class="badge badge-info"/>
-<span t-elif="appointment.status == 'ongoing'" class="badge badge-warning"/>
-<span t-elif="appointment.status == 'done'" class="badge badge-success"/>
-<span t-elif="appointment.status == 'canceled'" class="badge badge-danger"/>
+                                            <span t-elif="appointment.status == 'confirmed'" class="badge badge-info"/>
+                                            <span t-elif="appointment.status == 'ongoing'" class="badge badge-warning"/>
+                                            <span t-elif="appointment.status == 'done'" class="badge badge-success"/>
+                                            <span t-elif="appointment.status == 'canceled'" class="badge badge-danger"/>
 
 
                                         </td>
