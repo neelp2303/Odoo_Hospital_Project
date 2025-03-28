@@ -12,8 +12,11 @@
                         </div>
                         <!-- Hospital Logo -->
                         <div style="width: 120px; height: 120px; background-color: #3498db; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                            <img t-att-src="'/web/static/src/icon.png'"/>
+                            <img t-att-src="'/hospital_management/static/src/img/ss.png'" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="Hospital Logo" />
                         </div>
+<!--                        <div>-->
+<!--                            <img t-att-src="'/hospital_management/static/src/img/symbol.png'"/>-->
+<!--                        </div>-->
                     </div>
 
                     <!-- Patient Information Section -->
@@ -21,7 +24,7 @@
                         <!-- Patient Image -->
                         <div style="width: 200px; margin-right: 20px; flex-shrink: 0;">
                             <t t-if="patient.image">
-                                <img t-att-src="'data:image/png;base64,%s' % patient.image" style="max-width: 200px; max-height: 200px; border-radius: 8px; object-fit: cover;"/>
+                                <img t-att-src="image_data_uri(patient.image)" style="max-width: 200px; max-height: 200px; border-radius: 8px; object-fit: cover;"/>
                             </t>
                             <t t-else="">
                                 <div style="width: 200px; height: 200px; background-color: #ecf0f1; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #7f8c8d;">
