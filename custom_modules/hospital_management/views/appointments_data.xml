@@ -58,8 +58,6 @@
                             </group>
                         </page>
                         <page string="Prescriptions" invisible="status not in ('ongoing','done')">
-                            <button name="%(hospital_management.action_report_prescription)d"
-                                    string="Print Report" type="action" class="btn-primary"/>
                             <field name="prescription_ids">
                                 <list editable="bottom">
                                     <field name="medicine_id"/>

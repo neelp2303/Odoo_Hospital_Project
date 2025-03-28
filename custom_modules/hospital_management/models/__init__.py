@@ -8,4 +8,3 @@ from . import patients
 from . import prescription
 from . import res_config_settings
 from . import sale
-from . import hospital_image

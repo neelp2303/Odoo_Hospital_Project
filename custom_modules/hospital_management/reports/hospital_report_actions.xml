@@ -10,16 +10,6 @@
         <field name="binding_model_id" ref="hospital_management.model_hospital_appointment"/>
     </record>
 
-    <!-- Prescription Report Action -->
-    <record id="action_report_prescription" model="ir.actions.report">
-        <field name="name">Prescription Report</field>
-        <field name="model">hospital.prescription</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">hospital_management.report_prescription_document</field>
-        <field name="print_report_name">'Prescription - %s' % (object.patient_id.name)</field>
-        <field name="binding_model_id" ref="hospital_management.model_hospital_prescription"/>
-    </record>
-
     <record id="action_report_patient_appointments" model="ir.actions.report">
         <field name="name">Patient Appointments Report</field>
         <field name="model">hospital.patient</field>
