@@ -90,7 +90,7 @@
                 <field name="image"/>
 
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="kanban-card">
                         <div class="oe_kanban_global">
 
                             <div class="o_kanban_image"

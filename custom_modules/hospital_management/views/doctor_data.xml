@@ -81,7 +81,7 @@
 
 
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="kanban-card">
                         <div class="oe_kanban_global">
                             <div class="o_kanban_content" style="margin-left:25px">
                                 <strong style="font-size: 14px;">
@@ -143,5 +143,5 @@
         <field name="view_mode">list,form,search,kanban</field>
         <field name="view_id" ref="hospital_doctor_list_view"/>
     </record>
-    
+
 </odoo>
