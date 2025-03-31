@@ -23,6 +23,7 @@
         "views/medicine_view.xml",
         "views/sale_view.xml",
         "views/menu.xml",
+        "views/test_view.xml",
         "reports/hospital_report_templates.xml",
         "reports/hospital_report_actions.xml",
         "reports/report_patient_appointments.xml",

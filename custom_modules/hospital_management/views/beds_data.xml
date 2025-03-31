@@ -108,5 +108,5 @@
               action="action_hospital_bed_type"/>
 
     <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_root" action="action_hospital_bed"/>
-
+    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_root" action="action_hospital_test"/>
 </odoo>
