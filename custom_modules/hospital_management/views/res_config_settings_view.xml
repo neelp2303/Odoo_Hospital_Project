@@ -8,12 +8,13 @@
             <field name="inherit_id" ref="base.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
-                    <app data-string="hospital_management" id="hospital_management" string="Hospital" name="hospital_management" data-key="hospital_management">
+                    <app data-string="hospital_management" id="hospital_management" string="Hospital"
+                         name="hospital_management" data-key="hospital_management">
                         <block title="Hospital Management" id="hospital_setting">
                             <setting string="Cancel Appointment Before">
                                 <div class="text-muted content-group mt16">
-                                    <span>Cancel Appointment </span>
-                                    <field name="cancel_days" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                    <span>Cancel Appointment</span>
+                                    <field name="cancel_days" class="text-center" style="width: 10%; min-width: 4rem;"/>
                                 </div>
                             </setting>
                         </block>
@@ -30,6 +31,5 @@
             <field name="context">{'module' : 'hospital_management', 'bin_size': False}</field>
         </record>
 
-        <menuitem id="hospital_config_settings_menu" name="Settings" parent="hospital_management.hospital_configurations_menu" sequence="0" action="hospital_config_settings_action" groups="base.group_system"/>
     </data>
 </odoo>
