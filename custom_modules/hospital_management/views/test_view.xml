@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="_view_list" model="ir.ui.view">
+        <field name="name">test.view.list</field>
+        <field name="model">test.file</field>
+        <field name="arch" type="xml">
+            <list string="test_list">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+    <record id="_view_form" model="ir.ui.view">
+        <field name="name">test.view.form</field>
+        <field name="model">test.file</field>
+        <field name="arch" type="xml">
+            <form>
+                <button name="test_notification" type="object" string="Test Me"/>
+                <group string="test_list">
+                    <field name="name"/>
+                </group>
+            </form>
+
+        </field>
+    </record>
+    <record id="action_hospital_test" model="ir.actions.act_window">
+        <field name="name">Test</field>
+        <field name="res_model">test.file</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="ir_cron_generate_slots" model="ir.cron">
+        <field name="name">Generate Doctor Appointment Slots</field>
+        <field name="model_id" ref="model_test_file"/>
+        <field name="state">code</field>
+        <field name="code">model.test_action()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
