@@ -13,6 +13,7 @@ class HospitalAppointmentWizard(models.TransientModel):
     )
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
     appointment_date = fields.Datetime(string="Appointment Date", required=True)
+    slot_id = fields.Many2one("hospital.appointment.slot", string="Time Slot")
 
     @api.model
     def _default_patient(self):
@@ -24,6 +25,7 @@ class HospitalAppointmentWizard(models.TransientModel):
                 "patient_id": self.patient_id.id,
                 "doctor_id": self.doctor_id.id,
                 "appointment_date": self.appointment_date,
+                "slot_id": self.slot_id.id,
             }
         )
         return {"type": "ir.actions.act_window_close"}

@@ -8,6 +8,14 @@
                     <field name="patient_id"/>
                     <field name="doctor_id"/>
                     <field name="appointment_date"/>
+                    <field name="slot_id"
+                           domain="[
+                                    ('doctor_id', '=', doctor_id),
+                                    ('date', '=', appointment_date),
+                                    ('is_booked', '=', False)
+                                ]"
+                           options="{'no_create': True}"
+                    />
                 </group>
                 <footer>
                     <button name="action_confirm_appointment" string="Confirm" type="object" class="btn-primary"/>
