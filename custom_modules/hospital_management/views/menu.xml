@@ -1,20 +1,25 @@
 <odoo>
     <!--    <menuitem id="hospital_menu_root" name="Pharmacy" sequence="10"/>-->
+    <menuitem id="hospital_menu_root" name="Hospital Management" sequence="0"/>
+    <menuitem id="hospital_patient_menu" name="Patients" parent="hospital_menu_root" action="action_hospital_patient"/>
+    <menuitem id="hospital_doctor_menu" name="Doctors" parent="hospital_menu_root" action="action_hospital_doctor"/>
+    <menuitem id="hospital_conference_menu" name="Conferences" parent="hospital_menu_root"
+              action="action_hospital_conference"/>
 
+
+    <menuitem id="hospital_bed_type_menu" name="Bed Management" parent="hospital_menu_root"
+              action="action_hospital_bed_type"/>
+
+    <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_root" action="action_hospital_bed"/>
+    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_root" action="action_hospital_test"/>
     <menuitem id="pharmacy_inventory_menu" name="Inventory" parent="hospital_menu_root"/>
     <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_root"/>
+    <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_menu_root"
+              action="action_hospital_appointment"/>
+    <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_root" sequence="60"/>
 
-    <record id="medicine_action" model="ir.actions.act_window">
-        <field name="name">Medicines</field>
-        <field name="res_model">pharmacy.medicine</field>
-        <field name="view_mode">list,form</field>
-    </record>
     <menuitem id="medicine_menu" name="Medicines" parent="pharmacy_inventory_menu" action="medicine_action"/>
 
-    <record id="sale_action" model="ir.actions.act_window">
-        <field name="name">Sales</field>
-        <field name="res_model">pharmacy.sale</field>
-        <field name="view_mode">list,form</field>
-    </record>
+
     <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_sales_menu" action="sale_action"/>
 </odoo>

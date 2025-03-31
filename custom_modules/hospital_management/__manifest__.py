@@ -14,6 +14,9 @@
         "data/hospital_patient_data.xml",
         # "views/account_move_view.xml",
         "wizard/hospital_appointment_wizard_view.xml",
+        "reports/hospital_report_templates.xml",
+        "reports/hospital_report_actions.xml",
+        "reports/report_patient_appointments.xml",
         "views/patient_data.xml",
         "views/doctor_data.xml",
         "views/appointments_data.xml",
@@ -22,11 +25,8 @@
         "views/res_config_settings_view.xml",
         "views/medicine_view.xml",
         "views/sale_view.xml",
-        "views/menu.xml",
         "views/test_view.xml",
-        "reports/hospital_report_templates.xml",
-        "reports/hospital_report_actions.xml",
-        "reports/report_patient_appointments.xml",
+        "views/menu.xml",
     ],
     "assets": {
         "web.assets_backend": [

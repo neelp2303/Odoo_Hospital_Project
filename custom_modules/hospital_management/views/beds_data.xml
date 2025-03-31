@@ -101,12 +101,4 @@
     </record>
 
 
-    <!-- Menu Items -->
-    <menuitem id="hospital_menu_root" name="Hospital Management" sequence="10"/>
-
-    <menuitem id="hospital_bed_type_menu" name="Bed Management" parent="hospital_menu_root"
-              action="action_hospital_bed_type"/>
-
-    <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_root" action="action_hospital_bed"/>
-    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_root" action="action_hospital_test"/>
 </odoo>
