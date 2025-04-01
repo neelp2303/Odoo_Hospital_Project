@@ -81,7 +81,7 @@
 
 
                 <templates>
-                    <t t-name="kanban-card">
+                    <t t-name="card">
                         <div class="oe_kanban_global">
                             <div class="o_kanban_content" style="margin-left:25px">
                                 <strong style="font-size: 14px;">

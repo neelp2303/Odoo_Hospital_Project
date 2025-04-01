@@ -90,42 +90,43 @@
                 <field name="image"/>
 
                 <templates>
-                    <t t-name="kanban-card">
-                        <div class="oe_kanban_global">
-
+                    <t t-name="card">
+                        <div class="oe_kanban_global"
+                             style="display: flex; align-items: center; justify-content: space-between;">
                             <div class="o_kanban_image"
                                  style="width: 80px; height: 100px; overflow: hidden; border-radius: 10px;">
-
                                 <field name="image" widget="image" class="w-100 h-100" style="object-fit: cover;"/>
-
+                            </div>
+                            <!-- Content Section -->
+                            <div class="o_kanban_content" style="flex-grow: 1; padding-left: 10px;">
+                                <div>
+                                    <strong style="font-size: 14px;">
+                                        Name :
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="text-muted" style="font-size: 13px;">
+                                        Doctor :
+                                        <small>
+                                            <field name="doctor_id"/>
+                                        </small>
+                                    </div>
+                                    <div style="font-size: 13px;">Age :
+                                        <field name="age"/>
+                                    </div>
+                                    <div style="font-size: 13px;">Gender :
+                                        <field name="gender"/>
+                                    </div>
+                                    <div style="font-size: 13px;">Admission :
+                                        <field name="admission_date"/>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="o_kanban_content" style="margin-left:25px">
-                                <strong style="font-size: 14px;">
-                                    Name :
-                                    <field name="name"/>
-                                </strong>
-                                <div class="text-muted" style="font-size: 13px;">
-                                    Doctor :
-                                    <small>
-                                        <field name="doctor_id"/>
-                                    </small>
-                                </div>
-                                <div style="font-size: 13px;">Age :
-                                    <field name="age"/>
-                                </div>
-                                <div style="font-size: 13px;">Gender :
-                                    <field name="gender"/>
-                                </div>
-                                <div style="font-size: 13px;">Admission :
-                                    <field name="admission_date"/>
-                                </div>
-                            </div>
+                            <!-- Image Section -->
+
 
                         </div>
                     </t>
-
-
                 </templates>
             </kanban>
         </field>
