@@ -83,7 +83,7 @@
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global">
-                            <div class="o_kanban_content" style="margin-left:25px">
+                            <div class="o_kanban_content">
                                 <strong style="font-size: 14px;">
                                     Name:
                                     <field name="name"/>
