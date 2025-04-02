@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 from odoo import models, fields, api
 
@@ -85,7 +85,7 @@ class AppointmentSlot(models.Model):
     @api.model
     def delete_old_slots(self):
         """Delete all unbooked appointment slots older than today"""
-        today = date.today()
+        today = str(datetime.today())[:10]
         old_unbooked_slots = self.search(
             [
                 ("date", "<", today),
