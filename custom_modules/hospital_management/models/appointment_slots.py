@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import models, fields, api
 
 
@@ -79,3 +81,15 @@ class AppointmentSlot(models.Model):
                 current_time += 0.5
 
         return self.create(slots_to_create)
+
+    @api.model
+    def delete_old_slots(self):
+        """Delete all unbooked appointment slots older than today"""
+        today = date.today()
+        old_unbooked_slots = self.search(
+            [
+                ("date", "<", today),
+                ("is_booked", "=", False),  # Only unbooked slots
+            ]
+        )
+        old_unbooked_slots.unlink()
