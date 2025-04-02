@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_appointment_reminder" model="mail.template">
+            <field name="name">Appointment Confirmation</field>
+            <field name="model_id" ref="model_hospital_appointment"/>
+            <field name="email_from">odoohospital@gmail.com</field>
+            <field name="email_to">{{object.pat_email}}</field>
+            <field name="subject">Your Appointment with {{object.doctor_id.name}}</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dear ${{object.patient_id.name}},</p>
+                <p>Your appointment has been successfully booked.</p>
+                <p><strong>Doctor:</strong> {{object.doctor_id.name}}</p>
+                <p><strong>Date:</strong> {{object.appointment_date}}</p>
+                <p><strong>Time Slot:</strong> {{object.slot_id.name}}</p>
+                <p>Thank you for choosing our hospital.</p>
+                <p>Best Regards,</p>
+                <p>Your Hospital Team</p>
+                ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -10,7 +10,7 @@ class HospitalAppointment(models.Model):
     _rec_name = "patient_id"
     patient_id = fields.Many2one("hospital.patient", string="Patient", required=True)
     ref = fields.Char("Ref", related="patient_id.ref")
-
+    pat_email = fields.Char("Email", related="patient_id.email")
     patient_image = fields.Image(
         related="patient_id.image", string="Patient Image", store=True
     )
@@ -77,7 +77,7 @@ class HospitalAppointment(models.Model):
 
         # Create appointment
         appointment = super(HospitalAppointment, self).create(vals)
-
+        appointment.send_email_notification()
         # Mark slot as booked
         slot.write({"is_booked": True, "appointment_id": appointment.id})
 
@@ -140,3 +140,13 @@ class HospitalAppointment(models.Model):
                     ]
                 }
             }
+
+    def send_email_notification(self):
+        """Send email notification to the patient about the appointment"""
+        # self.ensure_one()
+        template = self.env.ref(
+            "hospital_management.email_template_appointment_reminder"
+        )
+        print(self.pat_email)
+        for record in self:
+            template.sudo().send_mail(self.id, force_send=True)

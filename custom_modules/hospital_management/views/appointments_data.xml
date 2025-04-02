@@ -59,6 +59,8 @@
                             invisible="status != 'confirmed'"/>
                     <button name="action_confirm_prescription" type="object" string="Confirm Prescription"
                             invisible="status != 'ongoing'"/>
+                    <button name="send_email_notification" type="object" string="send email notification"
+                    />
                 </header>
                 <sheet>
 
