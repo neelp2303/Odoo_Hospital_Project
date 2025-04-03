@@ -20,9 +20,7 @@ class doctors_data(models.Model):
         "hospital.appointment", "doctor_id", string="Appointments"
     )
 
-    def write(self, vals):
-        print("Updated Doctor")
-        return super(doctors_data, self).write(vals)
+
 
     # @api.model
     def generate_appointment_slots(self, date=None):
