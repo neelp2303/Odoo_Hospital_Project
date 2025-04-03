@@ -6,15 +6,15 @@ class PatientMassEditWizard(models.TransientModel):
     _description = "Mass Edit Patients"
 
     # Fields that can be mass edited
-    gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
+
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
-    bed_type_id = fields.Many2one("hospital.bed.type", string="Preferred Bed Type")
+
     address = fields.Text("Address")
 
     # Field to determine whether to set this value
-    update_gender = fields.Boolean("Update Gender")
+
     update_doctor = fields.Boolean("Update Doctor")
-    update_bed_type = fields.Boolean("Update Bed Type")
+
     update_address = fields.Boolean("Update Address")
 
     # For display/information only
@@ -37,19 +37,9 @@ class PatientMassEditWizard(models.TransientModel):
         values = {}
         changes_summary = []
 
-        if self.update_gender and self.gender:
-            values["gender"] = self.gender
-            changes_summary.append(
-                f"Gender: {dict(self._fields['gender'].selection).get(self.gender)}"
-            )
-
         if self.update_doctor and self.doctor_id:
             values["doctor_id"] = self.doctor_id.id
             changes_summary.append(f"Doctor: {self.doctor_id.name}")
-
-        if self.update_bed_type and self.bed_type_id:
-            values["bed_type_id"] = self.bed_type_id.id
-            changes_summary.append(f"Bed Type: {self.bed_type_id.name}")
 
         if self.update_address and self.address:
             values["address"] = self.address
