@@ -44,11 +44,8 @@ class PatientMassEditWizard(models.TransientModel):
             values["address"] = self.address
             changes_summary.append(f"Address: {self.address}")
 
-
         if values:
 
             patients.write(values)
-
-
 
         return {"type": "ir.actions.act_window_close"}
