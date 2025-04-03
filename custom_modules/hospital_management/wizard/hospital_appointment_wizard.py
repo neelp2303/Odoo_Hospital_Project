@@ -28,4 +28,7 @@ class HospitalAppointmentWizard(models.TransientModel):
                 "slot_id": self.slot_id.id,
             }
         )
+        patient = self.patient_id
+        message = f"New appointment created with Dr. {self.doctor_id.name} on {self.appointment_date}"
+        patient.message_post(body=message, subtype_xmlid="mail.mt_note")
         return {"type": "ir.actions.act_window_close"}
