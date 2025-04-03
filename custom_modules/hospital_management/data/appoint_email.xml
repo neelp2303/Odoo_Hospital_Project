@@ -8,29 +8,59 @@
             <field name="email_to">{{object.pat_email}}</field>
             <field name="subject">Your Appointment with {{object.doctor_id.name}}</field>
             <field name="body_html" type="html">
-                <div>
-                    <p>
-                        Dear "<t t-out="object.patient_id.name"/>",
-                    </p>
-                    Your appointment has been successfully booked
-                    <p>
-                        <strong>Doctor:</strong>
-                        <t t-out="object.doctor_id.name"/>
-                    </p>
-                    <p>
-                        <strong>Date:</strong>
-                        <t t-out="object.appointment_date"/>
-                    </p>
-                    <p>
-                        <strong>Time Slot:</strong>
-                        <t t-out="object.slot_id.display_name"/>
-                    </p>
-                    <p>Thank you for choosing our hospital.</p>
-                    <p>Best Regards,</p>
-                    <p>Your Hospital Team</p>
-                </div>
+                <t t-name="mail.appointment_confirmation">
+                    <table style="width: 100%; font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
+                        <tr>
+                            <td align="center" style="padding-bottom: 20px;">
+                                <img src="/hospital_management/static/src/img/symbol.png" alt="Hospital Logo"
+                                     style="max-width: 150px;"/>
+                                <h2 style="color: #007bff;">Appointment Confirmation</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="font-size: 16px; color: #333;">
+                                    Dear<t t-out="object.patient_id.name"/>,
+                                </p>
+                                <p style="font-size: 16px; color: #333;">
+                                    Your appointment has been successfully booked. Below are the details:
+                                </p>
+                                <table style="background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                    <tr>
+                                        <td>
+                                            <strong>Doctor:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-out="object.doctor_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Date:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-out="object.appointment_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Time Slot:</strong>
+                                        </td>
+                                        <td>
+                                            <t t-out="object.slot_id.display_name"/>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <p style="font-size: 14px; color: #777; text-align: center;">
+                                    Thank you for choosing our hospital. We look forward to serving you.
+                                </p>
+                                <p style="text-align: center; font-weight: bold; color: #333;">Your Hospital Team</p>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
             </field>
         </record>
-
     </data>
 </odoo>
