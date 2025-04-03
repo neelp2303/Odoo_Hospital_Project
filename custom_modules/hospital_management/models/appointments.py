@@ -144,7 +144,14 @@ class HospitalAppointment(models.Model):
     def send_email_notification(self):
         """Send email notification to the patient about the appointment"""
         # self.ensure_one()
-        template = self.env.ref("hospital_management.email_template_appointment")
-        print(self.pat_email)
-        for record in self:
-            template.sudo().send_mail(self.id, force_send=True)
+        send_mail_enabled = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("hospital_management.send_mail")
+            == "True"
+        )
+        if send_mail_enabled:
+            template = self.env.ref("hospital_management.email_template_appointment")
+            print(self.pat_email)
+            for record in self:
+                template.sudo().send_mail(self.id, force_send=True)
