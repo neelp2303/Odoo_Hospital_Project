@@ -66,6 +66,19 @@ class patients_data(models.Model):
             "context": {"default_patient_id": self.id},
         }
 
+    def action_open_mass_edit(self):
+        return {
+            "name": "Mass Edit Patients",
+            "type": "ir.actions.act_window",
+            "res_model": "hospital.patient.mass.edit.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "active_ids": self.env.context.get("active_ids", []),
+                "active_model": "hospital.patient",
+            },
+        }
+
     @api.depends("bed_id")
     def _compute_has_bed(self):
         """Compute if the patient has a booked bed"""

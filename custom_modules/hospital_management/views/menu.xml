@@ -24,9 +24,12 @@
 
     <menuitem id="medicine_menu" name="Medicines" parent="pharmacy_inventory_menu" action="medicine_action"/>
     <menuitem id="hospital_config_settings_menu" name="Settings"
-              parent="hospital_management.hospital_configurations_menu" sequence="0"
+              parent="hospital_management.hospital_configurations_menu"
               action="hospital_config_settings_action" groups="base.group_system"/>
 
 
     <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_sales_menu" action="sale_action"/>
+    <menuitem name="Dashboard" id="hospital_dashboard_menu"
+              parent="hospital_menu_root"
+              sequence="0" action="hospital_dashboard_action"/>
 </odoo>

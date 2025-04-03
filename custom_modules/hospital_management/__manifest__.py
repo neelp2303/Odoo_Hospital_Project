@@ -28,11 +28,15 @@
         "views/medicine_view.xml",
         "views/sale_view.xml",
         "views/test_view.xml",
+        "views/client_action_views.xml",
         "views/menu.xml",
     ],
     "assets": {
         "web.assets_backend": [
             "static/src/icon.png",
+            "hospital_management/static/src/js/client_action.js",
+            "hospital_management/static/src/xml/client_action.xml",
+            "hospital_management/static/src/css/hospital_dashboard.css",
         ],
     },
     "installable": True,

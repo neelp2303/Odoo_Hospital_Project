@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="hospital_dashboard.dashboard">
+        <div class="o_dashboard">
+            <h1 class="dashboard-title">🏥 Hospital Dashboard</h1>
+
+            <!-- Dashboard Cards -->
+            <div class="o_dashboard_cards">
+                <div class="o_card">
+                    <h3>Total Doctors</h3>
+                    <p>
+                        <t t-esc="state.total_doctors"/>
+                    </p>
+                </div>
+                <div class="o_card">
+                    <h3>Total Patients</h3>
+                    <p>
+                        <t t-esc="state.total_patients"/>
+                    </p>
+                </div>
+                <div class="o_card">
+                    <h3>Appointments Today</h3>
+                    <p>
+                        <t t-esc="state.total_appointments_today"/>
+                    </p>
+                </div>
+                <div class="o_card">
+                    <h3>Appointments This Week</h3>
+                    <p>
+                        <t t-esc="state.total_appointments_week"/>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <h2 class="section-title">📅 Upcoming Appointments</h2>
+            <!--            <ul class="appointment-list">-->
+            <!--                <li t-foreach="state.upcoming_appointments" t-as="appt" t-key="appt.id">-->
+            <!--                    <t t-esc="appt.patient_id[1]"/>-->
+            <!--                    with-->
+            <!--                    <t t-esc="appt.doctor_id[1]"/>-->
+            <!--                    on-->
+            <!--                    <t t-esc="appt.appointment_date"/>-->
+            <!--                </li>-->
+            <!--            </ul>-->
+
+            <!-- Newly Admitted Patients -->
+            <h2 class="section-title">🆕 Newly Admitted Patients</h2>
+            <!--            <ul class="patient-list">-->
+            <!--                <li t-foreach="state.new_patients" t-as="patient" t-key="patient.id">-->
+            <!--                    <t t-esc="patient.name"/>-->
+            <!--                    (Age:-->
+            <!--                    <t t-esc="patient.age"/>-->
+            <!--                    -<t t-esc="patient.gender"/>)-->
+            <!--                </li>-->
+            <!--            </ul>-->
+        </div>
+    </t>
+</templates>

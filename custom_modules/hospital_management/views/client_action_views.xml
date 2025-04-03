@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Define Client Action -->
+        <record id="hospital_dashboard_action" model="ir.actions.client">
+            <field name="name">Hospital Dashboard</field>
+            <field name="tag">hospital_dashboard.dashboard</field>
+        </record>
+
+        <!-- Add Menu Item for the Dashboard -->
+
+    </data>
+</odoo>

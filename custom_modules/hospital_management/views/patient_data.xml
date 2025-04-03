@@ -7,7 +7,12 @@
         <field name="name">hospital.patient.list.view</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
+
             <list string="Patients">
+                <header>
+                    <button name="hospital_management.action_hospital_patient_mass_edit" string="Mass Edit"
+                            type="action" class="oe_highlight" display="always"/>
+                </header>
                 <field name="ref" readonly="1"/>
                 <field name="name"/>
                 <field name="age"/>
@@ -19,6 +24,7 @@
                 <field name="patient_stat"/>
                 <field name="admission_date"/>
                 <field name="discharge_date"/>
+
             </list>
         </field>
     </record>
