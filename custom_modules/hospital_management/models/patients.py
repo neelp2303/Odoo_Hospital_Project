@@ -4,35 +4,40 @@ from odoo import models, fields, api
 class patients_data(models.Model):
     _name = "hospital.patient"
     _description = "Patients Data"
-
-    name = fields.Char("Name", required=True)
-    age = fields.Integer("Age")
-    ref = fields.Char("Ref", default="NEW")
-    gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
-    dob = fields.Date("Dob")
-    contact_number = fields.Char("Contact Number")
-    address = fields.Text("Address")
-    admission_date = fields.Datetime("Admission Date")
-    discharge_date = fields.Datetime("Discharge Date")
-    doctor_id = fields.Many2one("hospital.doctor", string="Doctor")
-    image = fields.Image("Patient Image")
-    email = fields.Char("Email")
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    name = fields.Char("Name", required=True, tracking=True)
+    age = fields.Integer("Age", tracking=True)
+    ref = fields.Char("Ref", default="NEW", tracking=True)
+    gender = fields.Selection(
+        [("male", "Male"), ("female", "Female")], "Gender", tracking=True
+    )
+    dob = fields.Date("Dob", tracking=True)
+    contact_number = fields.Char("Contact Number", tracking=True)
+    address = fields.Text("Address", tracking=True)
+    admission_date = fields.Datetime("Admission Date", tracking=True)
+    discharge_date = fields.Datetime("Discharge Date", tracking=True)
+    doctor_id = fields.Many2one("hospital.doctor", string="Doctor", tracking=True)
+    image = fields.Image("Patient Image", tracking=True)
+    email = fields.Char("Email", tracking=True)
     doctor_reference = fields.Reference(
-        [("hospital.doctor", "Doctor")], string="Doctor by reference"
+        [("hospital.doctor", "Doctor")], string="Doctor by reference", tracking=True
     )
     partner_id = fields.Many2one("res.partner", string="Customer")
     prescription_id = fields.One2many(
-        "hospital.prescription", "patient_id", string="Prescriptions"
+        "hospital.prescription", "patient_id", string="Prescriptions", tracking=True
     )
     appointment_id = fields.Many2one(
-        related="prescription_id.appointment_id", string="Appointment"
+        related="prescription_id.appointment_id", string="Appointment", tracking=True
     )
     medicine_ids = fields.Many2one(
-        related="prescription_id.medicine_id",
-        string="Medicine",
+        related="prescription_id.medicine_id", string="Medicine", tracking=True
     )
-    quantity = fields.Integer(related="prescription_id.quantity", string="Quantity")
-    bed_type_id = fields.Many2one("hospital.bed.type", string="Preferred Bed Type")
+    quantity = fields.Integer(
+        related="prescription_id.quantity", string="Quantity", tracking=True
+    )
+    bed_type_id = fields.Many2one(
+        "hospital.bed.type", string="Preferred Bed Type", tracking=True
+    )
     bed_id = fields.Many2one(
         "hospital.bed",
         string="Bed Booked",
@@ -40,7 +45,7 @@ class patients_data(models.Model):
         ondelete="set null",  # When the related bed is deleted, this field becomes NULL
     )
     has_bed = fields.Boolean(
-        "Has Bed", compute="_compute_has_bed", store=True, readonly=True
+        "Has Bed", compute="_compute_has_bed", store=True, readonly=True, tracking=True
     )
     bed_name = fields.Char(
         "Bed Type",

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_patient_mass_edit_wizard_form" model="ir.ui.view">
+        <field name="name">hospital.patient.mass.edit.wizard.form</field>
+        <field name="model">hospital.patient.mass.edit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Edit Patients">
+                <sheet>
+                    <div class="alert alert-info" role="status">
+                        <field name="patient_count"/>
+                        patients will be updated.
+                    </div>
+                    <p>Select the fields to update and their new values:</p>
+                    <group>
+                        <group>
+                            <field name="update_doctor"/>
+                            <field name="doctor_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="update_address"/>
+                            <field name="address"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_apply" string="Update Patients" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Server Action -->
+    <record id="action_hospital_patient_mass_edit" model="ir.actions.server">
+        <field name="name">Mass Edit</field>
+        <field name="model_id" ref="model_hospital_patient"/>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+            'name': 'Mass Edit Patients',
+            'type': 'ir.actions.act_window',
+            'res_model': 'hospital.patient.mass.edit.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+            'active_ids': env.context.get('active_ids', []),
+            'active_model': 'hospital.patient',
+            },
+            }
+        </field>
+    </record>
+</odoo>

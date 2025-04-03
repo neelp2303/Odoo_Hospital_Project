@@ -15,6 +15,7 @@
         "data/appoint_email.xml",
         # "views/account_move_view.xml",
         "wizard/hospital_appointment_wizard_view.xml",
+        "wizard/patient_mass_edit.xml",
         "reports/hospital_report_templates.xml",
         "reports/hospital_report_actions.xml",
         "reports/report_patient_appointments.xml",
