@@ -144,6 +144,11 @@ class HospitalAppointment(models.Model):
     def send_email_notification(self):
         """Send email notification to the patient about the appointment"""
         # self.ensure_one()
+        for rec in self:
+            patient = rec.patient_id
+            # print(patient)
+            message = f"New appointment created with Dr. {rec.doctor_id.name} on {rec.appointment_date} at {rec.slot_id.display_name}"
+            patient.message_post(body=message, subtype_xmlid="mail.mt_note")
         send_mail_enabled = (
             self.env["ir.config_parameter"]
             .sudo()
