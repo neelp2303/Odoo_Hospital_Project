@@ -2,36 +2,219 @@
 <odoo>
     <data noupdate="0">
         <!-- Predefined Patient 1 -->
-        <record id="patient_john_doe" model="hospital.patient">
+        <record id="patient_1" model="hospital.patient">
             <field name="name">John Doe</field>
             <field name="age">35</field>
             <field name="gender">male</field>
-<!--            <field name="dob">1989-05-10</field>-->
             <field name="contact_number">+123456789</field>
             <field name="address">123 Elm Street, Springfield</field>
-            <field name="admission_date">2025-03-01</field>
+
         </record>
 
         <!-- Predefined Patient 2 -->
-        <record id="patient_jane_smith" model="hospital.patient">
+        <record id="patient_2" model="hospital.patient">
             <field name="name">Jane Smith</field>
             <field name="age">29</field>
             <field name="gender">female</field>
-<!--            <field name="dob">1995-08-20</field>-->
             <field name="contact_number">+987654321</field>
             <field name="address">456 Maple Avenue, Shelbyville</field>
-            <field name="admission_date">2025-03-02</field>
+
         </record>
 
         <!-- Predefined Patient 3 -->
-        <record id="patient_alex_wilson" model="hospital.patient">
+        <record id="patient_3" model="hospital.patient">
             <field name="name">Alex Wilson</field>
             <field name="age">42</field>
             <field name="gender">male</field>
-<!--            <field name="dob">1982-11-15</field>-->
             <field name="contact_number">+1122334455</field>
             <field name="address">789 Oak Lane, Capital City</field>
-            <field name="admission_date">2025-03-03</field>
+
+        </record>
+
+        <!-- Additional Predefined Patients -->
+        <record id="patient_4" model="hospital.patient">
+            <field name="name">Emily Davis</field>
+            <field name="age">31</field>
+            <field name="gender">female</field>
+            <field name="contact_number">+2233445566</field>
+            <field name="address">321 Pine Road, Greenville</field>
+
+        </record>
+
+        <record id="patient_5" model="hospital.patient">
+            <field name="name">Michael Brown</field>
+            <field name="age">48</field>
+            <field name="gender">male</field>
+            <field name="contact_number">+3344556677</field>
+            <field name="address">654 Birch Street, Riverdale</field>
+
+        </record>
+
+        <record id="patient_6" model="hospital.patient">
+            <field name="name">Olivia Harris</field>
+            <field name="age">27</field>
+            <field name="gender">female</field>
+            <field name="contact_number">+4455667788</field>
+            <field name="address">987 Cedar Lane, Brookfield</field>
+        </record>
+
+        <record id="patient_7" model="hospital.patient">
+            <field name="name">Daniel Lee</field>
+            <field name="age">39</field>
+            <field name="gender">male</field>
+            <field name="contact_number">+5566778899</field>
+            <field name="address">159 Oakwood Drive, Centerville</field>
+        </record>
+
+        <record id="patient_8" model="hospital.patient">
+            <field name="name">Sophia Martinez</field>
+            <field name="age">36</field>
+            <field name="gender">female</field>
+            <field name="contact_number">+6677889900</field>
+            <field name="address">753 Elmwood Road, Lakeside</field>
+        </record>
+
+        <record id="patient_9" model="hospital.patient">
+            <field name="name">William Johnson</field>
+            <field name="age">45</field>
+            <field name="gender">male</field>
+            <field name="contact_number">+7788990011</field>
+            <field name="address">951 Redwood Street, Hilltop</field>
+        </record>
+
+        <record id="patient_10" model="hospital.patient">
+            <field name="name">Emma White</field>
+            <field name="age">30</field>
+            <field name="gender">female</field>
+            <field name="contact_number">+8899001122</field>
+            <field name="address">852 Willow Avenue, Fairview</field>
+        </record>
+
+        <!-- Adding more patients up to 20 -->
+        <record id="patient_11" model="hospital.patient">
+            <field name="name">James Miller</field>
+            <field name="age">37</field>
+            <field name="gender">male</field>
+            <field name="contact_number">+9900112233</field>
+            <field name="address">369 Magnolia Lane, Oakville</field>
+        </record>
+
+        <record id="patient_12" model="hospital.patient">
+            <field name="name">Ava Thompson</field>
+            <field name="age">26</field>
+            <field name="gender">female</field>
+            <field name="contact_number">+1122334455</field>
+            <field name="address">741 Chestnut Drive, Newtown</field>
+        </record>
+
+        <!-- Patients 13-20 would follow the same structure -->
+        <record id="doctor_1" model="hospital.doctor">
+            <field name="name">Dr. John Carter</field>
+            <field name="age">45</field>
+            <field name="gender">male</field>
+            <field name="dob">1980-06-15</field>
+            <field name="contact_number">+1234567890</field>
+            <field name="address">101 Health Street, MedCity</field>
+            <field name="specialization">Cardiologist</field>
+        </record>
+
+        <!-- Predefined Doctor 2 -->
+        <record id="doctor_2" model="hospital.doctor">
+            <field name="name">Dr. Emily Watson</field>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="dob">1987-09-22</field>
+            <field name="contact_number">+9876543210</field>
+            <field name="address">202 Wellness Avenue, Greenfield</field>
+            <field name="specialization">Pediatrician</field>
+        </record>
+
+        <!-- Predefined Doctor 3 -->
+        <record id="doctor_3" model="hospital.doctor">
+            <field name="name">Dr. Michael Brown</field>
+            <field name="age">50</field>
+            <field name="gender">male</field>
+            <field name="dob">1975-03-12</field>
+            <field name="contact_number">+1122334455</field>
+            <field name="address">303 Care Street, Metro City</field>
+            <field name="specialization">Orthopedic Surgeon</field>
+        </record>
+
+        <!-- Predefined Doctor 4 -->
+        <record id="doctor_4" model="hospital.doctor">
+            <field name="name">Dr. Sophia Miller</field>
+            <field name="age">42</field>
+            <field name="gender">female</field>
+            <field name="dob">1983-11-08</field>
+            <field name="contact_number">+2233445566</field>
+            <field name="address">404 Health Lane, Lakeview</field>
+            <field name="specialization">Dermatologist</field>
+        </record>
+
+        <!-- Predefined Doctor 5 -->
+        <record id="doctor_5" model="hospital.doctor">
+            <field name="name">Dr. William Johnson</field>
+            <field name="age">47</field>
+            <field name="gender">male</field>
+            <field name="dob">1978-07-25</field>
+            <field name="contact_number">+3344556677</field>
+            <field name="address">505 Wellness Street, Hillside</field>
+            <field name="specialization">Neurologist</field>
+        </record>
+
+        <!-- Predefined Doctor 6 -->
+        <record id="doctor_6" model="hospital.doctor">
+            <field name="name">Dr. Ava Wilson</field>
+            <field name="age">35</field>
+            <field name="gender">female</field>
+            <field name="dob">1990-05-14</field>
+            <field name="contact_number">+4455667788</field>
+            <field name="address">606 Clinic Road, Sunrise City</field>
+            <field name="specialization">Gynecologist</field>
+        </record>
+
+        <!-- Predefined Doctor 7 -->
+        <record id="doctor_7" model="hospital.doctor">
+            <field name="name">Dr. Daniel Harris</field>
+            <field name="age">40</field>
+            <field name="gender">male</field>
+            <field name="dob">1985-02-28</field>
+            <field name="contact_number">+5566778899</field>
+            <field name="address">707 Care Avenue, MedVille</field>
+            <field name="specialization">Oncologist</field>
+        </record>
+
+        <!-- Predefined Doctor 8 -->
+        <record id="doctor_8" model="hospital.doctor">
+            <field name="name">Dr. Olivia Thompson</field>
+            <field name="age">39</field>
+            <field name="gender">female</field>
+            <field name="dob">1986-08-05</field>
+            <field name="contact_number">+6677889900</field>
+            <field name="address">808 Medical Drive, Central Town</field>
+            <field name="specialization">Psychiatrist</field>
+        </record>
+
+        <!-- Predefined Doctor 9 -->
+        <record id="doctor_9" model="hospital.doctor">
+            <field name="name">Dr. Ethan White</field>
+            <field name="age">44</field>
+            <field name="gender">male</field>
+            <field name="dob">1981-04-30</field>
+            <field name="contact_number">+7788990011</field>
+            <field name="address">909 Therapy Road, Riverfront</field>
+            <field name="specialization">Endocrinologist</field>
+        </record>
+
+        <!-- Predefined Doctor 10 -->
+        <record id="doctor_10" model="hospital.doctor">
+            <field name="name">Dr. Isabella Clark</field>
+            <field name="age">41</field>
+            <field name="gender">female</field>
+            <field name="dob">1984-12-10</field>
+            <field name="contact_number">+8899001122</field>
+            <field name="address">1010 Wellness Boulevard, Parkview</field>
+            <field name="specialization">Rheumatologist</field>
         </record>
     </data>
 </odoo>
