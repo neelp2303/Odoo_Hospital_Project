@@ -5,7 +5,9 @@ class patients_data(models.Model):
     _name = "hospital.patient"
     _description = "Patients Data"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    name = fields.Char("Name", required=True, tracking=True)
+    _inherits = {"res.partner": "partner_id"}
+    # name = fields.Char("Name", required=True, tracking=True)
+
     age = fields.Integer("Age", tracking=True)
     ref = fields.Char("Ref", default="NEW", tracking=True)
     gender = fields.Selection(
@@ -22,7 +24,9 @@ class patients_data(models.Model):
     doctor_reference = fields.Reference(
         [("hospital.doctor", "Doctor")], string="Doctor by reference", tracking=True
     )
-    partner_id = fields.Many2one("res.partner", string="Customer")
+    partner_id = fields.Many2one(
+        "res.partner", string="Partner", required=True, ondelete="cascade"
+    )
     prescription_id = fields.One2many(
         "hospital.prescription", "patient_id", string="Prescriptions", tracking=True
     )
@@ -102,24 +106,24 @@ class patients_data(models.Model):
             # Generate Reference
             if not vals.get("ref") or vals["ref"] == "NEW":
                 vals["ref"] = self.env["ir.sequence"].next_by_code("hospital.patient")
-
-            # Create linked customer (res.partner)
-            partner_vals = {
-                "name": vals.get("name", "New Patient"),
-                "phone": vals.get("contact_number"),
-                "customer_rank": 1,  # Mark as customer
-                "street": vals.get("address"),
-                "type": "contact",
-                "is_company": False,
-            }
-
-            # If DOB is provided, calculate age for the partner
-            if vals.get("dob"):
-                partner_vals["birthdate"] = vals.get("dob")
-
-            partner = self.env["res.partner"].create(partner_vals)
-            vals["partner_id"] = partner.id  # Assign partner to patient
-
+        #
+        #         # Create linked customer (res.partner)
+        #         partner_vals = {
+        #             "name": vals.get("name", "New Patient"),
+        #             "phone": vals.get("contact_number"),
+        #             "customer_rank": 1,  # Mark as customer
+        #             "street": vals.get("address"),
+        #             "type": "contact",
+        #             "is_company": False,
+        #         }
+        #
+        #         # If DOB is provided, calculate age for the partner
+        #         if vals.get("dob"):
+        #             partner_vals["birthdate"] = vals.get("dob")
+        #
+        #         partner = self.env["res.partner"].create(partner_vals)
+        #         vals["partner_id"] = partner.id  # Assign partner to patient
+        #
         return super(patients_data, self).create(vals_list)
 
     def write(self, vals):
@@ -144,3 +148,10 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     patient_id = fields.Many2one("hospital.patient", string="Patient")
+    my_name = fields.Char(string="My_Name")
+    department_name = fields.Char(string="Department")
+
+
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+    department_name = fields.Char(string="Department")
