@@ -14,7 +14,29 @@
                 <field name="department_name"/>
 
             </field>
+            <field name="website" position="attributes">
 
+                <attribute name="readonly">1</attribute>
+
+            </field>
+            <!--            <field name="title" position="attributes">-->
+
+            <!--                <attribute name="required">1</attribute>-->
+
+            <!--            </field>-->
+            <xpath expr="//notebook" position="inside">
+                <page name="description_page" string="Description">
+
+                </page>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="test_notification_button"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-bell"
+                        string="Notify"/>
+
+            </xpath>
         </field>
 
     </record>

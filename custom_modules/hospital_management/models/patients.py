@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class patients_data(models.Model):
@@ -115,3 +115,16 @@ class AccountMove(models.Model):
 class ResPartner(models.Model):
     _inherit = "res.partner"
     department_name = fields.Char(string="Department")
+
+    def test_notification_button(self):
+        self.ensure_one()  # optional for safety
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("This is test notification"),
+                "message": "Hello from smart button!",
+                "type": "success",
+                "sticky": False,
+            },
+        }
