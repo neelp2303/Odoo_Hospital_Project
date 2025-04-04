@@ -104,8 +104,6 @@ class patients_data(models.Model):
         return super(patients_data, self).create(vals_list)
 
 
-
-
 class AccountMove(models.Model):
     _inherit = "account.move"
 
