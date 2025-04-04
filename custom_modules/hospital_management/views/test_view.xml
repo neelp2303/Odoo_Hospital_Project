@@ -49,6 +49,11 @@
     <record id="custom_action_sale_order" model="ir.actions.act_window">
         <field name="name">Sales Orders</field>
         <field name="res_model">sale.order</field>
-        <field name="view_mode">list,form,kanban</field>
+        <field name="view_mode">list,form,kanban,search</field>
+    </record>
+    <record id="custom_action_invoice" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form,kanban,search</field>
     </record>
 </odoo>

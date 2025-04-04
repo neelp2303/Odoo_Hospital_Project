@@ -36,4 +36,8 @@
               name="Sales Orders"
               parent="hospital_menu_root"
               action="custom_action_sale_order"/>
+    <menuitem id="custom_menu_invoice"
+              name="Invoices"
+              parent="hospital_menu_root"
+              action="custom_action_invoice"/>
 </odoo>
