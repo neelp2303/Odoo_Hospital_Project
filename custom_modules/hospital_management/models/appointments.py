@@ -80,7 +80,17 @@ class HospitalAppointment(models.Model):
         appointment.send_email_notification()
         # Mark slot as booked
         slot.write({"is_booked": True, "appointment_id": appointment.id})
-
+        self.env["bus.bus"]._sendone(
+            self.env.user.partner_id,
+            "simple_notification",
+            {
+                "title": "Appointment Created",
+                "type": "success",
+                "message": f"Appointment for {appointment.patient_id.name} with Dr. {appointment.doctor_id.name} created successfully!",
+                "sticky": False,
+                "warning": False,
+            },
+        )
         return appointment
 
     def action_start_treatment(self):
