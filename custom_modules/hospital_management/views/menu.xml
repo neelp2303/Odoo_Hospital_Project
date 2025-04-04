@@ -32,4 +32,8 @@
     <menuitem name="Dashboard" id="hospital_dashboard_menu"
               parent="hospital_menu_root"
               sequence="0" action="hospital_dashboard_action"/>
+    <menuitem id="custom_menu_sale_orders"
+              name="Sales Orders"
+              parent="hospital_menu_root"
+              action="custom_action_sale_order"/>
 </odoo>
