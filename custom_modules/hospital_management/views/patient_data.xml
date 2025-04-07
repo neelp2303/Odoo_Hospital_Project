@@ -59,7 +59,7 @@
                             <field name="doctor_id" widget="many2one"/>
                             <field name="doctor_reference"/>
                             <field name="has_bed"/>
-                            <field name="image" class="oe_avatar" widget="image"/>
+                            <field name="image_1920" class="oe_avatar" widget="image"/>
                             <field name="admission_date"/>
                             <field name="discharge_date"/>
                         </group>
@@ -94,7 +94,7 @@
                 <field name="gender"/>
                 <field name="doctor_id"/>
                 <field name="admission_date"/>
-                <field name="image"/>
+                <field name="image_1920"/>
 
                 <templates>
                     <t t-name="card">
@@ -102,7 +102,7 @@
                              style="display: flex; align-items: center; justify-content: space-between;">
                             <div class="o_kanban_image"
                                  style="width: 80px; height: 100px; overflow: hidden; border-radius: 10px;">
-                                <field name="image" widget="image" class="w-100 h-100" style="object-fit: cover;"/>
+                                <field name="image_1920" widget="image" class="w-100 h-100" style="object-fit: cover;"/>
                             </div>
                             <!-- Content Section -->
                             <div class="o_kanban_content" style="flex-grow: 1; padding-left: 10px;">
