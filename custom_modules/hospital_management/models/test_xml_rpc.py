@@ -26,7 +26,16 @@ partners = models.execute_kw(
     [],
     {"fields": ["name", "email"]},
 )
-
+ids = models.execute_kw(
+    db,
+    uid,
+    password,
+    "res.partner",
+    "search",
+    [[["is_company", "=", True]]],
+    {},
+)
+print(ids)
 for partner in partners:
     print(partner)
 print("----------------------------------------")
