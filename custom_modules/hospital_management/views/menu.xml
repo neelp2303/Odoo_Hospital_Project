@@ -39,5 +39,5 @@
     <menuitem id="custom_menu_invoice"
               name="Invoices"
               parent="hospital_menu_main"
-              action="custom_action_invoice"/>
+              action="custom_action_invoice1"/>
 </odoo>
