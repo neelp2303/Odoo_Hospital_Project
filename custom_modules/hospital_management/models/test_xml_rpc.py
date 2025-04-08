@@ -6,6 +6,7 @@ username = "odoohospital@gmail.com"
 password = "8589f95820e27e9c04739a4c6e907e7b3471220f"
 
 common = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/common")
+print(common.version())
 uid = common.authenticate(db, username, password, {})
 
 if not uid:
@@ -35,7 +36,7 @@ customers = models.execute_kw(
     password,
     "res.partner",
     "search_read",
-    [],
+    [[["email", "=", False]]],
     {"fields": ["name", "email"]},
 )
 
