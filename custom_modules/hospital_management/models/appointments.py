@@ -170,3 +170,24 @@ class HospitalAppointment(models.Model):
             print(self.pat_email)
             for record in self:
                 template.sudo().send_mail(self.id, force_send=True)
+
+    def action_send_mail_wizard(self):
+        self.ensure_one()
+        template = self.env.ref(
+            "hospital_management.email_template_appointment", raise_if_not_found=False
+        )
+        ctx = {
+            "default_model": "hospital.appointment",
+            "default_res_ids": [self.id],
+            "default_use_template": bool(template),
+            "default_template_id": template.id if template else False,
+            "default_composition_mode": "comment",
+            "force_email": True,
+        }
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "mail.compose.message",
+            "target": "new",
+            "context": ctx,
+        }
