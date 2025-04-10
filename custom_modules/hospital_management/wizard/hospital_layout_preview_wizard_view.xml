@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_hospital_layout_preview_wizard" model="ir.ui.view">
+        <field name="name">hospital.layout.preview.wizard</field>
+        <field name="model">hospital.layout.preview.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Choose Report Layout">
+                <group>
+                    <field name="hospital_report_layout"/>
+                </group>
+                <footer>
+                    <button name="action_preview_report" type="object" string="Preview" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_layout_preview" model="ir.actions.act_window">
+        <field name="name">Change Report Layout</field>
+        <field name="res_model">hospital.layout.preview.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

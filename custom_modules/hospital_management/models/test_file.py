@@ -1,6 +1,20 @@
 from odoo import models, fields, api, _
 
 
+class ResCompany(models.Model):
+    _inherit = "res.company"
+
+    hospital_report_layout = fields.Selection(
+        [
+            ("modern", "Modern"),
+            ("classic", "Classic"),
+            ("minimal", "Minimal"),
+        ],
+        string="Hospital Report Layout",
+        default="modern",
+    )
+
+
 class TestFile(models.Model):
     _name = "test.file"
     _description = "Test"

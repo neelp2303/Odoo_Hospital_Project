@@ -1,0 +1,22 @@
+<odoo>
+    <template id="hospital_report_layout_modern">
+        <t t-call="web.external_layout">
+            <t t-set="title">Modern Hospital Report</t>
+            <t t-raw="0"/> <!-- placeholder for report body -->
+        </t>
+    </template>
+
+    <template id="hospital_report_layout_classic">
+        <t t-call="web.external_layout_standard">
+            <t t-set="title">Classic Hospital Report</t>
+            <t t-raw="0"/>
+        </t>
+    </template>
+
+    <template id="hospital_report_layout_minimal">
+        <t t-call="web.internal_layout">
+            <t t-set="title">Minimal Layout</t>
+            <t t-raw="0"/>
+        </t>
+    </template>
+</odoo>
