@@ -5,11 +5,12 @@
         <field name="arch" type="xml">
             <form string="Choose Report Layout">
                 <group>
-                    <field name="hospital_report_layout"/>
+                    <field name="hospital_report_layout" widget="radio"/>
                 </group>
                 <footer>
                     <button name="action_preview_report" type="object" string="Preview" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button name="action_confirm_layout" type="object" string="Save" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
                 </footer>
             </form>
         </field>

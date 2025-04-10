@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class HospitalLayoutPreviewWizard(models.TransientModel):
@@ -32,3 +32,14 @@ class HospitalLayoutPreviewWizard(models.TransientModel):
                 "company": self.env.company,  # <-- Add this line
             },
         }
+
+    def action_confirm_layout(self):
+        if self.company_id and self.hospital_report_layout:
+            self.company_id.hospital_report_layout = self.hospital_report_layout
+        return {"type": "ir.actions.act_window_close"}
+
+    @api.model
+    def default_get(self, fields):
+        res = super().default_get(fields)
+        res["hospital_report_layout"] = self.env.company.hospital_report_layout
+        return res
