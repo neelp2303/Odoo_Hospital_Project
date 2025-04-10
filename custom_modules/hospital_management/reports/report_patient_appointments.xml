@@ -28,8 +28,8 @@
                             <!-- Patient Info -->
                             <div style="display: flex; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;">
                                 <div style="width: 200px; margin-right: 20px; flex-shrink: 0;">
-                                    <t t-if="patient.image">
-                                        <img t-att-src="image_data_uri(patient.image)"
+                                    <t t-if="patient.image_1920_1920">
+                                        <img t-att-src="image_data_uri(patient.image_1920_1920)"
                                              style="max-width: 200px; max-height: 200px; border-radius: 8px; object-fit: cover;"/>
                                     </t>
                                     <t t-else="">
@@ -138,8 +138,8 @@
                             <!-- Patient Info -->
                             <div style="display: flex; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;">
                                 <div style="width: 200px; margin-right: 20px; flex-shrink: 0;">
-                                    <t t-if="patient.image">
-                                        <img t-att-src="image_data_uri(patient.image)"
+                                    <t t-if="patient.image_1920">
+                                        <img t-att-src="image_data_uri(patient.image_1920)"
                                              style="max-width: 200px; max-height: 200px; border-radius: 8px; object-fit: cover;"/>
                                     </t>
                                     <t t-else="">
@@ -248,8 +248,8 @@
                             <!-- Patient Info -->
                             <div style="display: flex; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;">
                                 <div style="width: 200px; margin-right: 20px; flex-shrink: 0;">
-                                    <t t-if="patient.image">
-                                        <img t-att-src="image_data_uri(patient.image)"
+                                    <t t-if="patient.image_1920">
+                                        <img t-att-src="image_data_uri(patient.image_1920)"
                                              style="max-width: 200px; max-height: 200px; border-radius: 8px; object-fit: cover;"/>
                                     </t>
                                     <t t-else="">
