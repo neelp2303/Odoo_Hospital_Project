@@ -116,6 +116,22 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
     department_name = fields.Char(string="Department")
 
+    def _compute_display_name(self):
+        """Modify the display name to include ref field"""
+        for partner in self:
+            if partner.ref:
+                partner.display_name = f"{partner.name} [{partner.ref}]"
+            else:
+                partner.display_name = partner.name
+
+    @api.model
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        args = args or []
+        domain = ["|", ("ref", operator, name), ("name", operator, name)]
+        return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
+
     def test_notification_button(self):
         self.ensure_one()  # optional for safety
         return {
