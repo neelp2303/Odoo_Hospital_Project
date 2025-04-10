@@ -7,11 +7,6 @@ class HospitalLayoutPreviewWizard(models.TransientModel):
 
     _inherit = "res.config.settings"
     hospital_report_layout = fields.Selection(
-        [
-            ("modern", "Modern"),
-            ("classic", "Classic"),
-            ("minimal", "Minimal"),
-        ],
         string="Hospital Report Layout",
         related="company_id.hospital_report_layout",
         readonly=False,
