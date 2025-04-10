@@ -5,7 +5,8 @@
         <field name="arch" type="xml">
             <form string="Choose Report Layout">
                 <group>
-                    <field name="hospital_report_layout" widget="radio"/>
+                    <field name="hospital_report_layout" string="Layout" widget="selection_badge" required="1"
+                           options="{'horizontal': true, 'size': 'sm'}"/>
                 </group>
                 <footer>
                     <button name="action_preview_report" type="object" string="Preview" class="btn-primary"/>

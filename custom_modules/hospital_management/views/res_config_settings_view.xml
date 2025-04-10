@@ -30,7 +30,7 @@
 
                                         <button name="%(hospital_management.action_hospital_layout_preview)d"
                                                 string="Change Layout and Preview"
-                                                type="action" class="oe_link"/>
+                                                type="action" class="oe_link" icon="oi-arrow-right"/>
 
                                     </div>
                                 </xpath>
