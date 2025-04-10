@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class HospitalLayoutPreviewWizard(models.TransientModel):
@@ -6,11 +7,14 @@ class HospitalLayoutPreviewWizard(models.TransientModel):
     _description = "Preview Hospital Report Layout"
 
     _inherit = "res.config.settings"
+
     hospital_report_layout = fields.Selection(
         string="Hospital Report Layout",
         related="company_id.hospital_report_layout",
         readonly=False,
     )
+
+    preview_html = fields.Html("Preview")
 
     def action_preview_report(self):
         dummy_patient = self.env["hospital.patient"].search([], limit=1)
