@@ -24,7 +24,6 @@
                                         string="Change Layout and Preview"
                                         type="action" class="oe_link" icon="oi-arrow-right"/>
                             </setting>
-
                         </block>
                     </app>
                 </xpath>
