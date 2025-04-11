@@ -18,8 +18,6 @@
                                 <field name="send_mail"/>
                             </setting>
                         </block>
-                        <!--                                </xpath>-->
-                        <!--                            </setting>-->
                         <block title="Patient Report Layout" id="hospital_report">
                             <setting>
                                 <button name="%(hospital_management.action_hospital_layout_preview)d"
