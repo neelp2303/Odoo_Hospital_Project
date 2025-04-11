@@ -15,7 +15,6 @@
                                class="preview_document_layout"
                         />
                     </div>
-
                 </group>
                 <footer>
                     <button name="action_confirm_layout" type="object" string="Save" class="btn-primary"/>
