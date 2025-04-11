@@ -21,11 +21,11 @@
     <menuitem id="pharmacy_inventory_menu" name="Inventory" parent="hospital_menu_main"/>
     <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_main"/>
 
-    <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_main" sequence="60"/>
+    <!--    <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_main" sequence="60"/>-->
 
     <menuitem id="medicine_menu" name="Medicines" parent="pharmacy_inventory_menu" action="medicine_action"/>
     <menuitem id="hospital_config_settings_menu" name="Settings"
-              parent="hospital_management.hospital_configurations_menu"
+              parent="hospital_menu_main"
               action="hospital_config_settings_action" groups="base.group_system"/>
 
 
