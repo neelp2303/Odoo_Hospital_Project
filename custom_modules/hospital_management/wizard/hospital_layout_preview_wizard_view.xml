@@ -6,8 +6,6 @@
             <form string="Choose Report Layout">
                 <group>
                     <group>
-                        <!--                        <field name="hospital_report_layout" string="Layout" widget="selection_badge" required="1"-->
-                        <!--                               options="{'horizontal': true, 'size': 'sm'}"/>-->
                         <field name="hospital_report_layout" string="Layout_report" widget="selection_badge"
                                required="1"
                                options="{'horizontal': true, 'size': 'sm'}"/>
