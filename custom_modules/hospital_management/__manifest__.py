@@ -30,6 +30,7 @@
         "views/medicine_view.xml",
         "views/sale_view.xml",
         "views/test_view.xml",
+        "views/my_report_layout.xml",
         "views/client_action_views.xml",
         "views/menu.xml",
     ],

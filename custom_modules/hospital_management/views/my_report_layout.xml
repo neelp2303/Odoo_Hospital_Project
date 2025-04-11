@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_layout_view_form" model="ir.ui.view">
+        <field name="name">report_layout_view_form</field>
+        <field name="model">hospital.reports</field>
+        <field name="arch" type="xml">
+            <form string="report_layout_form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="hospital_report"/>-->
+                        <!--                        <field name="report_image" widget="image"/>-->
+                        <field name="image" widget="image"/>
+                        <field name="hospital_report_layout"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="report_layout_view_list" model="ir.ui.view">
+        <field name="name">report_layout_view_list</field>
+        <field name="model">hospital.reports</field>
+        <field name="arch" type="xml">
+            <list string="report_layout_list">
+                <field name="hospital_report_layout"/>
+            </list>
+        </field>
+    </record>
+    <record id="report_layout_action" model="ir.actions.act_window">
+        <field name="name">Layouts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.reports</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

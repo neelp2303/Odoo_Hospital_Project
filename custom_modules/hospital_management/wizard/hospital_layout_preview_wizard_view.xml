@@ -6,17 +6,21 @@
             <form string="Choose Report Layout">
                 <group>
                     <group>
-                        <field name="hospital_report_layout" string="Layout" widget="selection_badge" required="1"
+                        <!--                        <field name="hospital_report_layout" string="Layout" widget="selection_badge" required="1"-->
+                        <!--                               options="{'horizontal': true, 'size': 'sm'}"/>-->
+                        <field name="hospital_report_layout" string="Layout_report" widget="selection_badge"
+                               required="1"
                                options="{'horizontal': true, 'size': 'sm'}"/>
                     </group>
-                    <div class="o_preview">
-                        <field name="preview_html" widget="iframe_wrapper"
-                               class="preview_document_layout d-flex justify-content-center mb-0"/>
+                    <div>
+                        <field name="report_image" widget="image"
+                               class="preview_document_layout d-flex justify-content-center mb-0"
+                        />
                     </div>
 
                 </group>
                 <footer>
-                    <button name="action_preview_report" type="object" string="Preview" class="btn-primary"/>
+                    <!--                    <button name="action_preview_report" type="object" string="Preview" class="btn-primary"/>-->
                     <button name="action_confirm_layout" type="object" string="Save" class="btn-primary"/>
                     <button string="Cancel" special="cancel" class="btn-secondary"/>
                 </footer>

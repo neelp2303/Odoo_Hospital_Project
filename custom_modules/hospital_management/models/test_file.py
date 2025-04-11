@@ -13,6 +13,8 @@ class ResCompany(models.Model):
         string="Hospital Report Layout",
         default="modern",
     )
+    hospital_report = fields.Char("Report_Layout_Name")
+    report_image = fields.Image(string="Report Layout Image")
 
 
 class TestFile(models.Model):
