@@ -10,7 +10,7 @@
                 <xpath expr="//form" position="inside">
                     <app data-string="hospital_management" id="hospital_management" string="Hospital"
                          name="hospital_management" data-key="hospital_management">
-                        <block title="Hospital Management" id="hospital_setting">
+                        <block title="Appointments Settings" id="hospital_setting">
                             <setting>
                                 <field name="cancel_days"/>
                             </setting>
