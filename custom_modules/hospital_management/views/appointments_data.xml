@@ -11,6 +11,7 @@
                 <field name="doctor_id"/>
                 <field name="appointment_date" string="Date"/>
                 <field name="slot_id"/>
+                <field name="activity_ids" widget="list_activity"/>
                 <field name="progress" widget="progressbar"/>
                 <field name="status" widget="badge" decoration-info="status=='confirmed'"
                        decoration-success="status=='done'" decoration-warning="status=='draft'"/>
@@ -30,12 +31,13 @@
                 <!--                <field name="id"/>-->
                 <templates>
                     <div t-name="activity-box">
-                        <img class="rounded-circle"
-                             t-att-src="activity_image('hospital.patient_id', 'image', record.patient_id.raw_value)"
-                             role="img"
-                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>
+                        <!--                        <img class="rounded-circle"-->
+                        <!--                             t-att-src="activity_image('hospital.patient_id', 'image_1920', record.patient_id.raw_value)"-->
+                        <!--                             role="img"-->
+                        <!--                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>-->
                         <div>
-                            <field name="patient_id" display="full"/>
+                            <field name="patient_id" widget="many2one_avatar_user"/>
+                            <field name="patient_id"/>
                             <!--                            <field name="model_id" muted="1" class="o_text_block"/>-->
                         </div>
                     </div>
