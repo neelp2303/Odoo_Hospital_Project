@@ -101,3 +101,17 @@
         width: 80%;
     }
 }
+.o_hospital_report_preview_wrapper {
+    max-height: 375px; /* was 300px */
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.o_hospital_report_preview_wrapper img {
+    max-height: 625px; /* was 500px */
+    max-width: 100%;
+    object-fit: contain;
+}

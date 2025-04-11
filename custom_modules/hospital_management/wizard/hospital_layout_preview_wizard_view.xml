@@ -12,9 +12,9 @@
                                required="1"
                                options="{'horizontal': true, 'size': 'sm'}"/>
                     </group>
-                    <div>
+                    <div class="o_hospital_report_preview_wrapper">
                         <field name="report_image" widget="image"
-                               class="preview_document_layout d-flex justify-content-center mb-0"
+                               class="preview_document_layout"
                         />
                     </div>
 
@@ -33,7 +33,7 @@
         <field name="res_model">hospital.layout.preview.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="context">{'dialog_size': 'large'}</field>
+        <field name="context">{"dialog_size": "extra-large"}</field>
     </record>
     <record id="action_base_layout_configurator" model="ir.actions.act_window">
         <field name="name">Configure your document layout</field>
