@@ -2,7 +2,7 @@
     "name": "Hospital Management",
     "description": """A Hospital Management app from Heliconia Solutions""",
     "summary": "A simple Hospital Management app",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "category": "Health and Fitness",
     "sequence": 0,
     "website": "https://www.heliconia.io",
