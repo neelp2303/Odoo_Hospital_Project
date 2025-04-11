@@ -11,22 +11,27 @@
                     <app data-string="hospital_management" id="hospital_management" string="Hospital"
                          name="hospital_management" data-key="hospital_management">
                         <block title="Hospital Management" id="hospital_setting">
-                            <setting string="Cancel Appointment Before">
-                                <div class="text-muted content-group mt16">
-                                    <span>Cancel Appointment</span>
-                                    <field name="cancel_days" class="text-center" style="width: 10%; min-width: 4rem;"/>
-                                </div>
-                            </setting>
-                            <setting string="Send Appointment Mail">
-                                <div class="text-muted content-group mt16">
-                                    <span>Send Appointment Mail</span>
-                                    <field name="send_mail" class="text-center" style="width: 10%; min-width: 4rem;"/>
-                                </div>
-                            </setting>
                             <setting>
                                 <xpath expr="//div[@id='document_layout']" position="after">
                                     <div>
-                                        <h2>Hospital Report Layout</h2>
+                                        <h2>Appointments Settings</h2>
+                                        <div class="text-muted content-group mt16">
+                                            <span>Cancel Appointment</span>
+                                            <field name="cancel_days" class="text-center"
+                                                   style=" margin-left: 10px;"/>
+                                        </div>
+                                        <div class="text-muted content-group mt16">
+                                            <span>Send Appointment Mail</span>
+                                            <field name="send_mail" class="text-center"
+                                                   style=" margin-left: 10px;"/>
+                                        </div>
+                                    </div>
+                                </xpath>
+                                <!--                            </setting>-->
+                                <!--                            <setting>-->
+                                <xpath expr="//div[@id='document_layout']" position="after">
+                                    <div style="margin-top:30px">
+                                        <h2>Patient Report Layout</h2>
 
                                         <button name="%(hospital_management.action_hospital_layout_preview)d"
                                                 string="Change Layout and Preview"
