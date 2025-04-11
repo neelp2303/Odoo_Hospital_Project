@@ -12,36 +12,19 @@
                          name="hospital_management" data-key="hospital_management">
                         <block title="Hospital Management" id="hospital_setting">
                             <setting>
-                                <xpath expr="//div[@id='document_layout']" position="after">
-                                    <div>
-                                        <h2>Appointments Settings</h2>
-                                        <div class="text-muted content-group mt16">
-                                            <span>Cancel Appointment</span>
-                                            <field name="cancel_days" class="text-center"
-                                                   style=" margin-left: 10px;"/>
-                                        </div>
-                                        <div class="text-muted content-group mt16">
-                                            <span>Send Appointment Mail</span>
-                                            <field name="send_mail" class="text-center"
-                                                   style=" margin-left: 10px;"/>
-                                        </div>
-                                    </div>
-                                </xpath>
-                                <!--                            </setting>-->
-                                <!--                            <setting>-->
-                                <xpath expr="//div[@id='document_layout']" position="after">
-                                    <div style="margin-top:30px">
-                                        <h2>Patient Report Layout</h2>
-
-                                        <button name="%(hospital_management.action_hospital_layout_preview)d"
-                                                string="Change Layout and Preview"
-                                                type="action" class="oe_link" icon="oi-arrow-right"/>
-                                        <button name="%(hospital_management.action_base_layout_configurator)d"
-                                                string="Change Layout and Preview (TEST)"
-                                                type="action" class="oe_link" icon="oi-arrow-right"/>
-
-                                    </div>
-                                </xpath>
+                                <field name="cancel_days"/>
+                            </setting>
+                            <setting>
+                                <field name="send_mail"/>
+                            </setting>
+                        </block>
+                        <!--                                </xpath>-->
+                        <!--                            </setting>-->
+                        <block title="Patient Report Layout" id="hospital_report">
+                            <setting>
+                                <button name="%(hospital_management.action_hospital_layout_preview)d"
+                                        string="Change Layout and Preview"
+                                        type="action" class="oe_link" icon="oi-arrow-right"/>
                             </setting>
 
                         </block>
