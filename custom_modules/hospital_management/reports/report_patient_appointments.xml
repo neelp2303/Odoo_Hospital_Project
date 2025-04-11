@@ -10,15 +10,19 @@
                     <t t-foreach="docs" t-as="patient">
                         <!-- BEGIN: Patient Card -->
                         <div class="page"
-                             style="font-family: 'Arial', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+                             style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 30px; background: linear-gradient(to right, #f8fbfd, #eef2f7); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
 
                             <!-- Header -->
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; border-bottom: 3px solid #3c8dbc; padding-bottom: 15px;">
                                 <div>
-                                    <h1 style="color: #2c3e50; margin: 0; font-size: 24px;">Hospital Patient Report</h1>
-                                    <p style="color: #7f8c8d; margin: 5px 0 0;">Comprehensive Patient Overview</p>
+                                    <h1 style="color: #1a1a1a; margin: 0; font-size: 28px; font-weight: 700;">🏥 Hospital
+                                        Patient Report
+                                    </h1>
+                                    <p style="color: #666; margin: 6px 0 0; font-style: italic;">Comprehensive Patient
+                                        Overview
+                                    </p>
                                 </div>
-                                <div style="width: 120px; height: 120px; background-color: #3498db; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(to top right, #3498db, #6dd5fa); display: flex; align-items: center; justify-content: center; border-radius: 12px;">
                                     <img t-att-src="'/hospital_management/static/src/img/symbol.png'"
                                          style="max-width: 100%; max-height: 100%; object-fit: contain;"
                                          alt="Hospital Logo"/>
@@ -26,7 +30,7 @@
                             </div>
 
                             <!-- Patient Info -->
-                            <div style="display: flex; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                            <div style="display: flex; background-color: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); margin-bottom: 25px;">
                                 <div style="width: 200px; margin-right: 20px; flex-shrink: 0;">
                                     <t t-if="patient.image_1920">
                                         <img t-att-src="image_data_uri(patient.image_1920)"
@@ -38,7 +42,7 @@
                                         </div>
                                     </t>
                                 </div>
-                                <div style="flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div style="flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 15px;">
                                     <p>
                                         <strong>Name:</strong>
                                         <t t-esc="patient.name or 'N/A'"/>
@@ -67,29 +71,29 @@
                             </div>
 
                             <!-- Appointment Table -->
-                            <div style="background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                <h2 style="color: #2980b9; border-bottom: 1px solid #ecf0f1; padding-bottom: 10px; margin-top: 0;">
-                                    Appointment History
+                            <div style="background-color: #ffffff; border-radius: 16px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.06);">
+                                <h2 style="color: #3c8dbc; border-bottom: 2px solid #dfe6e9; padding-bottom: 12px; margin-top: 0; font-size: 22px;">
+                                    📅 Appointment History
                                 </h2>
-                                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px;">
                                     <thead>
-                                        <tr style="background-color: #3498db; color: white;">
-                                            <th style="padding: 10px; text-align: left;">Date</th>
-                                            <th style="padding: 10px; text-align: left;">Doctor</th>
-                                            <th style="padding: 10px; text-align: left;">Status</th>
+                                        <tr style="background: linear-gradient(to right, #2980b9, #6dd5fa); color: white;">
+                                            <th style="padding: 12px; text-align: left;">Date</th>
+                                            <th style="padding: 12px; text-align: left;">Doctor</th>
+                                            <th style="padding: 12px; text-align: left;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <t t-foreach="patient.appointment_id" t-as="appointment">
                                             <tr style="border-bottom: 1px solid #ecf0f1;">
-                                                <td style="padding: 10px;">
+                                                <td style="padding: 12px;">
                                                     <t t-esc="appointment.appointment_date or 'N/A'"/>
                                                 </td>
-                                                <td style="padding: 10px;">
+                                                <td style="padding: 12px;">
                                                     <t t-esc="appointment.doctor_id.name or 'N/A'"/>
                                                 </td>
-                                                <td style="padding: 10px;">
-                                                    <span t-attf-style="color: #{appointment.status == 'confirmed' and '#27ae60' or appointment.status == 'cancelled' and '#e74c3c' or '#008000'}">
+                                                <td style="padding: 12px;">
+                                                    <span t-attf-style="font-weight: 600; color: #{appointment.status == 'confirmed' and '#27ae60' or appointment.status == 'cancelled' and '#e74c3c' or '#f39c12'};">
                                                         <t t-esc="appointment.status or 'N/A'"/>
                                                     </span>
                                                 </td>
@@ -100,13 +104,12 @@
                             </div>
 
                             <!-- Footer -->
-                            <div style="margin-top: 20px; text-align: center; color: #7f8c8d; font-size: 12px; border-top: 1px solid #ecf0f1; padding-top: 10px;">
-                                <p>Generated on
+                            <div style="margin-top: 30px; text-align: center; color: #95a5a6; font-size: 12px; border-top: 1px solid #dcdde1; padding-top: 12px;">
+                                <p>🕒 Generated on
                                     <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/>
                                     | Hospital Management System
                                 </p>
                             </div>
-
                         </div>
                         <!-- END: Patient Card -->
                     </t>
