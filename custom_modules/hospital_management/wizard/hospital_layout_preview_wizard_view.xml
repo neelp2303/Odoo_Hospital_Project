@@ -33,6 +33,7 @@
         <field name="res_model">hospital.layout.preview.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="context">{'dialog_size': 'large'}</field>
     </record>
     <record id="action_base_layout_configurator" model="ir.actions.act_window">
         <field name="name">Configure your document layout</field>
