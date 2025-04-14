@@ -119,10 +119,15 @@ class ResPartner(models.Model):
 
     def _compute_display_name(self):
         """Modify the display name to include ref field"""
-        for partner in self:
-            if partner.department_name:
-                partner.display_name = f"{partner.name} [{partner.department_name}]"
-            else:
+        if self.env.context.get("search_in_contacts_only"):
+            for partner in self:
+                if partner.department_name:
+                    partner.display_name = f"{partner.name} [{partner.department_name}]"
+                else:
+                    partner.display_name = partner.name
+        else:
+            for partner in self:
+
                 partner.display_name = partner.name
 
     @api.model
