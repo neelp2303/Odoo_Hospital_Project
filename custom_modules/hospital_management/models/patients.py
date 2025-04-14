@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.osv import expression
 
 
 class patients_data(models.Model):
@@ -119,18 +120,47 @@ class ResPartner(models.Model):
     def _compute_display_name(self):
         """Modify the display name to include ref field"""
         for partner in self:
-            if partner.ref:
-                partner.display_name = f"{partner.name} [{partner.ref}]"
+            if partner.department_name:
+                partner.display_name = f"{partner.name} [{partner.department_name}]"
             else:
                 partner.display_name = partner.name
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        args = args or []
-        domain = ["|", ("ref", operator, name), ("name", operator, name)]
-        return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        if not name:
+            return super().name_search(name, args, operator, limit)
+        # search progressively by the most specific attributes
+        positive_operators = ["=", "ilike", "=ilike", "like", "=like"]
+        print("Context:", self.env.context)
+
+        # products = self.browse()
+        domain = args or []
+        # if "params" in self.env.context:
+        #     params = self.env.context["params"]
+        #     if params.get("action") == "sales" or any(
+        #         step.get("action") == "sales" for step in params.get("actionStack", [])
+        #     ):
+        if self.env.context.get("search_in_contacts_only"):
+            print("We are in the sales context.")
+            if operator in positive_operators:
+                products = self.search_fetch(
+                    expression.AND([domain, [("name", operator, name)]]),
+                    ["display_name"],
+                    limit=limit,
+                ) or self.search_fetch(
+                    expression.AND([domain, [("department_name", operator, name)]]),
+                    ["display_name"],
+                    limit=limit,
+                )
+        else:
+            if operator in positive_operators:
+                products = self.search_fetch(
+                    expression.AND([domain, [("name", operator, name)]]),
+                    ["display_name"],
+                    limit=limit,
+                )
+
+        return [(product.id, product.display_name) for product in products.sudo()]
 
     def test_notification_button(self):
         self.ensure_one()  # optional for safety
@@ -144,3 +174,9 @@ class ResPartner(models.Model):
                 "sticky": False,
             },
         }
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    x_project_code = fields.Char(string="Project Code")

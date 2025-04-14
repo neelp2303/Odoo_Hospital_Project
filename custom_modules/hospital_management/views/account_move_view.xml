@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="function" position="after">
-                <field name="department_name"/>
+                <field name="department_name" context="{'contacts_page': True}"/>
             </field>
             <field name="website" position="attributes">
                 <attribute name="readonly">1</attribute>
@@ -20,6 +20,17 @@
                         icon="fa-bell"
                         string="Notify"/>
             </xpath>
+        </field>
+    </record>
+    <record id="view_order_form_inherit_project_code" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.project.code</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Insert field after the partner_id (Customer) field -->
+            <field name="partner_id" position="attributes">
+                <attribute name="context">{'search_in_contacts_only': True}</attribute>
+            </field>
         </field>
     </record>
 </odoo>
