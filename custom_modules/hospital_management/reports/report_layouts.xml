@@ -19,19 +19,16 @@
             <t t-raw="0"/>
         </t>
     </template>
-    <template id="report_my_custom_layout" inherit_id="web.external_layout_wave">
-        <!--       -->
 
-    </template>
 
     <template id="external_layout_wave_custom">
         <!-- HEADER -->
         <t t-set="header_shape_height" t-value="'230'"/>
         <div t-attf-class="header o_company_#{company.id}_layout {{report_type != 'pdf' and 'h-0'}}">
-            <img t-if="report_type == 'pdf'" t-attf-src="/hospital_management/static/src/img/wave.svg"
-                 class="position-fixed start-0 top-0 w-100 z-n1" style="opacity: 0.3;" alt="Wave Background"/>
-            <img t-if="report_type != 'pdf'" t-attf-src="/hospital_management/static/src/img/wave.svg"
-                 class="position-absolute start-0 top-0 w-100 z-n1" style="opacity: 0.3;" alt="Wave Background"/>
+            <img t-if="report_type == 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"
+                 class="position-fixed start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>
+            <img t-if="report_type != 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"
+                 class="position-absolute start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>
 
             <div class="d-flex justify-content-between">
                 <div>
@@ -73,7 +70,7 @@
         <t t-set="layout_background_url"
            t-value="'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else
                 '/base/static/img/demo_logo_report.png' if company.layout_background == 'Demo logo' else ''"/>
-        <div t-attf-class="article o_report_layout_boxed o_table_boxed o_company_#{company.id}_layout o_snail_mail mt-10 {{'o_report_layout_background' if company.layout_background != 'Blank' else ''}}"
+        <div t-attf-class="article o_report_layout_boxed o_table_boxed o_company_#{company.id}_layout o_snail_mail {{'o_report_layout_background' if company.layout_background != 'Blank' else ''}}"
              t-attf-style="{{report_type != 'pdf' and 'margin-top:' + header_shape_height + 'px;'}}
                 {{ 'background-image: url(%s);' % layout_background_url if layout_background_url else ''}}"
              t-att-data-oe-model="o and o._name"
@@ -85,12 +82,19 @@
             <t t-out="0"/>
         </div>
 
-        <!-- Footer -->
+
         <div t-attf-class="footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'position-relative mt-auto mx-n5'}}">
-            <img t-if="report_type == 'pdf'" t-attf-src="/hospital_management/static/src/img/wave.svg"
-                 class="position-fixed start-0 top-0 w-100 z-n1" style="opacity: 0.3;" alt="Wave Background"/>
-            <img t-if="report_type != 'pdf'" t-attf-src="/hospital_management/static/src/img/wave.svg"
-                 class="position-absolute start-0 top-0 w-100 z-n1" style="opacity: 0.3;" alt="Wave Background"/>
+            <svg t-attf-class="{{report_type == 'pdf' and 'position-fixed start-0'}} w-100" preserveAspectRatio="none"
+                 t-att-height="report_type == 'pdf' and '180'" viewBox="0 0 1000 180" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <!--                <path d="/hospital_management/static/src/img/wave.svg"-->
+                <!--                      t-att-fill="company.secondary_color" fill-opacity=".1"/>-->
+                <img t-attf-src="/hospital_management/static/src/img/wave-2.svg"
+                     t-att-fill="company.secondary_color" style="opacity: 0.4;"/>
+                <!--                <path fill="#0099ff" fill-opacity="1"-->
+                <!--                      d="M0,224L40,229.3C80,235,160,245,240,240C320,235,400,213,480,192C560,171,640,149,720,154.7C800,160,880,192,960,181.3C1040,171,1120,117,1200,106.7C1280,96,1360,128,1400,144L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>-->
+            </svg>
+
             <div t-attf-class="o_footer_content {{report_type != 'pdf' and 'position-absolute end-0 start-0 bottom-0 mx-5'}} pt-5 text-center">
                 <div t-field="company.report_footer"/>
                 <span t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted"

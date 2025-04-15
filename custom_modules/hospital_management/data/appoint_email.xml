@@ -12,7 +12,7 @@
                     <table style="width: 100%; font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
                         <tr>
                             <td align="center" style="padding-bottom: 20px;">
-                                <img src="/hospital_management/static/src/img/symbol.png" alt="Hospital Logo"
+                                <img src="/hospital_management/static/src/img/symbol-1.png" alt="Hospital Logo"
                                      style="max-width: 150px;"/>
                                 <h2 style="color: #007bff;">Appointment Confirmation</h2>
                             </td>

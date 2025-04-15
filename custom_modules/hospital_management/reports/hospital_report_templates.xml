@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="col-6 text-right">
-                                <img t-att-src="'/hospital_management/static/src/img/symbol.png'"
+                                <img t-att-src="'/hospital_management/static/src/img/symbol-1.png'"
                                      class="img-fluid" style="max-height: 100px;"/>
                             </div>
                         </div>
