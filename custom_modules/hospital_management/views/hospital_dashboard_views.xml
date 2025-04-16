@@ -145,7 +145,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Hospital Dashboard">
-                <board style="2-1">
+                <board style="1-1">
                     <column>
                         <!-- Appointments by Status Graph -->
                         <action name="%(action_hospital_ongoing_appointments)d" string="Ongoing Treatments"/>
