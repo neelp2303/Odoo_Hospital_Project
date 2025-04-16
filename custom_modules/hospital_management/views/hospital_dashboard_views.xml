@@ -150,7 +150,8 @@
                         <!-- Appointments by Status Graph -->
                         <action name="%(action_hospital_ongoing_appointments)d" string="Ongoing Treatments"/>
                         <!-- Patient Kanban -->
-                        <action name="%(action_hospital_patient_kanban)d" string="Recent Patients"/>
+                        <action name="%(action_hospital_appointment_by_doctor_graph)d" string="Appointments by Doctor"/>
+
                         <!--                        <action name="%(action_hospital_appointment_today)d" string="Today's Appointments"/>-->
                         <action name="%(action_hospital_patients_with_beds)d" string="Patients Details"/>
 
@@ -159,7 +160,7 @@
                         <!-- Appointments by Doctor Graph -->
 
                         <action name="%(action_hospital_appointment_graph)d" string="Appointments by Status"/>
-                        <action name="%(action_hospital_appointment_by_doctor_graph)d" string="Appointments by Doctor"/>
+                        <action name="%(action_hospital_patient_kanban)d" string="Recent Patients"/>
                         <!-- Appointments Pivot -->
                         <action name="%(action_hospital_appointment_pivot)d" string="Appointment Analysis"/>
                     </column>
