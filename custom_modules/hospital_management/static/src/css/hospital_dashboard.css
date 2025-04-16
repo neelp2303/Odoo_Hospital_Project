@@ -115,3 +115,13 @@
     max-width: 100%;
     object-fit: contain;
 }
+.o_kanban_dashboard, .oe_kanban_card, .oe_kanban_details,
+.o_graph_view, .o_pivot_view, .o_searchview {
+    color: black !important;
+}
+
+/* Optional: override text inside <li> or <strong> if needed */
+.o_kanban_dashboard li,
+.o_kanban_dashboard strong {
+    color: black !important;
+}

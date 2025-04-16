@@ -30,11 +30,7 @@
                             <div class="card shadow rounded p-3">
                                 <div class="d-flex">
                                     <!-- Patient Image -->
-                                    <t t-if="patient.image_1920">
-                                        <img t-att-src="image_data_uri(patient.image_1920)"
-                                             class="rounded me-3"
-                                             style="width: 150px; height: 150px; object-fit: cover;"/>
-                                    </t>
+
 
                                     <!-- Patient Info -->
                                     <div class="flex-grow-1">
@@ -59,6 +55,11 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <t t-if="patient.image_1920">
+                                        <img t-att-src="image_data_uri(patient.image_1920)"
+                                             class="rounded me-3"
+                                             style="width: 150px; height: 150px; object-fit: cover;"/>
+                                    </t>
                                 </div>
                             </div>
                         </div>

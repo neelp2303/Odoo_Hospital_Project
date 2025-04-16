@@ -31,9 +31,9 @@
 
 
     <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_inventory_menu" action="sale_action"/>
-    <menuitem name="Dashboard" id="hospital_dashboard_menu"
-              parent="hospital_menu_main"
-              sequence="0" action="hospital_dashboard_action"/>
+    <!--    <menuitem name="Dashboard" id="hospital_dashboard_menu"-->
+    <!--              parent="hospital_menu_main"-->
+    <!--              sequence="0" action="hospital_dashboard_action"/>-->
     <!--    <menuitem id="menu_export_appointments" name="Export Appointments"-->
     <!--              parent="hospital_menu_main"-->
     <!--              action="action_export_appointment_wizard"/>-->
@@ -49,4 +49,14 @@
               name="Patient Website"
               parent="hospital_menu_main"
               action="action_hospital_patient_webpage"/>
+    <menuitem id="menu_hospital_dashboard"
+              name="Dashboard"
+              parent="hospital_management.hospital_menu_main"
+              action="action_hospital_dashboard"
+              sequence="0"/>
+    <menuitem id="menu_hospital_dashboard_kpi"
+              name="Hospital KPIs"
+              parent="hospital_management.hospital_menu_main"
+              action="action_hospital_dashboard_kpi"
+              sequence="2"/>
 </odoo>

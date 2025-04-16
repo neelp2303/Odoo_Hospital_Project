@@ -10,3 +10,5 @@ from . import res_config_settings
 from . import sale
 from . import test_file
 from . import my_report_layouts
+from . import hospital_dashboard
+from . import hospital_dashboard_compute
