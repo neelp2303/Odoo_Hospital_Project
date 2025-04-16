@@ -40,17 +40,15 @@
     </record>
 
     <!-- Kanban View for Patients -->
-    <record id="view_hospital_patient_kanban_dashboard" model="ir.ui.view">
-        <field name="name">hospital.patient.kanban.dashboard</field>
-        <field name="model">hospital.patient</field>
+    <record id="view_hospital_doctor_kanban_dashboard" model="ir.ui.view">
+        <field name="name">hospital.doctor.kanban.dashboard</field>
+        <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_dashboard">
                 <field name="id"/>
                 <field name="name"/>
-                <field name="age"/>
-                <field name="gender"/>
-                <field name="has_bed"/>
-                <field name="bed_name"/>
+                <field name="specialization"/>
+            
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_card oe_kanban_global_click">
@@ -59,16 +57,11 @@
                                     <field name="name"/>
                                 </strong>
                                 <ul>
-                                    <li>Age:
-                                        <field name="age"/>
+                                    <li>specialization:
+                                        <field name="specialization"/>
                                     </li>
-                                    <li>Gender:
-                                        <field name="gender"/>
-                                    </li>
-                                    <li t-if="record.has_bed.raw_value">
-                                        Bed:
-                                        <field name="bed_name"/>
-                                    </li>
+
+
                                 </ul>
                             </div>
                         </div>
@@ -130,12 +123,11 @@
         <field name="view_id" ref="view_hospital_appointment_pivot"/>
     </record>
 
-    <record id="action_hospital_patient_kanban" model="ir.actions.act_window">
-        <field name="name">Recent Patients</field>
-        <field name="res_model">hospital.patient</field>
+    <record id="action_hospital_doctor_kanban" model="ir.actions.act_window">
+        <field name="name">Doctors Overview</field>
+        <field name="res_model">hospital.doctor</field>
         <field name="view_mode">kanban</field>
-        <field name="view_id" ref="view_hospital_patient_kanban_dashboard"/>
-        <field name="limit">10</field>
+        <field name="view_id" ref="view_hospital_doctor_kanban_dashboard"/>
     </record>
 
     <!-- Dashboard Main View -->
@@ -160,7 +152,7 @@
                         <!-- Appointments by Doctor Graph -->
 
                         <action name="%(action_hospital_appointment_graph)d" string="Appointments by Status"/>
-                        <action name="%(action_hospital_patient_kanban)d" string="Recent Patients"/>
+                        <action name="%(action_hospital_doctor_kanban)d" string="Doctors"/>
                         <!-- Appointments Pivot -->
                         <action name="%(action_hospital_appointment_pivot)d" string="Appointment Analysis"/>
                     </column>
