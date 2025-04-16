@@ -10,7 +10,7 @@
     </record>
 
     <record id="action_hospital_patients_with_beds" model="ir.actions.act_window">
-        <field name="name">Patients with Beds</field>
+        <field name="name">Patients Details</field>
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">list</field>
         <field name="domain">[('has_bed', '=', True)]</field>
