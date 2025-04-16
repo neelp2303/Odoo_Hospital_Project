@@ -54,9 +54,9 @@
               parent="hospital_management.hospital_menu_main"
               action="action_hospital_dashboard"
               sequence="0"/>
-    <menuitem id="menu_hospital_dashboard_kpi"
-              name="Hospital KPIs"
-              parent="hospital_management.hospital_menu_main"
-              action="action_hospital_dashboard_kpi"
-              sequence="2"/>
+    <!--    <menuitem id="menu_hospital_dashboard_kpi"-->
+    <!--              name="Hospital KPIs"-->
+    <!--              parent="hospital_management.hospital_menu_main"-->
+    <!--              action="action_hospital_dashboard_kpi"-->
+    <!--              sequence="2"/>-->
 </odoo>

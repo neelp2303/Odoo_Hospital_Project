@@ -125,3 +125,18 @@
 .o_kanban_dashboard strong {
     color: black !important;
 }
+
+.o_kanban_dashboard, .oe_kanban_card, .oe_kanban_details,
+.o_graph_view, .o_pivot_view, .o_searchview,
+.o_list_view, .o_form_view, .o_cp_header, .o_cp_search_options,
+.o_content, .o_view_nocontent, .o_list_renderer, .o_field_widget {
+    color: black !important;
+}
+
+/* Optional extras for headers or list rows */
+.o_list_view thead th,
+.o_list_view tbody td,
+.o_kanban_dashboard li,
+.o_kanban_dashboard strong {
+    color: black !important;
+}
