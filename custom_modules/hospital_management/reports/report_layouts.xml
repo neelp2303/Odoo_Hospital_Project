@@ -25,11 +25,16 @@
         <!-- HEADER -->
         <t t-set="header_shape_height" t-value="'230'"/>
         <div t-attf-class="header o_company_#{company.id}_layout {{report_type != 'pdf' and 'h-0'}}">
-            <img t-if="report_type == 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"
-                 class="position-fixed start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>
-            <img t-if="report_type != 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"
-                 class="position-absolute start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>
-
+            <!--            <img t-if="report_type == 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"-->
+            <!--                 class="position-fixed start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>-->
+            <!--            <img t-if="report_type != 'pdf'" t-attf-src="/hospital_management/static/src/img/wave-up.svg"-->
+            <!--                 class="position-absolute start-0 top-0 w-100 z-n1" style="opacity: 0.4;" alt="Wave Background"/>-->
+            <svg t-attf-class="{{report_type == 'pdf' and 'position-fixed' or 'position-absolute'}} start-0 top-0 w-100 z-n1"
+                 preserveAspectRatio="none" t-att-height="header_shape_height" viewBox="0 0 1440 320" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill="#0099ff" fill-opacity="0.3"
+                      d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,101.3C960,85,1056,75,1152,112C1248,149,1344,235,1392,277.3L1440,320L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"/>
+            </svg>
             <div class="d-flex justify-content-between">
                 <div>
                     <img t-if="company.logo" class="o_company_logo mb-2" t-att-src="image_data_uri(company.logo)"
@@ -85,15 +90,16 @@
 
         <div t-attf-class="footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'position-relative mt-auto mx-n5'}}">
             <svg t-attf-class="{{report_type == 'pdf' and 'position-fixed start-0'}} w-100" preserveAspectRatio="none"
-                 t-att-height="report_type == 'pdf' and '180'" viewBox="0 0 1000 180" fill="none"
+                 t-att-height="report_type == 'pdf' and '180'" viewBox="0 0 1440 320" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
-                <!--                <path d="/hospital_management/static/src/img/wave.svg"-->
-                <!--                      t-att-fill="company.secondary_color" fill-opacity=".1"/>-->
-                <img t-attf-src="/hospital_management/static/src/img/wave-2.svg"
-                     t-att-fill="company.secondary_color" style="opacity: 0.4;"/>
-                <!--                <path fill="#0099ff" fill-opacity="1"-->
-                <!--                      d="M0,224L40,229.3C80,235,160,245,240,240C320,235,400,213,480,192C560,171,640,149,720,154.7C800,160,880,192,960,181.3C1040,171,1120,117,1200,106.7C1280,96,1360,128,1400,144L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>-->
+                <path fill="#0099ff" fill-opacity="0.3"
+                      d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,101.3C960,85,1056,75,1152,112C1248,149,1344,235,1392,277.3L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
             </svg>
+            <!--            <img t-attf-src="/hospital_management/static/src/img/wave-2.svg"-->
+            <!--                 t-att-fill="company.secondary_color" style="opacity: 0.4;"/>-->
+            <!--                <path fill="#0099ff" fill-opacity="1"-->
+            <!--                      d="M0,224L40,229.3C80,235,160,245,240,240C320,235,400,213,480,192C560,171,640,149,720,154.7C800,160,880,192,960,181.3C1040,171,1120,117,1200,106.7C1280,96,1360,128,1400,144L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>-->
+            <!--            </svg>-->
 
             <div t-attf-class="o_footer_content {{report_type != 'pdf' and 'position-absolute end-0 start-0 bottom-0 mx-5'}} pt-5 text-center">
                 <div t-field="company.report_footer"/>
