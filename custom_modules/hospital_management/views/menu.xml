@@ -30,9 +30,12 @@
 
 
     <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_sales_menu" action="sale_action"/>
-    <!--    <menuitem name="Dashboard" id="hospital_dashboard_menu"-->
+    <menuitem name="Dashboard" id="hospital_dashboard_menu"
+              parent="hospital_menu_main"
+              sequence="0" action="hospital_dashboard_action"/>
+    <!--    <menuitem id="menu_export_appointments" name="Export Appointments"-->
     <!--              parent="hospital_menu_main"-->
-    <!--              sequence="0" action="hospital_dashboard_action"/>-->
+    <!--              action="action_export_appointment_wizard"/>-->
     <menuitem id="custom_menu_sale_orders"
               name="Sales Orders"
               parent="hospital_menu_main"

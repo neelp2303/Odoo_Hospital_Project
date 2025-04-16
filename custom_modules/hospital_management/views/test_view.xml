@@ -66,4 +66,75 @@
             </field>
         </field>
     </record>
+
+    <record id="view_hospital_patient_export_wizard_form" model="ir.ui.view">
+        <field name="name">hospital.patient.export.wizard.form</field>
+        <field name="model">hospital.patient.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Patient Data">
+                <field name="state" invisible="1"/>
+                <div>
+                    <p class="alert alert-info" role="alert">
+                        This will export data for all selected patient records.
+                    </p>
+                    <group>
+                        <field name="create_sheets"/>
+                        <field name="field_ids" widget="many2many_tags"
+                               domain="[('model', '=', 'hospital.patient'), ('ttype', 'not in', ['binary', 'one2many', 'many2many'])]"
+                               options="{'no_create': True, 'no_edit': True}"/>
+                    </group>
+                    <footer>
+                        <button name="action_export" string="Export" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </div>
+                <div>
+                    <h2>Export Completed</h2>
+                    <p>Your CSV file is ready:</p>
+                    <div class="text-center mb16">
+                        <field name="export_filename" invisible="1"/>
+                        <field name="export_data" nolabel="1" readonly="1" filename="export_filename" widget="binary"
+                               options="{'filename': 'export_filename'}"/>
+                        <!--                        <p class="mt8">-->
+                        <!--                            <button name="action_direct_download" string="Download as CSV" type="object"-->
+                        <!--                                    class="btn-primary" icon="fa-download"/>-->
+                        <!--                        </p>-->
+                    </div>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the export wizard -->
+    <record id="action_hospital_patient_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Patient Data</field>
+        <field name="res_model">hospital.patient.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_view_types">list</field>
+    </record>
+    <record id="action_multi_patient_export" model="ir.actions.server">
+        <field name="name">Advanced Export</field>
+        <field name="model_id" ref="hospital_management.model_hospital_patient"/>
+        <field name="binding_model_id" ref="hospital_management.model_hospital_patient"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+            'name': 'Export Selected Patients',
+            'type': 'ir.actions.act_window',
+            'res_model': 'hospital.patient.export.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+            'active_model': 'hospital.patient',
+            'active_ids': env.context.get('active_ids', []),
+            },
+            }
+        </field>
+    </record>
 </odoo>
