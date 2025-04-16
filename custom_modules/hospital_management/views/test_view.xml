@@ -137,4 +137,10 @@
             }
         </field>
     </record>
+    <record id="action_hospital_patient_webpage" model="ir.actions.act_url">
+        <field name="name">Patient Webpage</field>
+        <field name="type">ir.actions.act_url</field>
+        <field name="url">/hospital/patients</field>
+        <field name="target">self</field>
+    </record>
 </odoo>
