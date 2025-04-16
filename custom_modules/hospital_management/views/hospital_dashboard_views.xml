@@ -148,16 +148,17 @@
                 <board style="2-1">
                     <column>
                         <!-- Appointments by Status Graph -->
-                        <action name="%(action_hospital_appointment_graph)d" string="Appointments by Status"/>
+                        <action name="%(action_hospital_ongoing_appointments)d" string="Ongoing Treatments"/>
                         <!-- Patient Kanban -->
                         <action name="%(action_hospital_patient_kanban)d" string="Recent Patients"/>
-                        <action name="%(action_hospital_appointment_today)d" string="Today's Appointments"/>
-                        <action name="%(action_hospital_patients_with_beds)d" string="Patients with Beds"/>
+                        <!--                        <action name="%(action_hospital_appointment_today)d" string="Today's Appointments"/>-->
+                        <action name="%(action_hospital_patients_with_beds)d" string="Patients Details"/>
 
                     </column>
                     <column>
                         <!-- Appointments by Doctor Graph -->
-                        <action name="%(action_hospital_ongoing_appointments)d" string="Ongoing Treatments"/>
+
+                        <action name="%(action_hospital_appointment_graph)d" string="Appointments by Status"/>
                         <action name="%(action_hospital_appointment_by_doctor_graph)d" string="Appointments by Doctor"/>
                         <!-- Appointments Pivot -->
                         <action name="%(action_hospital_appointment_pivot)d" string="Appointment Analysis"/>
