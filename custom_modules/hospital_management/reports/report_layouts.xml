@@ -20,6 +20,55 @@
         </t>
     </template>
 
+    <template id="patient_list_template" name="Patient List Page">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h2 class="mb-4">Patient Directory</h2>
+                <div class="row">
+                    <t t-foreach="patients" t-as="patient">
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow rounded p-3">
+                                <div class="d-flex">
+                                    <!-- Patient Image -->
+                                    <t t-if="patient.image_1920">
+                                        <img t-att-src="image_data_uri(patient.image_1920)"
+                                             class="rounded me-3"
+                                             style="width: 150px; height: 150px; object-fit: cover;"/>
+                                    </t>
+
+                                    <!-- Patient Info -->
+                                    <div class="flex-grow-1">
+                                        <div class="card-body p-0">
+                                            <h5 class="card-title">
+                                                <t t-esc="patient.name"/>
+                                            </h5>
+                                            <p class="card-text mb-1">Age:
+                                                <t t-esc="patient.age"/>
+                                            </p>
+                                            <p class="card-text mb-1">Gender:
+                                                <t t-esc="patient.gender"/>
+                                            </p>
+                                            <p class="card-text mb-1">Contact:
+                                                <t t-esc="patient.contact_number"/>
+                                            </p>
+                                            <p class="card-text mb-1">Email:
+                                                <t t-esc="patient.email"/>
+                                            </p>
+                                            <p class="card-text text-muted mb-0">Status:
+                                                <t t-esc="patient.patient_stat"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
 
     <template id="external_layout_wave_custom">
         <!-- HEADER -->

@@ -16,32 +16,37 @@
               action="action_hospital_bed_type"/>
 
     <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_main" action="action_hospital_bed"/>
-    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_main" action="action_hospital_test"/>
-    <menuitem id="report_layouts" name="Layouts" parent="hospital_menu_main" action="report_layout_action"/>
-    <menuitem id="pharmacy_inventory_menu" name="Inventory" parent="hospital_menu_main"/>
-    <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_main"/>
+    <!--    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_main" action="action_hospital_test"/>-->
+    <!--    <menuitem id="report_layouts" name="Layouts" parent="hospital_menu_main" action="report_layout_action"/>-->
+    <menuitem id="pharmacy_inventory_menu" name="Pharmacy" parent="hospital_menu_main"/>
+    <!--    <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_main"/>-->
 
     <!--    <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_main" sequence="60"/>-->
 
     <menuitem id="medicine_menu" name="Medicines" parent="pharmacy_inventory_menu" action="medicine_action"/>
     <menuitem id="hospital_config_settings_menu" name="Settings"
               parent="hospital_menu_main"
+              sequence="50"
               action="hospital_config_settings_action" groups="base.group_system"/>
 
 
-    <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_sales_menu" action="sale_action"/>
+    <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_inventory_menu" action="sale_action"/>
     <menuitem name="Dashboard" id="hospital_dashboard_menu"
               parent="hospital_menu_main"
               sequence="0" action="hospital_dashboard_action"/>
     <!--    <menuitem id="menu_export_appointments" name="Export Appointments"-->
     <!--              parent="hospital_menu_main"-->
     <!--              action="action_export_appointment_wizard"/>-->
-    <menuitem id="custom_menu_sale_orders"
-              name="Sales Orders"
+    <!--    <menuitem id="custom_menu_sale_orders"-->
+    <!--              name="Sales Orders"-->
+    <!--              parent="hospital_menu_main"-->
+    <!--              action="custom_action_sale_order"/>-->
+    <!--    <menuitem id="custom_menu_invoice"-->
+    <!--              name="Invoices"-->
+    <!--              parent="hospital_menu_main"-->
+    <!--              action="custom_action_invoice1"/>-->
+    <menuitem id="menu_patient_page"
+              name="Patient Website"
               parent="hospital_menu_main"
-              action="custom_action_sale_order"/>
-    <menuitem id="custom_menu_invoice"
-              name="Invoices"
-              parent="hospital_menu_main"
-              action="custom_action_invoice1"/>
+              action="action_hospital_patient_webpage"/>
 </odoo>
