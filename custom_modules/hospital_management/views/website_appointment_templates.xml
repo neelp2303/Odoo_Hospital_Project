@@ -46,6 +46,7 @@
                     </div>
                 </t>
                 <form action="/appointments/book/submit" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     <div class="mb-3">
                         <label class="form-label">Patient</label>
                         <select name="patient_id" class="form-select" required="1">
