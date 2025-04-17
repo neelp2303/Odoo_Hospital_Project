@@ -1,11 +1,7 @@
 .o_dashboard {
-    background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+    background: #090979;
+background: linear-gradient(90deg,rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 46%);
 
-    min-height: 100vh;
-    padding: 40px;
-    text-align: center;
-    color: #ffffff;
-    font-family: "Poppins", sans-serif;
 }
 
 /* Dashboard Title */
