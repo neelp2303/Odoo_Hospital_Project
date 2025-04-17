@@ -30,6 +30,7 @@
         "views/beds_data.xml",
         "views/res_config_settings_view.xml",
         "views/medicine_view.xml",
+        "views/website_appointment_templates.xml",
         "views/sale_view.xml",
         "views/test_view.xml",
         "views/my_report_layout.xml",

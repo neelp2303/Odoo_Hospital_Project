@@ -1,0 +1,141 @@
+<odoo>
+    <template id="website_appointment_list" name="Appointments List">
+        <t t-call="website.layout">
+            <div class="container my-5">
+                <h1 class="mb-4">Appointments</h1>
+                <a class="btn btn-primary mb-4" href="/appointments/book">Book Appointment</a>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="appointments" t-as="appointment">
+                            <tr>
+                                <td>
+                                    <t t-esc="appointment.patient_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="appointment.doctor_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="appointment.appointment_date"/>
+                                </td>
+                                <td>
+                                    <t t-esc="appointment.status"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="website_appointment_form" name="Appointment Booking Form">
+        <t t-call="website.layout">
+            <div class="container my-5">
+                <h1 class="mb-4">Book an Appointment</h1>
+                <t t-if="error">
+                    <div class="alert alert-danger">
+                        <t t-esc="error"/>
+                    </div>
+                </t>
+                <form action="/appointments/book/submit" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Patient</label>
+                        <select name="patient_id" class="form-select" required="1">
+                            <t t-foreach="patients" t-as="patient">
+                                <option t-att-value="patient.id">
+                                    <t t-esc="patient.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Doctor</label>
+                        <select name="doctor_id" class="form-select" required="1">
+                            <t t-foreach="doctors" t-as="doctor">
+                                <option t-att-value="doctor.id">
+                                    <t t-esc="doctor.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Appointment Date</label>
+                        <input type="date" name="appointment_date" id="appointment_date" t-att-value="default_date"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Time Slot</label>
+                        <select name="slots" class="form-select" required="1">
+                            <t t-foreach="slots" t-as="slots">
+                                <option t-att-value="slots.id">
+                                    <t t-esc="slots.display_name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                    const doctorField = document.querySelector('[name="doctor_id"]');
+                    const dateField = document.querySelector('[name="appointment_date"]');
+                    const slotSelect = document.querySelector('[name="slots"]');
+
+                    function fetchSlots() {
+                    const doctorId = doctorField.value;
+                    const appointmentDate = dateField.value;
+
+                    console.log('Triggering fetch for slots');
+                    console.log('Doctor ID:', doctorId, 'Appointment Date:', appointmentDate);
+
+                    if (doctorId &amp; appointmentDate) {
+                    // Ensure web.ajax is available
+                    if (typeof odoo !== "undefined" &amp; odoo.__DEBUG__) {
+                    console.log("Odoo JS is loaded.");
+                    }
+
+                    require(['web.ajax'], function (ajax) {
+                    ajax.jsonRpc('/appointments/get_slots', 'call', {
+                    doctor_id: doctorId,
+                    appointment_date: appointmentDate
+                    }).then(function (slots) {
+                    console.log("Slots received:", slots);
+                    slotSelect.innerHTML = '';
+
+                    if (slots.length === 0) {
+                    slotSelect.innerHTML = '<option>No slots available</option>';
+                    } else {
+                    slots.forEach(function (slot) {
+                    const option = document.createElement('option');
+                    option.value = slot.id;
+                    option.textContent = slot.display_name;
+                    slotSelect.appendChild(option);
+                    });
+                    }
+                    }).catch(function (error) {
+                    console.error("Failed to fetch slots:", error);
+                    });
+                    });
+                    }
+                    }
+
+                    if (doctorField &amp; dateField &amp; slotSelect) {
+                    doctorField.addEventListener('change', fetchSlots);
+                    dateField.addEventListener('change', fetchSlots);
+                    fetchSlots(); // initial load
+                    }
+                    });
+                </script>
+
+
+            </div>
+        </t>
+    </template>
+</odoo>
