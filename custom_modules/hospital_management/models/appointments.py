@@ -14,9 +14,7 @@ class HospitalAppointment(models.Model):
     patient_image = fields.Image(
         related="patient_id.image", string="Patient Image", store=True
     )
-    partner_id = fields.Many2one(
-        "res.partner", string="Partner", required=True, ondelete="cascade"
-    )
+    partner_id = fields.Many2one("res.partner", string="Partner", ondelete="cascade")
     doctor_id = fields.Many2one("hospital.doctor", string="Doctor", required=True)
     status = fields.Selection(
         selection=lambda self: self._get_status_selection(),
