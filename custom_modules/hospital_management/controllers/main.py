@@ -77,7 +77,7 @@ class HospitalPatientController(http.Controller):
                     "patient_id": int(post.get("patient_id")),
                     "doctor_id": int(post.get("doctor_id")),
                     "appointment_date": post.get("appointment_date"),
-                    "slots": int(post.get("slots")),  # Include time slot here
+                    "slot_id": int(post.get("slots")),  # Include time slot here
                 }
             )
         except (ValidationError, Exception) as e:
