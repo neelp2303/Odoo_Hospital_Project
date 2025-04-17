@@ -54,12 +54,15 @@
             <form string="Appointment Details">
                 <header>
                     <button name="%(hospital_management.action_report_appointment)d"
-                            string="Print Report" type="action" class="btn-primary"/>
+                            string="Print Report" type="action" class="btn-primary"
+                            groups="hospital_management.group_hospital_admin"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,ongoing,done,canceled"
                            options="{'clickable':True}"/>
                     <button name="action_start_treatment" type="object" string="Start Treatment"
+                            groups="hospital_management.group_hospital_admin"
                             invisible="status != 'confirmed'"/>
                     <button name="action_confirm_prescription" type="object" string="Confirm Prescription"
+                            groups="hospital_management.group_hospital_admin"
                             invisible="status != 'ongoing'"/>
                     <!--                    <button name="send_email_notification" type="object" string="send email notification"-->
                     <!--                    />-->

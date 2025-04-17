@@ -10,6 +10,7 @@
     "depends": ["base", "board", "sale", "account", "stock", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "data/sequence_data.xml",
         "data/hospital_patient_data.xml",
         "data/appoint_email.xml",

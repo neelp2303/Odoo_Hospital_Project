@@ -4,21 +4,25 @@
     <menuitem id="hospital_patient_menu" name="Patients" parent="hospital_menu_main" action="action_hospital_patient"
               sequence="1"/>
     <menuitem id="hospital_doctor_menu" name="Doctors" parent="hospital_menu_main" action="action_hospital_doctor"
+              groups="hospital_management.group_hospital_admin"
               sequence="2"/>
     <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_menu_main"
               action="action_hospital_appointment" sequence="3"/>
 
     <menuitem id="hospital_conference_menu" name="Conferences" parent="hospital_menu_main"
+              groups="hospital_management.group_hospital_admin"
               action="action_hospital_conference"/>
 
 
     <menuitem id="hospital_bed_type_menu" name="Bed Management" parent="hospital_menu_main"
+              groups="hospital_management.group_hospital_admin"
               action="action_hospital_bed_type"/>
 
     <menuitem id="hospital_bed_menu" name="Admitted Patients" parent="hospital_menu_main" action="action_hospital_bed"/>
     <!--    <menuitem id="hospital_bed_test" name="Test" parent="hospital_menu_main" action="action_hospital_test"/>-->
     <!--    <menuitem id="report_layouts" name="Layouts" parent="hospital_menu_main" action="report_layout_action"/>-->
-    <menuitem id="pharmacy_inventory_menu" name="Pharmacy" parent="hospital_menu_main"/>
+    <menuitem id="pharmacy_inventory_menu" name="Pharmacy" parent="hospital_menu_main"
+              groups="hospital_management.group_hospital_admin"/>
     <!--    <menuitem id="pharmacy_sales_menu" name="Sales" parent="hospital_menu_main"/>-->
 
     <!--    <menuitem id="hospital_configurations_menu" name="Configurations" parent="hospital_menu_main" sequence="60"/>-->
@@ -27,7 +31,7 @@
     <menuitem id="hospital_config_settings_menu" name="Settings"
               parent="hospital_menu_main"
               sequence="50"
-              action="hospital_config_settings_action" groups="base.group_system"/>
+              action="hospital_config_settings_action" groups="hospital_management.group_hospital_admin"/>
 
 
     <menuitem id="sale_menu" name="Sell Medicines" parent="pharmacy_inventory_menu" action="sale_action"/>
@@ -48,9 +52,11 @@
     <menuitem id="menu_patient_page"
               name="Patient Website"
               parent="hospital_menu_main"
+              groups="hospital_management.group_hospital_admin"
               action="action_hospital_patient_webpage"/>
     <menuitem id="menu_hospital_dashboard"
               name="Dashboard"
+              groups="hospital_management.group_hospital_admin"
               parent="hospital_management.hospital_menu_main"
               action="action_hospital_dashboard"
               sequence="0"/>
