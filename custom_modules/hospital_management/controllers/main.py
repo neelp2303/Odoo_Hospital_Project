@@ -97,3 +97,8 @@ class HospitalPatientController(http.Controller):
                 },
             )
         return request.redirect("/appointments")
+
+    @http.route("/", auth="user", website=True)
+    def home_redirect(self, **kw):
+        # Redirect to backend instead of website
+        return request.redirect("/odoo")
