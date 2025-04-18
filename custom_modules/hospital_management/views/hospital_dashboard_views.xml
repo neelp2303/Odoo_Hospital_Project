@@ -144,11 +144,9 @@
 
                         <!--                        <action name="%(action_hospital_appointment_today)d" string="Today's Appointments"/>-->
                         <action name="%(action_hospital_patients_with_beds)d" string="Patients Details"/>
-
                     </column>
                     <column>
                         <!-- Appointments by Doctor Graph -->
-
                         <action name="%(action_hospital_appointment_graph)d" string="Appointments by Status"/>
                         <action name="%(action_hospital_doctor_kanban)d" string="Doctors"/>
                         <!-- Appointments Pivot -->
