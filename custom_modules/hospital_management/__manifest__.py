@@ -7,7 +7,15 @@
     "sequence": 0,
     "website": "https://www.heliconia.io",
     "author": "Neel Patel (Heliconia Solutions Pvt. Ltd.), ",
-    "depends": ["base", "board", "sale", "account", "stock", "sale_management"],
+    "depends": [
+        "base",
+        "board",
+        "sale",
+        "account",
+        "stock",
+        "portal",
+        "sale_management",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",

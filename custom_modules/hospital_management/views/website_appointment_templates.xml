@@ -1,4 +1,77 @@
 <odoo>
+    <!-- views/portal_templates.xml -->
+    <!-- views/portal_templates.xml -->
+    <!--    <template id="portal_my_home_appointments_test" name="My Appointments" inherit_id="portal.portal_my_home"-->
+    <!--              customize_show="True" priority="30">-->
+    <!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">-->
+    <!--            <t t-set="portal_client_category_enable" t-value="True"/>-->
+    <!--            <t t-set="portal_vendor_category_enable" t-value="True"/>-->
+    <!--        </xpath>-->
+    <!--        <div id="portal_client_category" position="inside">-->
+    <!--            <t t-call="portal.portal_docs_entry">-->
+    <!--                <t t-set="icon" t-value="''"/>-->
+    <!--                <t t-set="title">My Appointments</t>-->
+    <!--                <t t-set="url" t-value="'/my/appointments'"/>-->
+    <!--                <t t-set="text">Follow, download or pay your invoices</t>-->
+    <!--                <t t-set="placeholder_count" t-value="'invoice_count'"/>-->
+    <!--            </t>-->
+    <!--        </div>-->
+    <!--    </template>-->
+    <template id="portal_my_home_appointments" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[@id='portal_common_category']" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Appointments</t>
+                <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'"/>
+                <t t-set="url" t-value="'/my/appointments'"/>
+                <t t-set="text">Checkout Your Appointments</t>-->
+                <t t-set="placeholder_count" t-value="'invoice_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_appointments" name="My Appointments">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <div class="container o_portal_wrap">
+                <h2>My Appointments</h2>
+                <t t-if="appointments">
+                    <table class="table table-hover mt16">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Status</th>
+                                <th>Slot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="appointments" t-as="appt">
+                                <tr>
+                                    <td>
+                                        <span t-esc="appt.appointment_date"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="appt.doctor_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="appt.status"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="appt.slot_id.display_name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+                <t t-else="">
+                    <p>No appointments found.</p>
+                </t>
+            </div>
+        </t>
+    </template>
+
+
     <template id="website_appointment_list" name="Appointments List">
         <t t-call="website.layout">
             <div class="container my-5">

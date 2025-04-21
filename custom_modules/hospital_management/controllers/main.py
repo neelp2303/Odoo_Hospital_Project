@@ -2,6 +2,7 @@ from odoo import http
 from odoo.http import request
 from odoo.exceptions import ValidationError
 from datetime import date
+from odoo.addons.portal.controllers.portal import CustomerPortal
 
 
 class HospitalPatientController(http.Controller):
@@ -102,3 +103,32 @@ class HospitalPatientController(http.Controller):
     def home_redirect(self, **kw):
         # Redirect to backend instead of website
         return request.redirect("/odoo")
+
+    def _prepare_home_portal_values(self, counters):
+        values = super()._prepare_home_portal_values(counters)
+        patient = request.env['hospital.patient'].search(
+            [('partner_id', '=', request.env.user.partner_id.id)], limit=1
+        )
+
+        if patient:
+            appointments = request.env['hospital.appointment'].search_count(
+                [('patient_id', '=', patient.id)]
+            )
+            values['appointments_count'] = appointments
+        return values
+
+    @http.route(["/my/appointments"], type="http", auth="user", website=True)
+    def portal_my_appointments(self, **kwargs):
+        patient = request.env["hospital.patient"].search(
+            [("partner_id", "=", request.env.user.partner_id.id)], limit=1
+        )
+        appointments = request.env["hospital.appointment"].search(
+            [("patient_id", "=", patient.id)]
+        )
+        return request.render(
+            "hospital_management.portal_my_appointments",
+            {
+                "appointments": appointments,
+                "page_name": "appointments",
+            },
+        )
