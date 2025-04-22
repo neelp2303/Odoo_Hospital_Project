@@ -21,10 +21,10 @@
         <xpath expr="//div[@id='portal_common_category']" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">My Appointments</t>
-                <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'"/>
+                <t t-set="icon" t-value="'/calendar/static/src/img/google_calendar_40.png'"/>
                 <t t-set="url" t-value="'/my/appointments'"/>
                 <t t-set="text">Checkout Your Appointments</t>-->
-                <t t-set="placeholder_count" t-value="'invoice_count'"/>
+                <t t-set="config_card" t-value="True"/>
             </t>
         </xpath>
     </template>
