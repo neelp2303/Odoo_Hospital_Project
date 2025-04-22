@@ -100,10 +100,10 @@ class HospitalPatientController(http.Controller):
             )
         return request.redirect("/appointments")
 
-    @http.route("/", auth="user", website=True)
-    def home_redirect(self, **kw):
-        # Redirect to backend instead of website
-        return request.redirect("/odoo")
+    # @http.route("/", auth="user", website=True)
+    # def home_redirect(self, **kw):
+    #     # Redirect to backend instead of website
+    #     return request.redirect("/odoo")
 
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
