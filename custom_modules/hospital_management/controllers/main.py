@@ -2,6 +2,7 @@ from odoo import http
 from odoo.http import request
 from odoo.exceptions import ValidationError
 from datetime import date
+from werkzeug.exceptions import NotFound
 from odoo.addons.portal.controllers.portal import CustomerPortal
 
 
@@ -106,19 +107,21 @@ class HospitalPatientController(http.Controller):
 
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
-        patient = request.env['hospital.patient'].search(
-            [('partner_id', '=', request.env.user.partner_id.id)], limit=1
+        patient = request.env["hospital.patient"].search(
+            [("partner_id", "=", request.env.user.partner_id.id)], limit=1
         )
 
         if patient:
-            appointments = request.env['hospital.appointment'].search_count(
-                [('patient_id', '=', patient.id)]
+            appointments = request.env["hospital.appointment"].search_count(
+                [("patient_id", "=", patient.id)]
             )
-            values['appointments_count'] = appointments
+            values["appointments_count"] = appointments
         return values
 
     @http.route(["/my/appointments"], type="http", auth="user", website=True)
     def portal_my_appointments(self, **kwargs):
+        if not request.env.user.has_group("base.group_portal"):
+            raise NotFound()
         patient = request.env["hospital.patient"].search(
             [("partner_id", "=", request.env.user.partner_id.id)], limit=1
         )
