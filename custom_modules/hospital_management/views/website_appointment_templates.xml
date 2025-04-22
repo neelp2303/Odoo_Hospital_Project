@@ -22,7 +22,7 @@
             <t t-if="request.env.user.has_group('base.group_portal')">
                 <t t-call="portal.portal_docs_entry">
                     <t t-set="title">My Appointments</t>
-                    <t t-set="icon" t-value="'/hospital_management/static/src/img/calendar-1.svg'"/>
+                    <t t-set="icon" t-value="'/hospital_management/static/src/img/timesheet.svg'"/>
                     <t t-set="url" t-value="'/my/appointments'"/>
                     <t t-set="text">Checkout Your Appointments</t>-->
                     <t t-set="config_card" t-value="True"/>
