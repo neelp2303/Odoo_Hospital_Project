@@ -44,6 +44,7 @@
         "views/test_view.xml",
         "views/my_report_layout.xml",
         "views/client_action_views.xml",
+        "views/website_block_templates.xml",
         "views/menu.xml",
     ],
     "assets": {
@@ -53,6 +54,9 @@
             "hospital_management/static/src/xml/client_action.xml",
             "hospital_management/static/src/css/hospital_dashboard.css",
         ],
+        # "web.assets_frontend": [
+        #     "/website_custom_blocks/static/src/xml/custom_snippets.xml",
+        # ],
     },
     "installable": True,
     "application": True,

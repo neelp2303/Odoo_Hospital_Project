@@ -1,0 +1,9 @@
+<odoo>
+    <template id="custom_snippet_category" name="Custom Snippets">
+        <xpath expr="//t[@id='default_snippets']" position="inside">
+            <div class="snippet-category" data-name="Custom">
+                <t t-snippet="website.snippet_category" t-call-options='{"name": "Custom"}'/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

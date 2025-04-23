@@ -1,0 +1,40 @@
+<odoo>
+    <template id="s_testimonial_carousel" name="Testimonial Carousel" inherit_id="website.snippets" priority="10">
+        <xpath expr="//snippets[@id='snippet_groups']" position="inside">
+            <t t-snippet="hospital_management.testimonial_carousel"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_media_list.svg"/>
+
+            <!--            <div class="snippet-category" data-name="Custom">-->
+            <!--                <t t-snippet="website.snippet_category" t-call-options='{"name": "Custom"}'/>-->
+            <!--            </div>-->
+        </xpath>
+    </template>
+
+    <template id="testimonial_carousel" name="Testimonial Carousel">
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">What Our Clients Say</h2>
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active text-center">
+                            <p class="mb-4">"This service changed our business! Highly recommended."</p>
+                            <h5>- Jane Doe, CEO of Company</h5>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <p class="mb-4">"Fantastic experience. Top-notch support and results."</p>
+                            <h5>- John Smith, Marketing Director</h5>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>
