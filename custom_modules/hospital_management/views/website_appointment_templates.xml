@@ -65,6 +65,9 @@
                             </t>
                         </tbody>
                     </table>
+                    <t t-call="portal.pager">
+                        <t t-set="pager" t-value="pager"/>
+                    </t>
                 </t>
                 <t t-else="">
                     <p>No appointments found.</p>
@@ -107,6 +110,9 @@
                         </t>
                     </tbody>
                 </table>
+                <t t-call="portal.pager">
+                    <t t-set="pager" t-value="pager"/>
+                </t>
             </div>
         </t>
     </template>
