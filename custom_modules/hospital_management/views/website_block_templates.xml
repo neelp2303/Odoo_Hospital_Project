@@ -1,12 +1,15 @@
 <odoo>
     <template id="s_testimonial_carousel" name="Testimonial Carousel" inherit_id="website.snippets" priority="10">
         <xpath expr="//snippets[@id='snippet_groups']" position="inside">
-            <t t-snippet="hospital_management.testimonial_carousel"
+            <t t-snippet="website.s_snippet_group" snippet-group="Testimonial" string="Testimonial"
                t-thumbnail="/website/static/src/img/snippets_thumbs/s_media_list.svg"/>
+        </xpath>
+    </template>
 
-            <!--            <div class="snippet-category" data-name="Custom">-->
-            <!--                <t t-snippet="website.snippet_category" t-call-options='{"name": "Custom"}'/>-->
-            <!--            </div>-->
+    <template id="s_testimonial_casel" name="Testimonial Carousel" inherit_id="website.snippets" priority="10">
+        <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+            <t t-snippet="hospital_management.testimonial_carousel" group="Testimonial" string="Testimonial"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_media_list.svg"/>
         </xpath>
     </template>
 
