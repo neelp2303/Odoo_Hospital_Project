@@ -30,7 +30,7 @@ class HospitalPatientController(http.Controller):
             url="/appointments",
             total=total,
             page=page,
-            step=5,  # Only 2 appointments per page
+            step=5,
         )
 
         appointments = appointments_obj.search([], limit=5, offset=pager["offset"])
