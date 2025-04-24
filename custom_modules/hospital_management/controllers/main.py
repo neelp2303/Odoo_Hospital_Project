@@ -5,6 +5,7 @@ from datetime import date
 from werkzeug.exceptions import NotFound
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
+import json
 
 
 class HospitalPatientController(http.Controller):
@@ -14,6 +15,36 @@ class HospitalPatientController(http.Controller):
         patients = request.env["hospital.patient"].sudo().search([])
         return request.render(
             "hospital_management.patient_list_template", {"patients": patients}
+        )
+
+    @http.route(
+        ["/api/appointments", "/api/appointments/page/<int:page>"],
+        type="http",
+        auth="public",  # or "user" if protected
+        csrf=False,
+        website=False,
+    )
+    def appointment_list_json(self, **kw):
+        appointments_obj = request.env["hospital.appointment"].sudo()
+        total = appointments_obj.search_count([])
+        appointments = appointments_obj.search([])
+
+        appointments_data = [
+            {
+                "id": appointment.id,
+                "patient_name": appointment.patient_id.name,
+                "appointment_date": appointment.appointment_date,
+                "doctor": appointment.doctor_id.name,
+                "status": appointment.status,
+            }
+            for appointment in appointments
+        ]
+
+        return request.make_json_response(
+            {
+                "total": total,
+                "appointments": appointments_data,
+            }
         )
 
     @http.route(
